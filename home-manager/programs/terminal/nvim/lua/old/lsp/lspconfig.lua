@@ -60,7 +60,7 @@ return {
         end
 
         local language_servers = {
-            nil_ls = {},
+            nixd = {},
             bashls = {},
             lua_ls = {
                 settings = {

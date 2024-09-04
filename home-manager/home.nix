@@ -1,104 +1,71 @@
-{ config, pkgs, inputs, ... }: {
-    imports = [
-        ./programs/tmux.nix
-        ./programs/zsh.nix
-        ./programs/nvim.nix
-    ];
+{ pkgs, ... }: {
+  imports = [
+    ./programs/terminal/tmux.nix
+    ./programs/terminal/zsh.nix
+    ./programs/terminal/nvim.nix
+    ./programs/terminal/alacritty.nix
+  ];
 
-	home = {
-		username = "seyves";
-		homeDirectory = "/home/seyves";
-		stateVersion = "23.11";
-		# using standard nvim config, because doing it through nix is too complex
-	};
+  home = {
+    username = "seyves";
+    homeDirectory = "/home/seyves";
+    stateVersion = "23.11";
+    # using standard nvim config, because doing it through nix is too complex
+  };
 
-	fonts.fontconfig.enable = true;
-	nixpkgs.config.allowUnfree = true;
-	home.packages = [
-	    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-        pkgs.roboto
-        pkgs.inter
-        pkgs.kde-rounded-corners
-		pkgs.nodejs_20
-        pkgs.zsh-powerlevel10k
-        pkgs.fzf
-		pkgs.nodePackages.pnpm
-        pkgs.rsync
-        pkgs.sshpass
-        pkgs.go
-        pkgs.telegram-desktop
-        pkgs.slack
-        pkgs.google-chrome
-        pkgs.postman
-        pkgs.cargo
-        pkgs.expect
-        # lsps
-        pkgs.nodePackages.bash-language-server
-        pkgs.nodePackages.typescript
-        pkgs.nodePackages.typescript-language-server
-        pkgs.nodePackages.vscode-langservers-extracted
-        pkgs.nodePackages.vue-language-server
-        pkgs.tailwindcss-language-server
-        pkgs.jsonnet-language-server
-        pkgs.lua-language-server
-        pkgs.gopls
-        pkgs.nil
-        # formatters
-        pkgs.nodePackages.sql-formatter
-        pkgs.prettierd
-        pkgs.eslint_d
-	];
+  nixpkgs.overlays = [
+    (final: super: {
+      rofi-wayland-unwrapped = super.rofi-wayland-unwrapped.overrideAttrs
+        ({ patches ? [ ], ... }: {
+          patches = patches ++ [
+            (final.fetchpatch {
+              url =
+                "https://github.com/samueldr/rofi/commit/55425f72ff913eb72f5ba5f5d422b905d87577d0.patch";
+              hash = "sha256-vTUxtJs4SuyPk0PgnGlDIe/GVm/w1qZirEhKdBp4bHI=";
+            })
+          ];
+        });
+    })
+  ];
 
-	programs.alacritty.enable = true;
-	programs.alacritty.settings = {
-		font = {
-			normal = {
-				family = "JetBrainsMono Nerd Font"; 
-				style = "Regular";
-			};
-			size = 12;
-		};
+  fonts.fontconfig.enable = true;
+  nixpkgs.config.allowUnfree = true;
 
-		window = {
-			padding = {
-				x = 10;
-				y = 8;
-			};
-		};
-
-		cursor = {
-			style = {
-				shape = "Block";
-				blinking = "Always";
-			};
-			blink_interval = 500;
-		};
-
-		colors.primary = {
-			background = "#282828";
-			foreground = "#d3c6aa";
-		};
-
-		colors.normal = {
-			black   = "#475258";
-			red     = "#e67e80";
-			green   = "#a7c080";
-			yellow  = "#dbbc7f";
-			blue    = "#7fbbb3";
-			magenta = "#d699b6";
-			cyan    = "#83c092";
-			white   = "#d3c6aa";
-		};
-
-		colors.bright = {
-			black   = "#475258";
-			red     = "#e67e80";
-			green   = "#a7c080";
-			yellow  = "#dbbc7f";
-			blue    = "#7fbbb3";
-			magenta = "#d699b6";
-			cyan    = "#83c092";
-			white   = "#d3c6aa";
-		};
-	};
+  home.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    roboto
+    inter
+    kde-rounded-corners
+    nodejs_20
+    zsh-powerlevel10k
+    fzf
+    nodePackages.pnpm
+    rsync
+    sshpass
+    go
+    telegram-desktop
+    slack
+    firefox
+    google-chrome
+    postman
+    gcc
+    ripgrep
+    rofi-wayland
+    # lsps
+    nodePackages.bash-language-server
+    nodePackages.typescript
+    nodePackages.typescript-language-server
+    nodePackages.vscode-langservers-extracted
+    nodePackages.vue-language-server
+    tailwindcss-language-server
+    jsonnet-language-server
+    lua-language-server
+    gopls
+    nil
+    # formatters
+    nodePackages.sql-formatter
+    prettierd
+    eslint_d
+    nixfmt-classic
+  ];
 }
