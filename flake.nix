@@ -7,14 +7,14 @@
         home-manager.url = "github:nix-community/home-manager/release-24.05";
     };
 
-    outputs = { self, nixpkgs, home-manager, zen-browser } @ inputs: 
+    outputs = { self, nixpkgs, home-manager, ... } @ inputs: 
         let 
 	    inherit (self) outputs;
             system = "x86_64-linux";
         in {
             nixosConfigurations = {
                 myNixos = nixpkgs.lib.nixosSystem {
-                    specialArgs = { inherit system; inherit zen-browser; };
+                    specialArgs = { inherit inputs outputs; };
                     modules = [
                         ./nixos/configuration.nix
                     ];
@@ -29,6 +29,5 @@
                     ];
                 };
             };
-            zen-browser = zen-browser;
         };
 }

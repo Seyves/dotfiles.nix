@@ -15,7 +15,7 @@
       bind-key g choose-session
       bind-key s split-window -h 
       bind-key v split-window -v 
-      set-option -sa terminal-overrides ',alacritty:RGB'
+      set -ag terminal-overrides ",xterm-256color:RGB"
       set -g status-bg default
       set -g status-style bg=default
       set -g status-fg color15

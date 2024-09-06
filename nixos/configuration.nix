@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, zen-browser, lib, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -53,16 +53,28 @@
     LC_TELEPHONE = "ru_RU.UTF-8";
     LC_TIME = "ru_RU.UTF-8";
   };
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    # gtk portal needed to make gtk apps happy
+    extraPortals = [ 
+      pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-gtk 
+    ];
+  };
 
   # Enable the GNOME Desktop Environment.
   # Configure keymap in X1
   services = {
-    desktopManager.plasma6.enable = true;
-    displayManager.sddm = {
-      enable = true;
-      settings = { x11.ServerArguments = "-nolisten tcp -dpi 96"; };
-    };
     xserver = {
+        displayManager.gdm = {
+            enable = true;
+            wayland = true;
+        };
       # Enable the X11 windowing system.
       enable = true;
       xkb = {
@@ -78,6 +90,12 @@
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
+    };
+    openvpn.servers = {
+        itoolabsVPN = { 
+            config = '' config /home/seyves/.config/openvpn/itoolabs/office.ovpn '';
+            updateResolvConf = true;
+        };
     };
   };
 
@@ -97,22 +115,25 @@
     libva-utils
     nvidia-vaapi-driver
     home-manager
+    kitty
     git
     kdePackages.wayland-protocols
-    zen-browser.packages."x86_64-linux".default
+    inputs.zen-browser.packages."x86_64-linux".default
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
   ];
-  environment.variables = {
+  environment.sessionVariables = {
     TERM = "xterm-256color";
     XDG_CACHE_HOME = "$HOME/.cache";
     XDG_CONFIG_HOME = "$HOME/.config";
     # nvidia related
     LIBVA_DRIVER_NAME = "nvidia";
     XDG_SESSION_TYPE = "wayland";
-    GBM_BACKEND = "nvidia-drm";
+    GBM_BACKEND = "nvidia";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    WLR_NO_HARDWARE_CURSORS = "1";
+    QT_QPA_PLATFORM="wayland";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION="1";
+    WLR_DRM_NO_ATOMIC="1";
     NIXOS_OZONE_WL = "1";
     MOZ_ENABLE_WAYLAND = "1";
     SDL_VIDEODRIVER = "wayland";
