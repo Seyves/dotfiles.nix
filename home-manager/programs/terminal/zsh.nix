@@ -11,8 +11,8 @@
     syntaxHighlighting.enable = true;
     historySubstringSearch = {
       enable = true;
-      searchUpKey = [ "\\eOA" ];
-      searchDownKey = [ "\\eOB" ];
+      searchUpKey = [ "^[[A" ];
+      searchDownKey = [ "^[[B" ];
     };
     initExtra = builtins.readFile ./zshinit.sh;
   };

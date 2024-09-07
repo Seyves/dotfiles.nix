@@ -61,20 +61,17 @@
     enable = true;
     wlr.enable = true;
     # gtk portal needed to make gtk apps happy
-    extraPortals = [ 
-      pkgs.xdg-desktop-portal-wlr
-      pkgs.xdg-desktop-portal-gtk 
-    ];
+    extraPortals = [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ];
   };
 
   # Enable the GNOME Desktop Environment.
   # Configure keymap in X1
   services = {
     xserver = {
-        displayManager.gdm = {
-            enable = true;
-            wayland = true;
-        };
+      displayManager.gdm = {
+        enable = true;
+        wayland = true;
+      };
       # Enable the X11 windowing system.
       enable = true;
       xkb = {
@@ -92,10 +89,11 @@
       pulse.enable = true;
     };
     openvpn.servers = {
-        itoolabsVPN = { 
-            config = '' config /home/seyves/.config/openvpn/itoolabs/office.ovpn '';
-            updateResolvConf = true;
-        };
+      itoolabsVPN = {
+        autoStart = false;
+        config = "config /home/seyves/.config/openvpn/itoolabs/office.ovpn ";
+        updateResolvConf = true;
+      };
     };
   };
 
@@ -131,9 +129,9 @@
     XDG_SESSION_TYPE = "wayland";
     GBM_BACKEND = "nvidia";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    QT_QPA_PLATFORM="wayland";
-    QT_WAYLAND_DISABLE_WINDOWDECORATION="1";
-    WLR_DRM_NO_ATOMIC="1";
+    QT_QPA_PLATFORM = "wayland";
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    WLR_DRM_NO_ATOMIC = "1";
     NIXOS_OZONE_WL = "1";
     MOZ_ENABLE_WAYLAND = "1";
     SDL_VIDEODRIVER = "wayland";

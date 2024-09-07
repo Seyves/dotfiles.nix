@@ -1,18 +1,22 @@
-{ pkgs, ... }: {
+{ pkgs, pkgs-unstable, ... }: {
   imports = [
     ./programs/terminal/tmux.nix
     ./programs/terminal/zsh.nix
     ./programs/terminal/nvim.nix
     ./programs/terminal/alacritty.nix
+    ./programs/ui/hyprland.nix
   ];
+  
+  # Allowing unfree
+  nixpkgs.config.allowUnfree = true;
 
   home = {
     username = "seyves";
     homeDirectory = "/home/seyves";
     stateVersion = "23.11";
-    # using standard nvim config, because doing it through nix is too complex
   };
 
+  # Default mimetypes
   xdg.mimeApps = let
     mimetypes = {
       # images
@@ -21,6 +25,16 @@
       "image/png" = [ "org.gnome.Loupe.desktop" ];
       "image/svg" = [ "org.gnome.Loupe.desktop" ];
       "image/webp" = [ "org.gnome.Loupe.desktop" ];
+      # audio 
+      "audio/vnd.wave" = [ "org.gnome.Showtime.desktop" ];
+      "audio/mpeg" = [ "org.gnome.Showtime.desktop" ];
+      "audio/mid" = [ "org.gnome.Showtime.desktop" ];
+      "audio/mp4" = [ "org.gnome.Showtime.desktop" ];
+      # video 
+      "video/mpeg" = [ "org.gnome.Showtime.desktop" ];
+      "video/mp4" = [ "org.gnome.Showtime.desktop" ];
+      "video/ogg" = [ "org.gnome.Showtime.desktop" ];
+      "video/webm" = [ "org.gnome.Showtime.desktop" ];
       # text
       "text/markdown" = [ "neovide" ];
       "text/plain" = [ "neovide" ];
@@ -54,6 +68,7 @@
     defaultApplications = mimetypes;
   };
 
+  # Cursor theme
   home.pointerCursor = {
     x11.enable = true;
     name = "Vanilla-DMZ";
@@ -62,13 +77,14 @@
     gtk.enable = true;
   };
 
+  # GTK theme
   gtk = {
     enable = true;
     font.name = "Roboto";
 
     iconTheme = {
       name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
+      package = (pkgs.papirus-icon-theme.override { color = "green"; });
     };
 
     theme = {
@@ -91,7 +107,6 @@
         gtk-application-prefer-dark-theme=1
       '';
     };
-
   };
 
   home.sessionVariables.GTK_THEME = "Colloid-Dark";
@@ -112,38 +127,47 @@
   ];
 
   fonts.fontconfig.enable = true;
-  nixpkgs.config.allowUnfree = true;
 
-  home.packages = with pkgs; [
+  home.packages = (with pkgs; [
+    # Fonts
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     roboto
     inter
-    kde-rounded-corners
+
+    # Tools for development
+    go
     nodejs_20
-    zsh-powerlevel10k
-    fzf
-    nodePackages.pnpm
+    gcc
     rsync
     sshpass
-    go
-    telegram-desktop
-    slack
+    fzf
+    nodePackages.pnpm
+    ripgrep
+    wine-wayland
+    unzip
+
+    # Desktop Apps
     firefox
     google-chrome
-    postman
-    gcc
-    ripgrep
-    rofi-wayland
-    swaybg
-    eww
-    waybar
-    wine-wayland
+    slack
     gnome.nautilus
     gnome.file-roller
     loupe
+    telegram-desktop
+    postman
     neovide
-    unzip
-    # lsps
+
+    # Rising
+    rofi-wayland
+    swaybg
+    waybar
+    zsh-powerlevel10k
+    wl-clipboard
+    hyprpicker
+    hyprshot
+    swaynotificationcenter
+
+    # Lsps
     nodePackages.bash-language-server
     nodePackages.typescript
     nodePackages.typescript-language-server
@@ -154,10 +178,11 @@
     lua-language-server
     gopls
     nil
-    # formatters
+
+    # Formatters
     nodePackages.sql-formatter
     prettierd
     eslint_d
     nixfmt-classic
-  ];
+  ]) ++ (with pkgs-unstable; [ showtime ]);
 }
