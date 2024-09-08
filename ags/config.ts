@@ -1,6 +1,12 @@
 function Bar(monitor) {
+    const myVar = Variable(0)
+
+    Utils.interval(1000, () => {
+        myVar.value++
+    })
+
     const myLabel = Widget.Label({
-        label: "text"
+        label: myVar.bind().as(v => `num: ${v}`)
     })
 
     return Widget.Window({
