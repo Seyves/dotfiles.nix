@@ -4,7 +4,7 @@ function Workspaces() {
     return Widget.Box({
         spacing: 8,
         children: [1, 2, 3, 4, 5].map((i) => {
-            return Widget.Button({
+            return Widget.Label({
                 className: "workspace",
                 setup: (self) => {
                     self.hook(hyprland.active.workspace, (self) => {
