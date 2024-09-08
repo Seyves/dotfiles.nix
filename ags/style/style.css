@@ -1,11 +1,13 @@
 .bar {
     background-color: #1B1B1B;
+    min-height: 80pt;
 }
 
 .workspace {
     background-color: #fff;
     border-radius: 50%;
     min-width: 6pt;
+    min-height: 6pt;
     transition: all 0.5s;
 }
 
