@@ -8,7 +8,7 @@
     min-height: 0px;
     font-size: 0px;
     padding: 6px;
-    transition: padding 0.2s;
+    transition: all 0.2s;
 }
 
 .workspace.active {
