@@ -5,6 +5,8 @@
 .workspace {
     background-color: #fff;
     border-radius: 50%;
+    min-height: 0px;
+    font-size: 0px;
     padding: 10px;
     transition: all 0.5s;
 }
