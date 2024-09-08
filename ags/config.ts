@@ -1,8 +1,12 @@
+import { log } from "widgets/bar"
+
 const time = Variable('', {
     poll: [1000, function() {
         return Date().toString()
     }],
 })
+
+log()
 
 const Bar = (monitor) => Widget.Window({
     monitor,
