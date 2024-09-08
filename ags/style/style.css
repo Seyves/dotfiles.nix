@@ -12,7 +12,7 @@
     min-height: 14px;
     min-width: 14px;
     font-size: 0px;
-    transition: all 0.2s ease-out;
+    transition: all 0.2s linear;
 }
 
 
