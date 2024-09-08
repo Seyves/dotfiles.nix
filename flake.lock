@@ -19,7 +19,7 @@
         "type": "github"
       }
     },
-    "ags-build-flake": {
+    "ags-build": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
@@ -27,12 +27,12 @@
       },
       "locked": {
         "lastModified": 1,
-        "narHash": "sha256-KMmEB8VLcJCuuwWs7rBSZlZiIseb0zGK+4DJjdpGoEM=",
-        "path": "/nix/store/9ghlx4iggllcn3zw78l0km3z3d02pzk1-source/ags",
+        "narHash": "sha256-e4SmLOKQQex/Tie2OSJlds7wwXVVEKgrA5QbEsG2cxQ=",
+        "path": "/nix/store/i25pll51szhciw2pa5yq97a4shwxqldz-source/ags",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/9ghlx4iggllcn3zw78l0km3z3d02pzk1-source/ags",
+        "path": "/nix/store/i25pll51szhciw2pa5yq97a4shwxqldz-source/ags",
         "type": "path"
       }
     },
@@ -124,7 +124,7 @@
     "root": {
       "inputs": {
         "ags": "ags",
-        "ags-build-flake": "ags-build-flake",
+        "ags-build": "ags-build",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",

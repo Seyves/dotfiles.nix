@@ -26,8 +26,8 @@
   programs.ags = {
     enable = true;
 
-    # null or path, leave as null if you don't want hm to manage the config
-    configDir = "${inputs.ags-build-flake.defaultPackage}";
+    # build ags derivation from ../ags/flake.nix
+    configDir = "${inputs.ags-build.defaultPackage}";
 
     # additional packages to add to gjs's runtime
     extraPackages = with pkgs; [ gtksourceview webkitgtk accountsservice ];
