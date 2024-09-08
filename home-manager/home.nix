@@ -10,7 +10,6 @@
 
   nixpkgs.overlays = [
     (final: super: {
-      ags-build-flake = inputs.ags-build-flake.defaultPackage;
       rofi-wayland-unwrapped = super.rofi-wayland-unwrapped.overrideAttrs
         ({ patches ? [ ], ... }: {
           patches = patches ++ [
@@ -28,7 +27,7 @@
     enable = true;
 
     # null or path, leave as null if you don't want hm to manage the config
-    configDir = ../ags;
+    configDir = "${inputs.ags-build-flake}";
 
     # additional packages to add to gjs's runtime
     extraPackages = with pkgs; [ gtksourceview webkitgtk accountsservice ];
