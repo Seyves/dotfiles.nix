@@ -8,6 +8,7 @@
     background-color: #fff;
     border-radius: 50%;
     min-width: 6pt;
+    padding: 10px;
     min-height: 6pt;
     transition: all 0.5s;
 }
