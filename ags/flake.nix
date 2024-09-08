@@ -1,9 +1,11 @@
 {
   description = "Transpile ags ts into js";
 
+  inputs = { nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-24.05"; };
+
   outputs = { self, nixpkgs, ... }:
     let
-      pkgs = import nixpkgs { system = "x86_64-linux"; };
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
       bun = pkgs.bun;
 
       appBuild = pkgs.stdenv.mkDerivation {
@@ -18,6 +20,7 @@
         installPhase = ''
           ls
           cp -r ./dist $out
+          cp -r ./style $out/style
         '';
       };
 
