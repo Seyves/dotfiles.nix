@@ -12,11 +12,15 @@ function Workspaces() {
                             "active",
                             hyprland.active.workspace.id === i,
                         );
+                        self.toggleClassName("marg", true);
+                        Utils.timeout(100, () => {
+                            self.toggleClassName("marg", false);
+                        });
                     });
                 },
             });
         }),
-        className: "workspaces"
+        className: "workspaces",
     });
 }
 
@@ -27,7 +31,7 @@ function Bar(monitor) {
         anchor: ["top", "left", "right"],
         exclusivity: "exclusive",
         child: Workspaces(),
-        className: "bar"
+        className: "bar",
     });
 }
 

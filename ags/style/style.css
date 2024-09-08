@@ -20,3 +20,6 @@
     min-width: 28px;
     background-color: #A7C080;
 }
+.workspace.marg {
+    margin-right: -1px;
+}
