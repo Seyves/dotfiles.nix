@@ -26,6 +26,7 @@ function Bar(monitor) {
         anchor: ["top", "left", "right"],
         exclusivity: "exclusive",
         child: Workspaces(),
+        className: "bar"
     });
 }
 

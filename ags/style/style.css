@@ -1,0 +1,18 @@
+.bar {
+    background-color: #1B1B1B;
+    min-height: 30pt;
+    padding: 5px 0;
+}
+
+.workspace {
+    background-color: fff;
+    border-radius: 50%;
+    min-height: 6pt;
+    min-width: 6pt;
+    transition: all 0.5s;
+}
+
+.workspace.active {
+    min-width: 10pt;
+    background-color: #A7C080;
+}
