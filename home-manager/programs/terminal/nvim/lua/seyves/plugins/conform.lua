@@ -8,7 +8,7 @@ conform.setup({
         typescriptreact = { "prettierd" },
         json = { "prettierd" },
         markdown = { "prettierd" },
-        html = { "prettierd"},
+        html = { "prettierd" },
         go = { "crlfmt" },
         css = { "prettierd" },
         sql = { "sql-formatter" },
