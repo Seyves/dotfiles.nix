@@ -7,7 +7,7 @@
 
       # TODO 
       # Make it work for all displays
-      monitor = [ "DP-2,3840x2160@144,auto,1" "Unknown-1,disabled" ];
+      monitor = [ "DP-2,3840x2160@144,auto,2" "Unknown-1,disabled" ];
 
       # Autostart
       exec-once = [ "swaybg -i ~/Pictures/dark.jpeg" "waybar" "swaync" ];
