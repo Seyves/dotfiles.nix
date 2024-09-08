@@ -171,6 +171,7 @@
     # Rising
     rofi-wayland
     swaybg
+    libnotify
     waybar
     zsh-powerlevel10k
     wl-clipboard
