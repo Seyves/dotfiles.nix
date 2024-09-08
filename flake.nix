@@ -16,6 +16,7 @@
     zen-browser.url = "github:MarceColl/zen-browser-flake";
     # add ags
     ags.url = "github:Aylur/ags";
+
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
