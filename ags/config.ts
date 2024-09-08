@@ -16,6 +16,7 @@ function Workspaces() {
                 },
             });
         }),
+        className: "workspaces"
     });
 }
 
