@@ -9,14 +9,14 @@
 .workspace {
     background-color: #fff;
     border-radius: 6px;
-    min-height: 0px;
+    min-height: 6px;
+    min-width: 6px;
     font-size: 0px;
-    padding: 6px;
     transition: all 0.2s;
 }
 
 
 .workspace.active {
-    padding: 6px 12px;
+    min-width: 12px;
     background-color: #A7C080;
 }
