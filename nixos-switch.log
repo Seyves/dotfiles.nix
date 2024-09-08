@@ -1,17 +1,33 @@
 warning: Git tree '/home/seyves/mysystem' is dirty
 warning: updating lock file '/home/seyves/mysystem/flake.lock':
 • Updated input 'ags-build':
-    'path:/nix/store/crrwyd0hvplxm66zw24b8v5y9v55fxrv-source/ags?lastModified=1&narHash=sha256-3Lq6GiaDLUTBFLQqNEk1tQ9xEPg%2B%2Blu87pqIvBe/Yz0%3D' (1970-01-01)
-  → 'path:/nix/store/nnq30as1jswlrgsd897xsh1zi3iwky2m-source/ags?lastModified=1&narHash=sha256-3Lq6GiaDLUTBFLQqNEk1tQ9xEPg%2B%2Blu87pqIvBe/Yz0%3D' (1970-01-01)
+    'path:/nix/store/abf5ppm0njvlqdcfacicd3xf76gkdcjh-source/ags?lastModified=1&narHash=sha256-3Lq6GiaDLUTBFLQqNEk1tQ9xEPg%2B%2Blu87pqIvBe/Yz0%3D' (1970-01-01)
+  → 'path:/nix/store/l7365rpn13hgi3i4wjfl3b5ms65b7sg5-source/ags?lastModified=1&narHash=sha256-BXBxV5s5x5PZRMeqDDGrzm7XuHabU4FVZgt6A9el0Yc%3D' (1970-01-01)
 warning: Git tree '/home/seyves/mysystem' is dirty
 building the system configuration...
 warning: Git tree '/home/seyves/mysystem' is dirty
 warning: updating lock file '/home/seyves/mysystem/flake.lock':
 • Updated input 'ags-build':
-    'path:/nix/store/nnq30as1jswlrgsd897xsh1zi3iwky2m-source/ags?lastModified=1&narHash=sha256-3Lq6GiaDLUTBFLQqNEk1tQ9xEPg%2B%2Blu87pqIvBe/Yz0%3D' (1970-01-01)
-  → 'path:/nix/store/0kddqznynn067xz22s2x7x9npbkx44ia-source/ags?lastModified=1&narHash=sha256-3Lq6GiaDLUTBFLQqNEk1tQ9xEPg%2B%2Blu87pqIvBe/Yz0%3D' (1970-01-01)
+    'path:/nix/store/l7365rpn13hgi3i4wjfl3b5ms65b7sg5-source/ags?lastModified=1&narHash=sha256-BXBxV5s5x5PZRMeqDDGrzm7XuHabU4FVZgt6A9el0Yc%3D' (1970-01-01)
+  → 'path:/nix/store/lhj2za5nvwrgb9r2yikr0y243lh236mc-source/ags?lastModified=1&narHash=sha256-BXBxV5s5x5PZRMeqDDGrzm7XuHabU4FVZgt6A9el0Yc%3D' (1970-01-01)
 warning: Git tree '/home/seyves/mysystem' is dirty
+these 7 derivations will be built:
+  /nix/store/vxdarjn40fb0wsai9c3pl30ylc5h10yw-build-ags.drv
+  /nix/store/3151n6ibk6ik5psry0idn037k719qffx-home-manager-files.drv
+  /nix/store/wv24pf94r9piz7dmh9zci6j7bk816wbc-home-manager-generation.drv
+  /nix/store/sif03d6xipb4xsgzhcd463dnwhkd26g0-unit-home-manager-seyves.service.drv
+  /nix/store/5jc6p93r0f76rv3c5629rfvqrfqraj6n-system-units.drv
+  /nix/store/510zrnzaryfgp1cbsnjynadxp98b9f2f-etc.drv
+  /nix/store/ca7v14dv47chi680h42f3qp3a5frvi30-nixos-system-nixos-24.05.20240903.6f6c45b.drv
+building '/nix/store/vxdarjn40fb0wsai9c3pl30ylc5h10yw-build-ags.drv'...
+building '/nix/store/3151n6ibk6ik5psry0idn037k719qffx-home-manager-files.drv'...
+building '/nix/store/wv24pf94r9piz7dmh9zci6j7bk816wbc-home-manager-generation.drv'...
+building '/nix/store/sif03d6xipb4xsgzhcd463dnwhkd26g0-unit-home-manager-seyves.service.drv'...
+building '/nix/store/5jc6p93r0f76rv3c5629rfvqrfqraj6n-system-units.drv'...
+building '/nix/store/510zrnzaryfgp1cbsnjynadxp98b9f2f-etc.drv'...
+building '/nix/store/ca7v14dv47chi680h42f3qp3a5frvi30-nixos-system-nixos-24.05.20240903.6f6c45b.drv'...
 activating the configuration...
 setting up /etc...
 reloading user units for seyves...
 restarting sysinit-reactivation.target
+restarting the following units: home-manager-seyves.service

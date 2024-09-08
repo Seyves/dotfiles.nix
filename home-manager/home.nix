@@ -25,13 +25,13 @@
 
   home.file.".config/ags" = {
     enable = true;
+    recursive = true;
     # build ags derivation from ../ags/flake.nix
     source = "${inputs.ags-build.defaultPackage}";
   };
 
   programs.ags = {
     enable = true;
-
     # additional packages to add to gjs's runtime
     extraPackages = with pkgs; [ gtksourceview webkitgtk accountsservice ];
   };

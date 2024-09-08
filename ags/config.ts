@@ -4,7 +4,7 @@ const time = Variable('', {
     }],
 })
 
-console.log("aboba")
+console.log("NOOO")
 
 const Bar = (monitor) => Widget.Window({
     monitor,

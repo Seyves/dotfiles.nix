@@ -32,5 +32,16 @@
             [ ./nixos/configuration.nix home-manager.nixosModules.default ];
         };
       };
+      homeConfigurations = {
+        "seyves@nixos" = home-manager.lib.homeManagerConfiguration {
+          pkgs = pkgs; # Home-manager requires 'pkgs' instance
+          extraSpecialArgs = {
+            inherit inputs;
+            inherit outputs;
+            inherit pkgs-unstable;
+          };
+          modules = [ ./home-manager/home.nix ];
+        };
+      };
     };
 }
