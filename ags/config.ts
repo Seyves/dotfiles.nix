@@ -2,7 +2,6 @@ const hyprland = await Service.import("hyprland");
 
 function Workspaces() {
     return Widget.Box({
-        spacing: 8,
         children: [1, 2, 3, 4, 5].map((i) => {
             return Widget.Label({
                 className: "workspace",
