@@ -23,15 +23,18 @@
     })
   ];
 
-  home.file.".config/ags" = {
-    enable = true;
-    recursive = true;
-    # build ags derivation from ../ags/flake.nix
-    source = "${inputs.ags-build.defaultPackage}";
-  };
+  # maybe there is a way to do it with programs.ags.configDir, but I am too lazy to investigate how...
+  # home.file.".config/ags" = {
+  #   enable = true;
+  #   # because symlinking does not update 
+  #   recursive = true;
+  #   # build ags derivation from ../ags/flake.nix
+  # };
 
+  xdg.configFile."ags".recursive = true;
   programs.ags = {
     enable = true;
+    configDir = "${inputs.ags-build.defaultPackage}";
     # additional packages to add to gjs's runtime
     extraPackages = with pkgs; [ gtksourceview webkitgtk accountsservice ];
   };
