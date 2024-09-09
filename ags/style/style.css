@@ -17,6 +17,6 @@
 
 .workspace.active {
     min-width: 28px;
-    transition: all 0.1s linear;
+    transition: all 0.1s ease-out;
     background-color: #A7C080;
 }
