@@ -1,3 +1,5 @@
+import Gtk from "types/@girs/gtk-3.0/gtk-3.0";
+
 const hyprland = await Service.import("hyprland");
 
 function Workspaces() {
@@ -10,9 +12,9 @@ function Workspaces() {
                     i === 6
                         ? (self) => {
                               self.hook(hyprland.active.workspace, (self) => {
-                                  self.style = `margin-right: ${3 * hyprland.active.workspace.id + 8 * hyprland.active.workspace.id - 1}px`;
-                              });
-                              self.class_name = "workspaces cursor";
+                                  self.css = `margin-right: ${3 * hyprland.active.workspace.id + 8 * hyprland.active.workspace.id - 1}px`
+                                  self.class_name = "workspaces cursor"
+                              })
                           }
                         : undefined,
             });
