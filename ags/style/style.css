@@ -13,11 +13,11 @@
     min-height: 14px;
     min-width: 14px;
     font-size: 0px;
-    transition: all 0.1s linear;
+    transition: all 1s linear;
 }
 
 .workspace.marg {
-    margin-right: -1pt;
+    margin-right: -1px;
 }
 
 .workspace.active {
