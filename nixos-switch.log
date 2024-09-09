@@ -1,15 +1,15 @@
 warning: Git tree '/home/seyves/mysystem' is dirty
 warning: updating lock file '/home/seyves/mysystem/flake.lock':
 • Updated input 'ags-build':
-    'path:/nix/store/hbmsc7wr24wh8fdydyc2iy1fs9736qdi-source/ags?lastModified=1&narHash=sha256-Qp8yGO1Zr%2B96zdY%2BPFYpBeFgoFpG71EmdD5dk8pst5g%3D' (1970-01-01)
-  → 'path:/nix/store/sdnhv57n6ql2k8gdbrvcg6smsbgi44nr-source/ags?lastModified=1&narHash=sha256-PySF1YmLdiS/bZ1ovpbTHg59qMqSx%2BbtOwtwaofoDJg%3D' (1970-01-01)
+    'path:/nix/store/h3k6x10fzjagja2vwgbfxggjl9i8ckqh-source/ags?lastModified=1&narHash=sha256-PySF1YmLdiS/bZ1ovpbTHg59qMqSx%2BbtOwtwaofoDJg%3D' (1970-01-01)
+  → 'path:/nix/store/5jba92gzsy9ls1rdrs85rvfkf1apxqvl-source/ags?lastModified=1&narHash=sha256-GWPQg9V2P0hJvE85wDZ6qE5mlK4GNQM/zENaaH4Sug0%3D' (1970-01-01)
 warning: Git tree '/home/seyves/mysystem' is dirty
 building the system configuration...
 warning: Git tree '/home/seyves/mysystem' is dirty
 warning: updating lock file '/home/seyves/mysystem/flake.lock':
 • Updated input 'ags-build':
-    'path:/nix/store/sdnhv57n6ql2k8gdbrvcg6smsbgi44nr-source/ags?lastModified=1&narHash=sha256-PySF1YmLdiS/bZ1ovpbTHg59qMqSx%2BbtOwtwaofoDJg%3D' (1970-01-01)
-  → 'path:/nix/store/h3k6x10fzjagja2vwgbfxggjl9i8ckqh-source/ags?lastModified=1&narHash=sha256-PySF1YmLdiS/bZ1ovpbTHg59qMqSx%2BbtOwtwaofoDJg%3D' (1970-01-01)
+    'path:/nix/store/5jba92gzsy9ls1rdrs85rvfkf1apxqvl-source/ags?lastModified=1&narHash=sha256-GWPQg9V2P0hJvE85wDZ6qE5mlK4GNQM/zENaaH4Sug0%3D' (1970-01-01)
+  → 'path:/nix/store/73dy72ig007k9fcf33fy282ng78p0zkg-source/ags?lastModified=1&narHash=sha256-GWPQg9V2P0hJvE85wDZ6qE5mlK4GNQM/zENaaH4Sug0%3D' (1970-01-01)
 warning: Git tree '/home/seyves/mysystem' is dirty
 activating the configuration...
 setting up /etc...
