@@ -12,11 +12,11 @@
     min-height: 14px;
     min-width: 14px;
     font-size: 0px;
-    transition: all 0.09s linear;
+    transition: all 0.091s linear;
 }
 
 .workspace.active {
     min-width: 28px;
-    transition: all 0.105s linear;
+    transition: all 0.1s linear;
     background-color: #A7C080;
 }
