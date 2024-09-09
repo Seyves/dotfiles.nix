@@ -40,7 +40,7 @@ function Corners(monitor: number) {
                     class_name: "corner",
                     expand: true,
                 }),
-            ),
+            }),
         }),
     });
 }
