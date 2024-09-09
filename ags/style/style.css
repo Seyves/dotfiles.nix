@@ -19,5 +19,7 @@
 .workspace.active {
     min-width: 28px;
     background-color: #A7C080;
-    margin-right: -10px;
+}
+.workspace.marg {
+    margin-right: -2px;
 }
