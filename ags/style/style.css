@@ -15,7 +15,11 @@
     transition: all 0.1s linear;
 }
 
+
 .workspace.active {
     min-width: 28px;
     background-color: #A7C080;
+}
+.workspace.marg {
+    margin-right: -1px;
 }

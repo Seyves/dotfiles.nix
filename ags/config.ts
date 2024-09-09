@@ -13,7 +13,7 @@ function Workspaces() {
                             hyprland.active.workspace.id === i,
                         );
                         self.toggleClassName("marg", true);
-                        Utils.timeout(100, () => {
+                        Utils.timeout(90, () => {
                             self.toggleClassName("marg", false);
                         });
                     });
