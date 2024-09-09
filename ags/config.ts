@@ -1,21 +1,19 @@
-import Gtk from "types/@girs/gtk-3.0/gtk-3.0";
-
 const hyprland = await Service.import("hyprland");
 
 function Workspaces() {
     return Widget.Box({
         spacing: 8,
-        children: [1, 2, 3, 4, 5, 6].map((i) => {
+        children: [1, 2, 3, 4, 5].map((i) => {
             return Widget.Label({
-                className: i === 6 ? "workspace cursor" : "workspace",
-                setup:
-                    i === 6
-                        ? (self) => {
-                              self.hook(hyprland.active.workspace, (self) => {
-                                  self.css = `margin-right: ${3 * hyprland.active.workspace.id + 8 * hyprland.active.workspace.id - 1}px`;
-                              });
-                          }
-                        : undefined,
+                className: "workspace",
+                setup: (self) => {
+                    self.hook(hyprland.active.workspace, (self) => {
+                        self.toggleClassName(
+                            "active",
+                            hyprland.active.workspace.id === i,
+                        );
+                    });
+                },
             });
         }),
         className: "workspaces",

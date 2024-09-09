@@ -4,19 +4,19 @@
 
 .workspaces {
     min-width: 68px;
-}
-
-.workspace.cursor {
-    min-height: 7px;
-    background-color: #A7C080;
-    min-width: 7px;
+    margin: 10px 0;
 }
 
 .workspace {
     background-color: #fff;
-    border-radius: 6px;
+    border-radius: 8px;
     min-height: 14px;
     min-width: 14px;
     font-size: 0px;
     transition: all 0.1s linear;
+}
+
+.workspace.active {
+    min-width: 28px;
+    background-color: #A7C080;
 }
