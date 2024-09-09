@@ -13,14 +13,11 @@
     min-height: 14px;
     min-width: 14px;
     font-size: 0px;
-    transition: all 1s linear;
-}
-
-.workspace.marg {
-    margin-right: -2px;
+    transition: all 0.9s linear;
 }
 
 .workspace.active {
+    transition: all 1s linear;
     min-width: 28px;
     background-color: #A7C080;
 }
