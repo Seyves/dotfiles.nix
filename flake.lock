@@ -28,11 +28,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-5JEAZXhGqC6oJJLv8aAm9/GBGM0Tlyp+dA6RTfgKHIs=",
-        "path": "/nix/store/zj0jj2yrj804fxzgm7zyiw8jfj2x1fsf-source/ags",
+        "path": "/nix/store/57djgj9qx6g9zc7876djq82wjkxyd7fj-source/ags",
         "type": "path"
       },
       "original": {
-        "path": "/nix/store/zj0jj2yrj804fxzgm7zyiw8jfj2x1fsf-source/ags",
+        "path": "/nix/store/57djgj9qx6g9zc7876djq82wjkxyd7fj-source/ags",
         "type": "path"
       }
     },
