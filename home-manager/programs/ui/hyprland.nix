@@ -65,6 +65,7 @@
           enabled = true;
           size = 30;
           passes = 2;
+          noise = 0.2;
 
           vibrancy = 0.1696;
         };
