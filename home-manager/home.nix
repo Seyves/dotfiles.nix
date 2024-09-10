@@ -145,6 +145,7 @@
     inter
 
     # Tools for development
+    bun
     go
     nodejs_20
     gcc
