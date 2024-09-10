@@ -4,7 +4,7 @@ function Workspaces() {
     return Widget.Box({
         spacing: 8,
         children: [1, 2, 3, 4, 5].map((i) => {
-            return Widget.Label({
+            return Widget.Button({
                 className: "workspace",
                 setup: (self) => {
                     self.hook(hyprland.active.workspace, (self) => {
@@ -12,12 +12,11 @@ function Workspaces() {
                             "active",
                             hyprland.active.workspace.id === i,
                         );
-                        self.toggleClassName("marg", true);
-                        Utils.timeout(900, () =>
-                            self.toggleClassName("marg", false),
-                        );
                     });
                 },
+                onClicked: () => {
+                    hyprland.messageAsync(`dispatch workspace ${i}`)
+                }
             });
         }),
         className: "workspaces",
