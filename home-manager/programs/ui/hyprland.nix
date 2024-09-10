@@ -66,7 +66,7 @@
           size = 30;
           passes = 1;
 
-          vibrancy = 0.1696;
+          vibrancy = 0.5696;
         };
       };
 
