@@ -40,11 +40,11 @@
     box-shadow: 0 0 0 5px #1b1b1b;
 }
 
-.screen-corner.corners.box.border {
+.screen-corner box.border {
     border-radius: 500px;
     box-shadow: 0 0 0 20px #1b1b1b;
 }
 
-.screen-corner.corners.box.corner {
+.screen-corner box.corner {
     border-radius: 500px;
 }
