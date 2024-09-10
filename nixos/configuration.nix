@@ -70,7 +70,7 @@
   services = {
     xserver = {
       displayManager.gdm = {
-        autoLogin.delay = 0;
+        autoLogin.delay = 1;
         enable = true;
         wayland = true;
       };
