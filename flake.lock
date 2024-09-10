@@ -19,23 +19,6 @@
         "type": "github"
       }
     },
-    "ags-build": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-s2USe88szya8qV2UozM+bYoeO9oJiuephRXDKTG6ANk=",
-        "path": "/nix/store/kp7rg1jdplknz75pqmcb06nxn7g7l3d4-source/ags",
-        "type": "path"
-      },
-      "original": {
-        "path": "/nix/store/kp7rg1jdplknz75pqmcb06nxn7g7l3d4-source/ags",
-        "type": "path"
-      }
-    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -124,7 +107,6 @@
     "root": {
       "inputs": {
         "ags": "ags",
-        "ags-build": "ags-build",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-unstable": "nixpkgs-unstable",

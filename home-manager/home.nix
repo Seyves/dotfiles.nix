@@ -23,12 +23,9 @@
     })
   ];
 
-  # because symlinking does not update ags build
-  xdg.configFile."ags".recursive = true;
-
   programs.ags = {
     enable = true;
-    configDir = "${inputs.ags-build.defaultPackage}";
+    configDir = ../ags;
     # additional packages to add to gjs's runtime
     extraPackages = with pkgs; [ gtksourceview webkitgtk accountsservice ];
   };
@@ -51,6 +48,7 @@
       "image/png" = [ "org.gnome.Loupe.desktop" ];
       "image/svg" = [ "org.gnome.Loupe.desktop" ];
       "image/webp" = [ "org.gnome.Loupe.desktop" ];
+      "image/heic" = [ "org.gnome.Loupe.desktop" ];
       # audio 
       "audio/vnd.wave" = [ "org.gnome.Showtime.desktop" ];
       "audio/mpeg" = [ "org.gnome.Showtime.desktop" ];
@@ -65,6 +63,8 @@
       "text/markdown" = [ "neovide" ];
       "text/plain" = [ "neovide" ];
       "text/x-cmake" = [ "neovide" ];
+      "application/json" = [ "neovide.desktop" ];
+      "application/xhtml+xml" = [ "neovide.desktop" ];
       # browser
       "text/html" = [ "zen.desktop" ];
       "x-scheme-handler/http=" = [ "zen.desktop" ];
@@ -76,7 +76,6 @@
       "application/x-extension-html" = [ "zen.desktop" ];
       "application/x-extension-xml" = [ "zen.desktop" ];
       "application/x-extension-shtml" = [ "zen.desktop" ];
-      "application/xhtml+xml" = [ "zen.desktop" ];
       "application/x-extension-xhtml" = [ "zen.desktop" ];
       "application/x-extension-xht" = [ "zen.desktop" ];
       # archiver
@@ -178,7 +177,6 @@
     hyprpicker
     hyprshot
     swaynotificationcenter
-    eww
 
     # Lsps
     nodePackages.bash-language-server
