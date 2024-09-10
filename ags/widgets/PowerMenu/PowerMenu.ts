@@ -55,11 +55,6 @@ export default function PowerMenu(monitor: number) {
                             }),
                         ],
                     }),
-                    setup: (self) =>
-                        self.hook(isPowerMenuShown, (self) => {
-                            App.toggleWindow(`powermenu${monitor}`);
-                            self.visible = isPowerMenuShown.value;
-                        }),
                 }),
                 setup: (self) =>
                     self.hook(isPowerMenuShown, () => {
