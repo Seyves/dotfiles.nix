@@ -68,12 +68,9 @@
   # Enable the GNOME Desktop Environment.
   # Configure keymap in X1
   services = {
-    displayManager.autoLogin = {
-      enable = true;
-      user = "seyves";
-    };
     xserver = {
       displayManager.gdm = {
+        autoLogin.delay = 0;
         enable = true;
         wayland = true;
       };
