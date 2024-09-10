@@ -69,6 +69,7 @@
   # Configure keymap in X1
   services = {
     xserver = {
+      displayManager.startx.enable = true;
       displayManager.gdm = {
         enable = true;
         wayland = true;
