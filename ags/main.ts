@@ -1,6 +1,6 @@
-import Bar from "widgets/Bar/Bar";
-import Corners from "widgets/Bar/Corners";
-import PowerMenu from "widgets/PowerMenu/PowerMenu";
+import Bar from "./widgets/Bar/Bar";
+import Corners from "./widgets/Bar/Corners";
+import PowerMenu from "./widgets/PowerMenu/PowerMenu";
 
 export const isPowerMenuShown = Variable(false)
 
