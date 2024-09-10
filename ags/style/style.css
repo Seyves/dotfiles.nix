@@ -41,10 +41,10 @@
 }
 
 .screen-corner box.border {
-    border-radius: 30px;
+    border-radius: 20px;
     box-shadow: 0 0 0 20px #1b1b1b;
 }
 
 .screen-corner box.corner {
-    border-radius: 30px;
+    border-radius: 20px;
 }
