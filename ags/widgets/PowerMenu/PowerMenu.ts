@@ -31,7 +31,7 @@ export default function PowerMenu(monitor: number) {
         child: Widget.Box({
             css: "padding: 1px; background-color: transparent;",
             child: Widget.Revealer({
-                transitionDuration: 200,
+                transitionDuration: 1000,
                 transition: "crossfade",
                 child: Widget.Box({
                     className: "power-menu",
