@@ -11,9 +11,10 @@
       };
 
       window = {
+        opacity = 0.95;
         padding = {
-          x = 20;
-          y = 18;
+          x = 40;
+          y = 38;
         };
       };
 
