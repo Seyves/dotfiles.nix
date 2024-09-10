@@ -41,6 +41,7 @@ function Corners(monitor: number) {
                 }),
             }),
         }),
+        setup: self => self
     });
 }
 
@@ -56,6 +57,6 @@ function Bar(monitor) {
 }
 
 App.config({
-    windows: [Bar(0)],
+    windows: [Bar(0), Corners(0)],
     style: "./style/style.css",
 });
