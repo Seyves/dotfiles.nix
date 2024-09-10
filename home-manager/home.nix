@@ -102,6 +102,11 @@
     gtk.enable = true;
   };
 
+  # QT theme
+  qt = {
+    enable = true;
+    platformTheme.name = "kde";
+  };
   # GTK theme
   gtk = {
     enable = true;

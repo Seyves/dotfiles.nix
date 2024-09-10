@@ -10,7 +10,11 @@
       monitor = [ "DP-2,3840x2160@144,auto,2" "Unknown-1,disabled" ];
 
       # Autostart
-      exec-once = [ "swaybg -i ~/Pictures/dark.jpeg" "waybar" "swaync" ];
+      exec-once = [
+        "swaybg -i ~/Pictures/frieren-sousou-no-frieren-4k-wal.jpg"
+        "ags"
+        "swaync"
+      ];
 
       # Variables 
       "$terminal" = "alacritty";
