@@ -3,6 +3,7 @@
     enable = true;
     settings = {
       font = {
+        offset = { y = 6; };
         normal = {
           family = "JetBrainsMono Nerd Font";
           style = "Regular";

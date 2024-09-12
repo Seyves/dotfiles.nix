@@ -148,6 +148,7 @@
     XDG_SESSION_TYPE = "wayland";
     GBM_BACKEND = "nvidia";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    WLR_NO_HARDWARE_CURSORS = "1";
     QT_QPA_PLATFORM = "wayland";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     WLR_DRM_NO_ATOMIC = "1";

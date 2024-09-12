@@ -14,6 +14,7 @@
         "swaybg -i ~/Pictures/frieren-sousou-no-frieren-4k-wal.jpg"
         "ags"
         "swaync"
+        "wlsunset -s 18:30 -T 5500"
       ];
 
       # Variables 
@@ -189,7 +190,11 @@
         "size 1000 800, class:(neovide)"
       ];
 
-      layerrule = [ "noanim, swaync-notification-window" "noanim, rofi" ];
+      layerrule = [
+        "noanim, swaync-notification-window"
+        "noanim, rofi"
+        "noanim, powermenu0"
+      ];
     };
   };
 }

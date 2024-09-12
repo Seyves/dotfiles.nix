@@ -1,3 +1,5 @@
+App.addIcons(`/home/seyves/.config/ags/assets`)
+
 import Bar from "./widgets/Bar/Bar";
 import Corners from "./widgets/Bar/Corners";
 import PowerMenu from "./widgets/PowerMenu/PowerMenu";
@@ -9,6 +11,10 @@ Utils.monitorFile("/home/seyves/.config/ags/style/style.css", () => {
 })
 
 App.config({
-    windows: [Bar(0), Corners(0), PowerMenu(0)],
+    icons: "./assets",
+    windows: [PowerMenu(0), Bar(0), Corners(0)],
     style: "./style/style.css",
+    closeWindowDelay: {
+        "powermenu0": 300, // milliseconds
+    }
 });

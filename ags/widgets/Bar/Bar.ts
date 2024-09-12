@@ -18,6 +18,7 @@ export default function Bar(monitor: number) {
                 hpack: "end",
                 vexpand: true,
                 child: Widget.Button({
+                    cursor: "help",
                     child: Widget.Icon({
                         icon: "system-shutdown-symbolic",
                         className: "pwi"

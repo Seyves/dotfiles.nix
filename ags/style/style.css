@@ -1,7 +1,17 @@
 .logo {
-    color: #fff;
-    margin-left: 10px;
+    padding: 3px;
+    margin-left: 4px;
+}
+
+.logo-icon {
+    padding: 6px;
+    color: #ffffff;
     font-size: 18px;
+    transition: all 0.3s;
+}
+
+.logo-icon.hovered {
+    -gtk-icon-transform: rotate(30deg);
 }
 
 .bar {
@@ -75,5 +85,9 @@
 }
 
 .pwi {
-    color: #F08080;
+    color: #f08080;
+}
+
+.padding {
+    min-height: 60px;
 }

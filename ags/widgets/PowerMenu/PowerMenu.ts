@@ -25,33 +25,47 @@ export default function PowerMenu(monitor: number) {
         monitor,
         name: `powermenu${monitor}`,
         anchor: ["top", "right"],
-        margins: [60, 20, 0, 0],
+        margins: [0, 20, 0, 0],
         css: "background-color: transparent;",
         exclusivity: "ignore",
-        child: Widget.Box({
+        child: Widget.CenterBox({
             css: "padding: 1px; background-color: transparent;",
             child: Widget.Revealer({
-                transitionDuration: 1000,
-                transition: "crossfade",
-                child: Widget.Box({
-                    className: "power-menu",
-                    child: Widget.Box({
-                        spacing: 12,
+                transitionDuration: 200,
+                transition: "slide_down",
+                child: Widget.CenterBox({
+                    vertical: true,
+                    centerWidget: Widget.EventBox({
+                        canFocus: false,
+                        hexpand: true,
+                        vexpand: true,
+                        child: Widget.Box({
+                            className: "padding",
+                        }),
+                    }),
+                    endWidget: Widget.Box({
+                        className: "power-menu",
+                        vertical: true,
                         children: [
-                            Widget.Icon({
-                                icon: Utils.watch(
-                                    getIcon(),
-                                    audio.speaker,
-                                    getIcon,
-                                ),
-                            }),
-                            Widget.Slider({
-                                className: "volume-slider",
-                                drawValue: false,
-                                onChange: ({ value }) => {
-                                    audio.speaker.volume = value;
-                                },
-                                value: audio.speaker.bind("volume"),
+                            Widget.Box({
+                                spacing: 12,
+                                children: [
+                                    Widget.Icon({
+                                        icon: Utils.watch(
+                                            getIcon(),
+                                            audio.speaker,
+                                            getIcon,
+                                        ),
+                                    }),
+                                    Widget.Slider({
+                                        className: "volume-slider",
+                                        drawValue: false,
+                                        onChange: ({ value }) => {
+                                            audio.speaker.volume = value;
+                                        },
+                                        value: audio.speaker.bind("volume"),
+                                    }),
+                                ],
                             }),
                         ],
                     }),

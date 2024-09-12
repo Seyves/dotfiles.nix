@@ -183,6 +183,7 @@
     hyprpicker
     hyprshot
     swaynotificationcenter
+    wlsunset
 
     # Lsps
     nodePackages.bash-language-server
