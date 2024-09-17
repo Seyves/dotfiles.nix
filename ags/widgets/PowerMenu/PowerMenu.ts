@@ -23,27 +23,57 @@ function getIcon() {
     return `audio-volume-${icons[icon]}-symbolic`;
 }
 
+type ButtonProps = {
+    className?: string
+    icon: string
+    onClicked: () => any
+}
+
+function Button(props: ButtonProps) {
+    return Widget.Button({
+        vexpand: false,
+        hexpand: false,
+        cursor: "pointer",
+        className: `button ${props.className ?? ""}`,
+        child: Widget.Icon({
+            icon: props.icon,
+        }),
+        onClicked: props.onClicked
+    });
+}
+
+const hyprland = await Service.import('hyprland')
+
 export default function PowerMenu(monitor: number) {
     let username = Utils.exec("whoami");
     username = username[0].toUpperCase() + username.slice(1);
 
+    const os = Utils.exec(
+        `bash -c "cat /etc/*-release | egrep \\"PRETTY_NAME\\" | cut -d = -f 2 | tr -d '\\"' | tac | tr '\\n' ' '"`,
+    );
+
     const top = Widget.Box({
-        spacing: 8,
+        spacing: 16,
         children: [
             Widget.Box({
                 className: "avatar",
                 vexpand: false,
+                vpack: "center",
                 hexpand: false,
             }),
             Widget.Box({
                 spacing: 8,
                 vertical: true,
-                hexpand: true,
-                css: "padding: 8px 0px;",
                 children: [
                     Widget.Label({
                         label: username,
                         className: "username",
+                        vpack: "start",
+                        hpack: "start",
+                    }),
+                    Widget.Label({
+                        label: os,
+                        className: "osname",
                         vpack: "start",
                         hpack: "start",
                     }),
@@ -52,22 +82,20 @@ export default function PowerMenu(monitor: number) {
                         vexpand: true,
                         spacing: 4,
                         children: [
-                            Widget.Button({
-                                vexpand: false,
-                                hexpand: false,
+                            Button({
                                 className: "reboot",
-                                child: Widget.Icon({
-                                    icon: "system-reboot-symbolic",
-                                }),
-                                onClicked: () => Utils.exec("reboot")
+                                icon: "system-reboot-symbolic",
+                                onClicked: () => Utils.exec("reboot"),
                             }),
-                            Widget.Button({
-                                vexpand: false,
-                                hexpand: false,
-                                className: "reboot",
-                                child: Widget.Icon({
-                                    icon: "system-shutdown-symbolic",
-                                }),
+                            Button({
+                                className: "log-out",
+                                icon: "system-log-out-symbolic",
+                                onClicked: () => hyprland.message("dispatch exit"),
+                            }),
+                            Button({
+                                className: "shutdown",
+                                icon: "system-shutdown-symbolic",
+                                onClicked: () => Utils.exec("shutdown now"),
                             }),
                         ],
                     }),
@@ -83,6 +111,7 @@ export default function PowerMenu(monitor: number) {
         margins: [0, 20, 0, 0],
         css: "background-color: transparent;",
         exclusivity: "ignore",
+        className: "power-menu-window",
         child: Widget.CenterBox({
             css: "padding: 1px; background-color: transparent;",
             child: Widget.Revealer({

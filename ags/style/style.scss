@@ -1,0 +1,122 @@
+@import "variables.scss";
+
+.bar {
+    background-color: $bg-0-color;
+
+    .logo {
+        padding: 3px;
+        margin-left: 4px;
+    }
+
+    .logo-icon {
+        padding: 6px;
+        color: $fg-0-color;
+        font-size: 18px;
+        transition: all 0.3s;
+
+        &.hovered {
+            -gtk-icon-transform: rotate(30deg);
+        }
+    }
+
+    .workspaces {
+        min-width: 68px;
+        margin: 12px 0 12px 12px;
+    }
+
+    .workspace {
+        font-size: 0px;
+        background-color: $fg-0-color;
+        border-radius: 8px;
+        min-height: 8px;
+        margin: 4px 0;
+        min-width: 8px;
+        padding: 0px;
+
+        &.active {
+            margin: 0px 0;
+            min-width: 28px;
+            min-height: 14px;
+            transition: all 0.1s linear;
+            background-color: $accent-0-color;
+        }
+    }
+
+    .date {
+        font: 14px "JetBrainsMono Nerd Font";
+    }
+
+    .power-menu-button {
+        min-width: 20px;
+        min-height: 10px;
+        padding: 0px;
+    }
+
+    .power-menu-icon {
+    }
+}
+
+.screen-corner {
+    box.shadow {
+        margin-right: -98px;
+        margin-left: -98px;
+        margin-top: -4px;
+        margin-bottom: -20px;
+
+        box-shadow: inset 0 0 7px 0 $bg-0-color;
+    }
+    box.border {
+        border-top: 5px solid #1b1b1b;
+        margin-right: 99px;
+        margin-left: 99px;
+        border-radius: 20px;
+        box-shadow: 0 0 0 20px #1b1b1b;
+    }
+    box.corner {
+        border-radius: 20px;
+        box-shadow: 0 0 0 20px #1b1b1b;
+    }
+}
+
+.power-menu-window {
+    .power-menu {
+        border-radius: 16px;
+        padding: 20px;
+        background-color: $bg-0-color;
+    }
+
+    .padding {
+        min-height: 60px;
+    }
+
+    .avatar {
+        min-width: 70px;
+        min-height: 70px;
+        background-image: url("/home/seyves/.face");
+        background-size: cover;
+        border-radius: 50%;
+    }
+
+    .username {
+        font-size: 18px;
+    }
+
+    .osname {
+        color: $fg-1-color;
+        font-size: 12px;
+    }
+
+    .button {
+        border-radius: 4px;
+
+        min-width: 10px;
+        min-height: 10px;
+
+        background-color: $accent-0-color;
+    }
+
+    .volume-slider {
+        min-width: 240px;
+        color: transparent;
+    }
+}

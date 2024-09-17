@@ -4,6 +4,7 @@ export default function Workspaces() {
     return Widget.Box({
         spacing: 8,
         vpack: "center",
+        className: "workspaces",
         children: [1, 2, 3, 4, 5].map((i) => {
             return Widget.Button({
                 className: "workspace",
@@ -20,6 +21,5 @@ export default function Workspaces() {
                 }
             });
         }),
-        className: "workspaces",
     });
 }

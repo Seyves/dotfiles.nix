@@ -200,6 +200,7 @@
     # Formatters
     nodePackages.sql-formatter
     prettierd
+    sass
     eslint_d
     nixfmt-classic
   ]) ++ (with pkgs-unstable; [ showtime ]);

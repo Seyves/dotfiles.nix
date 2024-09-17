@@ -1,4 +1,4 @@
-App.addIcons(`/home/seyves/.config/ags/assets`)
+App.addIcons(`${App.configDir}/assets`)
 
 import Bar from "./widgets/Bar/Bar";
 import Corners from "./widgets/Bar/Corners";

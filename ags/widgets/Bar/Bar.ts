@@ -9,6 +9,7 @@ export default function Bar(monitor: number) {
         name: `bar${monitor}`,
         anchor: ["top", "left", "right"],
         exclusivity: "exclusive",
+        className: "bar",
         child: Widget.CenterBox({
             startWidget: Widget.Box({
                 children: [Logo(), Workspaces()],
@@ -17,18 +18,17 @@ export default function Bar(monitor: number) {
             endWidget: Widget.Box({
                 hpack: "end",
                 vexpand: true,
+                className: "power-menu-button",
                 child: Widget.Button({
                     cursor: "pointer",
                     child: Widget.Icon({
                         icon: "system-shutdown-symbolic",
-                        className: "pwi"
+                        className: "power-menu-icon"
                     }),
                     onClicked: () =>
                         (isPowerMenuShown.value = !isPowerMenuShown.value),
                 }),
-                className: "show-power-menu-button",
             }),
         }),
-        className: "bar",
     });
 }
