@@ -1,4 +1,7 @@
 import { isPowerMenuShown } from "main";
+import Avatar from "../components/Avatar";
+import Gtk from "gi://Gtk";
+import { Icon } from "types/widget";
 
 const audio = await Service.import("audio");
 
@@ -21,6 +24,58 @@ function getIcon() {
 }
 
 export default function PowerMenu(monitor: number) {
+    let username = Utils.exec("whoami");
+    username = username[0].toUpperCase() + username.slice(1);
+
+    const top = Widget.Box({
+        spacing: 8,
+        children: [
+            Widget.Box({
+                className: "avatar",
+                vexpand: false,
+                hexpand: false,
+            }),
+            Widget.Box({
+                spacing: 8,
+                vertical: true,
+                hexpand: true,
+                css: "padding: 8px 0px;",
+                children: [
+                    Widget.Label({
+                        label: username,
+                        className: "username",
+                        vpack: "start",
+                        hpack: "start",
+                    }),
+                    Widget.Box({
+                        vpack: "end",
+                        vexpand: true,
+                        spacing: 4,
+                        children: [
+                            Widget.Button({
+                                vexpand: false,
+                                hexpand: false,
+                                className: "reboot",
+                                child: Widget.Icon({
+                                    icon: "system-reboot-symbolic",
+                                }),
+                                onClicked: () => Utils.exec("reboot")
+                            }),
+                            Widget.Button({
+                                vexpand: false,
+                                hexpand: false,
+                                className: "reboot",
+                                child: Widget.Icon({
+                                    icon: "system-shutdown-symbolic",
+                                }),
+                            }),
+                        ],
+                    }),
+                ],
+            }),
+        ],
+    });
+
     return Widget.Window({
         monitor,
         name: `powermenu${monitor}`,
@@ -46,7 +101,9 @@ export default function PowerMenu(monitor: number) {
                     endWidget: Widget.Box({
                         className: "power-menu",
                         vertical: true,
+                        spacing: 12,
                         children: [
+                            top,
                             Widget.Box({
                                 spacing: 12,
                                 children: [
