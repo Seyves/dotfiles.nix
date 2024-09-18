@@ -37,6 +37,7 @@ function Button(props: ButtonProps) {
         className: `button ${props.className ?? ""}`,
         child: Widget.Icon({
             icon: props.icon,
+            className: "icon"
         }),
         onClicked: props.onClicked
     });
