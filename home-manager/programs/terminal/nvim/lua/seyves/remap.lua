@@ -12,6 +12,12 @@ vim.o.hlsearch = false
 vim.o.termguicolors = true
 vim.o.scrolloff = 8
 
+vim.g.neovide_padding_top = 38
+vim.g.neovide_padding_bottom = 38
+vim.g.neovide_padding_right = 40
+vim.g.neovide_padding_left = 40
+vim.opt.linespace = 6
+
 vim.g.mapleader = " "
 --utilities
 local function lazy(keys)
