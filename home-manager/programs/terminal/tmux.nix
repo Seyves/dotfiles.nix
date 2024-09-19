@@ -7,7 +7,7 @@
     customPaneNavigationAndResize = true;
     baseIndex = 1;
     shell = "${pkgs.zsh}/bin/zsh";
-    terminal = "screen-256color";
+    terminal = "tmux-256color";
     historyLimit = 100000;
     plugins = with pkgs; [ tmuxPlugins.vim-tmux-navigator ];
     extraConfig = ''

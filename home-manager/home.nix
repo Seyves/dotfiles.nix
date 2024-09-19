@@ -4,6 +4,7 @@
     ./programs/terminal/zsh.nix
     ./programs/terminal/nvim.nix
     ./programs/terminal/alacritty.nix
+    ./programs/terminal/kitty.nix
     ./programs/ui/hyprland.nix
     inputs.ags.homeManagerModules.default
   ];

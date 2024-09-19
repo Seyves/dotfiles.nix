@@ -20,7 +20,7 @@
       ];
 
       # Variables 
-      "$terminal" = "alacritty";
+      "$terminal" = "kitty";
       "$fileManager" = "dolphin";
       "$menu" = "rofi -show-icons -show drun";
       "$screenShot" = "hyprshot -m region --clipboard-only";
