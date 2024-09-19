@@ -1,3 +1,6 @@
+* {
+  font-family: "Roboto"; }
+
 .bar {
   background-color: #1b1b1b; }
   .bar .logo {
@@ -52,10 +55,15 @@
 
 .power-menu-window .power-menu {
   border-radius: 16px;
-  padding: 20px;
+  padding: 16px;
   background-color: #1b1b1b; }
 .power-menu-window .padding {
   min-height: 60px; }
+.power-menu-window .toppw {
+  min-width: 300px;
+  background-color: #202020;
+  padding: 10px;
+  border-radius: 10px; }
 .power-menu-window .avatar {
   min-width: 70px;
   min-height: 70px;
@@ -63,7 +71,8 @@
   background-size: cover;
   border-radius: 50%; }
 .power-menu-window .username {
-  font-size: 18px; }
+  font-weight: bold;
+  font-size: 16px; }
 .power-menu-window .osname {
   color: #464646;
   font-size: 12px; }
@@ -74,6 +83,18 @@
   background-color: #a7c080; }
   .power-menu-window .button .icon {
     color: #1b1b1b; }
+.power-menu-window .weather {
+  background-color: #202020;
+  padding: 10px;
+  border-radius: 10px; }
+.power-menu-window .weather-temp {
+  font-weight: bold;
+  padding: 10px;
+  font-size: 18px; }
+.power-menu-window .weather-icon {
+  background-size: cover;
+  min-width: 40px;
+  min-height: 40px; }
 .power-menu-window trough {
   background-color: #2d2d2d;
   border-radius: 3px; }

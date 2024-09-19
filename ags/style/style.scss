@@ -1,5 +1,9 @@
 @import "variables.scss";
 
+* {
+    font-family: "Roboto";
+}
+
 .bar {
     background-color: $bg-0-color;
 
@@ -81,12 +85,19 @@
 .power-menu-window {
     .power-menu {
         border-radius: 16px;
-        padding: 20px;
+        padding: 16px;
         background-color: $bg-0-color;
     }
 
     .padding {
         min-height: 60px;
+    }
+
+    .toppw {
+        min-width: 300px;
+        background-color: $bg-1-color;
+        padding: 10px;
+        border-radius: 10px;
     }
 
     .avatar {
@@ -98,7 +109,8 @@
     }
 
     .username {
-        font-size: 18px;
+        font-weight: bold;
+        font-size: 16px;
     }
 
     .osname {
@@ -119,8 +131,27 @@
         }
     }
 
-    trough {
+    .weather {
         background-color: $bg-1-color;
+        padding: 10px;
+        border-radius: 10px;
+    }
+
+    .weather-temp {
+        font-weight: bold;
+        padding: 10px;
+
+        font-size: 18px;
+    }
+
+    .weather-icon {
+        background-size: cover;
+        min-width: 40px;
+        min-height: 40px;
+    }
+
+    trough {
+        background-color: $bg-2-color;
         border-radius: 3px;
 
         highlight {
