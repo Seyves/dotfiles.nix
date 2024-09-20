@@ -13,8 +13,8 @@
     extraConfig = ''
       bind-key x kill-pane
       bind-key g choose-session
-      bind-key s split-window -h 
-      bind-key v split-window -v 
+      bind-key v split-window -h 
+      bind-key s split-window -v 
       set -ag terminal-overrides ",xterm-256color:RGB"
       set -g status-bg default
       set -g status-style bg=default
