@@ -95,6 +95,11 @@
         config = "config /home/seyves/.config/openvpn/itoolabs/office.ovpn";
         updateResolvConf = true;
       };
+      dummy = {
+        autoStart = false;
+        config = "config /home/seyves/.config/openvpn/dummy/office.ovpn";
+        updateResolvConf = true;
+      };
     };
   };
 

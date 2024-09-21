@@ -1,10 +1,8 @@
 import { configDir, isPowerMenuShown, whoami } from "main";
 import Avatar from "../components/Avatar";
-import Gtk from "gi://Gtk";
 import { Icon } from "types/widget";
 import weather from "services/weather";
-
-const network = await Service.import("network");
+import Vpn from "./services/Vpn";
 
 const audio = await Service.import("audio");
 
@@ -52,8 +50,6 @@ weather.connect("weather-poll", (a) => {
     console.log(a.weather_value);
 });
 
-const mainVpnConnection = network.vpn.connections[0];
-
 export default function PowerMenu(monitor: number) {
     const username = whoami[0].toUpperCase() + whoami.slice(1);
 
@@ -62,145 +58,106 @@ export default function PowerMenu(monitor: number) {
     );
 
     const top = Widget.Box({
-        spacing: 10,
-        vertical: true,
+        spacing: 16,
+        className: "toppw",
         children: [
             Widget.Box({
-                spacing: 16,
-                className: "toppw",
+                className: "avatar",
+                vexpand: false,
+                vpack: "center",
+                hexpand: false,
+            }),
+            Widget.Box({
+                spacing: 8,
+                vertical: true,
+                hexpand: true,
+                vpack: "center",
                 children: [
-                    Widget.Box({
-                        className: "avatar",
-                        vexpand: false,
-                        vpack: "center",
-                        hexpand: false,
+                    Widget.Label({
+                        label: username,
+                        className: "username",
+                        hpack: "start",
                     }),
-                    Widget.Box({
-                        spacing: 8,
-                        vertical: true,
-                        hexpand: true,
-                        vpack: "center",
-                        children: [
-                            Widget.Label({
-                                label: username,
-                                className: "username",
-                                hpack: "start",
-                            }),
-                            Widget.Label({
-                                label: os,
-                                className: "osname",
-                                hpack: "start",
-                            }),
-                        ],
-                    }),
-                    Widget.Box({
-                        vpack: "start",
-                        hpack: "end",
-                        vexpand: true,
-                        spacing: 4,
-                        children: [
-                            Button({
-                                className: "reboot",
-                                icon: "system-reboot-symbolic",
-                                onClicked: () => Utils.exec("reboot"),
-                            }),
-                            Button({
-                                className: "log-out",
-                                icon: "system-log-out-symbolic",
-                                onClicked: () =>
-                                    hyprland.message("dispatch exit"),
-                            }),
-                            Button({
-                                className: "shutdown",
-                                icon: "system-shutdown-symbolic",
-                                onClicked: () => Utils.exec("shutdown now"),
-                            }),
-                        ],
+                    Widget.Label({
+                        label: os,
+                        className: "osname",
+                        hpack: "start",
                     }),
                 ],
             }),
             Widget.Box({
+                vpack: "start",
+                hpack: "end",
+                vexpand: true,
+                spacing: 4,
+                children: [
+                    Button({
+                        className: "reboot",
+                        icon: "system-reboot-symbolic",
+                        onClicked: () => Utils.exec("reboot"),
+                    }),
+                    Button({
+                        className: "log-out",
+                        icon: "system-log-out-symbolic",
+                        onClicked: () => hyprland.message("dispatch exit"),
+                    }),
+                    Button({
+                        className: "shutdown",
+                        icon: "system-shutdown-symbolic",
+                        onClicked: () => Utils.exec("shutdown now"),
+                    }),
+                ],
+            }),
+        ],
+    });
+
+
+    const center = Widget.Box({
+        spacing: 12,
+        children: [
+            Widget.Box({
+                className: "weather",
+                vertical: true,
+                hpack: "start",
                 children: [
                     Widget.Box({
-                        className: "weather",
-                        vertical: true,
-                        hpack: "start",
                         children: [
                             Widget.Box({
-                                children: [
-                                    Widget.Box({
-                                        className: "weather-icon",
-                                        hpack: "center",
-                                        css: weather
-                                            .bind("weather_value")
-                                            .as(
-                                                (value) =>
-                                                    `background-image: url("${configDir}/assets/img/weather/${value.icon}@4x.png");`,
-                                            ),
-                                    }),
-                                    Widget.Label({
-                                        className: "weather-temp",
-                                        label: weather
-                                            .bind("weather_value")
-                                            .as((value) => `${value.temp}℃`),
-                                    }),
-                                ],
-                            }),
-                            Widget.Label({
-                                className: "weather-desc",
-                                label: weather
+                                className: "weather-icon",
+                                hpack: "center",
+                                css: weather
                                     .bind("weather_value")
                                     .as(
                                         (value) =>
-                                            `feels like ${value.feelsLike}℃`,
+                                            `background-image: url("${configDir}/assets/img/weather/${value.icon}@4x.png");`,
                                     ),
                             }),
                             Widget.Label({
-                                className: "weather-desc",
+                                className: "weather-temp",
                                 label: weather
                                     .bind("weather_value")
-                                    .as((value) => value.description),
+                                    .as((value) => `${value.temp}℃`),
                             }),
                         ],
                     }),
-                    Widget.Box({
-                        className: "services",
-                        children: [
-                            Widget.EventBox({
-                                onPrimaryClick: () =>
-                                    mainVpnConnection.setConnection(
-                                        !(
-                                            mainVpnConnection.state ===
-                                            "connected"
-                                        ),
-                                    ),
-                                child: Widget.Box({
-                                    className: mainVpnConnection
-                                        .bind("state")
-                                        .as(
-                                            (value) =>
-                                                `service ${value === "connected" ? "active" : ""}`,
-                                        ),
-                                    setup: (self) => {
-                                        self.hook(mainVpnConnection, () => {
-                                            if (
-                                                mainVpnConnection.state ===
-                                                    "connecting" ||
-                                                mainVpnConnection.state ===
-                                                    "disconnecting"
-                                            ) {
-                                                self.child = Widget.Spinner();
-                                            } else {
-                                                self.child =
-                                                    Widget.Label("VPN");
-                                            }
-                                        });
-                                    },
-                                }),
-                            }),
-                        ],
+                    Widget.Label({
+                        className: "weather-desc",
+                        label: weather
+                            .bind("weather_value")
+                            .as((value) => `feels like ${value.feelsLike}℃`),
+                    }),
+                    Widget.Label({
+                        className: "weather-desc",
+                        label: weather
+                            .bind("weather_value")
+                            .as((value) => value.description),
                     }),
                 ],
+            }),
+            Widget.Box({
+                spacing: 12,
+                className: "services",
+                child: Vpn()
             }),
         ],
     });
@@ -248,8 +205,8 @@ export default function PowerMenu(monitor: number) {
                     endWidget: Widget.Box({
                         className: "power-menu",
                         vertical: true,
-                        spacing: 20,
-                        children: [top, bottom],
+                        spacing: 12,
+                        children: [top, center, bottom],
                     }),
                 }),
                 setup: (self) =>

@@ -77,9 +77,9 @@
   color: #464646;
   font-size: 12px; }
 .power-menu-window .button {
-  border-radius: 4px;
+  border-radius: 10px;
   min-width: 10px;
-  min-height: 10px;
+  min-height: 18px;
   background-color: #a7c080; }
   .power-menu-window .button .icon {
     color: #1b1b1b; }
@@ -95,11 +95,23 @@
   background-size: cover;
   min-width: 40px;
   min-height: 40px; }
+.power-menu-window .vpn-choose {
+  padding: 4px; }
+.power-menu-window .vpn-combobox {
+  min-width: 120px; }
 .power-menu-window .service {
-  background-color: #2d2d2d;
-  border-radius: 5px; }
+  background-color: #202020;
+  padding: 8px 0px;
+  border-radius: 10px; }
+  .power-menu-window .service .service-label {
+    margin-left: 8px;
+    font-weight: bold; }
   .power-menu-window .service.active {
     background-color: #a7c080; }
+    .power-menu-window .service.active .service-label {
+      color: #1b1b1b; }
+    .power-menu-window .service.active .service-icon {
+      color: #1b1b1b; }
 .power-menu-window trough {
   background-color: #2d2d2d;
   border-radius: 3px; }

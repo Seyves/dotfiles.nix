@@ -119,10 +119,10 @@
     }
 
     .button {
-        border-radius: 4px;
+        border-radius: 10px;
 
         min-width: 10px;
-        min-height: 10px;
+        min-height: 18px;
 
         background-color: $accent-0-color;
 
@@ -150,11 +150,31 @@
         min-height: 40px;
     }
 
+    .vpn-choose {
+        padding: 4px; 
+    }
+
+    .vpn-combobox {
+        min-width: 120px;
+    }
+
     .service {
-        background-color: $bg-2-color;
-        border-radius: 5px;
+        background-color: $bg-1-color;
+        padding: 8px 0px;
+        border-radius: 10px;
+
+        .service-label {
+            margin-left: 8px;
+            font-weight: bold;
+        }
 
         &.active {
+            .service-label {
+                color: $bg-0-color;
+            }
+            .service-icon {
+                color: $bg-0-color;
+            }
             background-color: $accent-0-color;
         }
     }
