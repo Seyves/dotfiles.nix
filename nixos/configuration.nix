@@ -20,7 +20,7 @@
   users.users.seyves = {
     isNormalUser = true;
     description = "seyves";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "systemctl" ];
     shell = pkgs.zsh;
     ignoreShellProgramCheck = true;
   };
