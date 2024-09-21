@@ -16,7 +16,6 @@
         "swaybg -i ~/Pictures/frieren-sousou-no-frieren-4k-wal.jpg"
         "ags"
         "swaync"
-        "wlsunset -s 18:30 -T 5500"
       ];
 
       # Variables 
