@@ -150,6 +150,15 @@
         min-height: 40px;
     }
 
+    .service {
+        background-color: $bg-2-color;
+        border-radius: 5px;
+
+        &.active {
+            background-color: $accent-0-color;
+        }
+    }
+
     trough {
         background-color: $bg-2-color;
         border-radius: 3px;

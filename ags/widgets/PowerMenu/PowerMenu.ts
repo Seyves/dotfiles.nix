@@ -4,6 +4,8 @@ import Gtk from "gi://Gtk";
 import { Icon } from "types/widget";
 import weather from "services/weather";
 
+const network = await Service.import("network");
+
 const audio = await Service.import("audio");
 
 function getIcon() {
@@ -49,6 +51,8 @@ const hyprland = await Service.import("hyprland");
 weather.connect("weather-poll", (a) => {
     console.log(a.weather_value);
 });
+
+const mainVpnConnection = network.vpn.connections[0];
 
 export default function PowerMenu(monitor: number) {
     const username = whoami[0].toUpperCase() + whoami.slice(1);
@@ -116,41 +120,85 @@ export default function PowerMenu(monitor: number) {
                 ],
             }),
             Widget.Box({
-                className: "weather",
-                vertical: true,
-                hpack: "start",
                 children: [
                     Widget.Box({
+                        className: "weather",
+                        vertical: true,
+                        hpack: "start",
                         children: [
                             Widget.Box({
-                                className: "weather-icon",
-                                hpack: "center",
-                                css: weather
+                                children: [
+                                    Widget.Box({
+                                        className: "weather-icon",
+                                        hpack: "center",
+                                        css: weather
+                                            .bind("weather_value")
+                                            .as(
+                                                (value) =>
+                                                    `background-image: url("${configDir}/assets/img/weather/${value.icon}@4x.png");`,
+                                            ),
+                                    }),
+                                    Widget.Label({
+                                        className: "weather-temp",
+                                        label: weather
+                                            .bind("weather_value")
+                                            .as((value) => `${value.temp}℃`),
+                                    }),
+                                ],
+                            }),
+                            Widget.Label({
+                                className: "weather-desc",
+                                label: weather
                                     .bind("weather_value")
                                     .as(
                                         (value) =>
-                                            `background-image: url("${configDir}/assets/img/weather/${value.icon}@4x.png");`,
+                                            `feels like ${value.feelsLike}℃`,
                                     ),
                             }),
                             Widget.Label({
-                                className: "weather-temp",
+                                className: "weather-desc",
                                 label: weather
                                     .bind("weather_value")
-                                    .as((value) => `${value.temp}℃`),
+                                    .as((value) => value.description),
                             }),
                         ],
                     }),
-                    Widget.Label({
-                        className: "weather-desc",
-                        label: weather
-                            .bind("weather_value")
-                            .as((value) => `feels like ${value.feelsLike}℃`),
-                    }),
-                    Widget.Label({
-                        className: "weather-desc",
-                        label: weather
-                            .bind("weather_value")
-                            .as((value) => value.description),
+                    Widget.Box({
+                        className: "services",
+                        children: [
+                            Widget.EventBox({
+                                onPrimaryClick: () =>
+                                    mainVpnConnection.setConnection(
+                                        !(
+                                            mainVpnConnection.state ===
+                                            "connected"
+                                        ),
+                                    ),
+                                child: Widget.Box({
+                                    className: mainVpnConnection
+                                        .bind("state")
+                                        .as(
+                                            (value) =>
+                                                `service ${value === "connected" ? "active" : ""}`,
+                                        ),
+                                    setup: (self) => {
+                                        self.hook(mainVpnConnection, () => {
+                                            if (
+                                                mainVpnConnection.state ===
+                                                    "connecting" ||
+                                                mainVpnConnection.state ===
+                                                    "disconnecting"
+                                            ) {
+                                                self.child = Widget.Spinner();
+                                            } else {
+                                                self.child =
+                                                    Widget.Label("VPN");
+                                            }
+                                        });
+                                    },
+                                }),
+                            }),
+                        ],
                     }),
                 ],
             }),

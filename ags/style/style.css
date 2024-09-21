@@ -95,6 +95,11 @@
   background-size: cover;
   min-width: 40px;
   min-height: 40px; }
+.power-menu-window .service {
+  background-color: #2d2d2d;
+  border-radius: 5px; }
+  .power-menu-window .service.active {
+    background-color: #a7c080; }
 .power-menu-window trough {
   background-color: #2d2d2d;
   border-radius: 3px; }
