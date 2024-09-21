@@ -103,6 +103,73 @@
     };
   };
 
+  environment.etc = {
+    "NetworkManager/system-connections/office.nmconnection" = {
+      text = ''
+        [connection]
+        id=ITooLabs
+        uuid=074a03d0-69b7-4b65-8194-70ab9f3c9972
+        type=vpn
+
+        [vpn]
+        ca=/home/seyves/.config/openvpn/itoolabs/ca.crt
+        cert=/home/seyves/.config/openvpn/itoolabs/user.crt
+        cert-pass-flags=0
+        challenge-response-flags=2
+        comp-lzo=no-by-default
+        compress=lz4
+        connection-type=tls
+        dev=tun
+        key=/home/seyves/.config/openvpn/itoolabs/user.key
+        remote=213.248.35.133:1194, 109.69.180.3:1194
+        remote-cert-tls=server
+        tls-crypt=/home/seyves/.config/openvpn/itoolabs/ta.key
+        service-type=org.freedesktop.NetworkManager.openvpn
+
+        [ipv4]
+        method=auto
+
+        [ipv6]
+        addr-gen-mode=stable-privacy
+        method=auto
+
+        [proxy]'';
+      mode = "0600";
+    };
+    "NetworkManager/system-connections/dummy.nmconnection" = {
+      text = ''
+        [connection]
+        id=Dummy
+        uuid=074a03d0-69b7-4b65-8194-70ab9f3c9972
+        type=vpn
+
+        [vpn]
+        ca=/home/seyves/.config/openvpn/dummy/ca.crt
+        cert=/home/seyves/.config/openvpn/dummy/user.crt
+        cert-pass-flags=0
+        challenge-response-flags=2
+        comp-lzo=no-by-default
+        compress=lz4
+        connection-type=tls
+        dev=tun
+        key=/home/seyves/.config/openvpn/dummy/user.key
+        remote=213.248.35.133:1194, 109.69.180.3:1194
+        remote-cert-tls=server
+        tls-crypt=/home/seyves/.config/openvpn/dummy/ta.key
+        service-type=org.freedesktop.NetworkManager.openvpn
+
+        [ipv4]
+        method=auto
+
+        [ipv6]
+        addr-gen-mode=stable-privacy
+        method=auto
+
+        [proxy]'';
+      mode = "0600";
+    };
+  };
+
   fonts.fontconfig.antialias = true;
 
   security.rtkit.enable = true;
