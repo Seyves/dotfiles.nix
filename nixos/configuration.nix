@@ -91,6 +91,7 @@
     };
     openvpn.servers = {
       itoolabsVPN = {
+        autoStart = false;
         config = "config /home/seyves/.config/openvpn/itoolabs/office.ovpn";
         updateResolvConf = true;
       };
