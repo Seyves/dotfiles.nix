@@ -24,7 +24,7 @@ export default function Vpn() {
             return connection.id === id;
         });
 
-        if (choosed) currentConnection.value = choosed;
+        if (choosed) currentConnection.setValue(choosed);
     }
 
     const Combobox = Widget.subclass(Gtk.ComboBoxText);
@@ -57,10 +57,11 @@ export default function Vpn() {
                 child: Widget.Box({
                     hpack: "center",
                     setup: (self) => {
-                        network.vpn.connections.forEach((connection) => {
-                            self.hook(connection, () => {
-                                if (connection !== currentConnection.value)
-                                    return;
+                        self.hook(network.vpn, () => {
+                            for (const connection of network.vpn.connections) {
+                                if (connection !== currentConnection.value) {
+                                    continue;
+                                }
 
                                 if (
                                     connection.state === "connecting" ||
@@ -79,14 +80,17 @@ export default function Vpn() {
                                             }),
                                             Widget.Label({
                                                 className: "service-label",
-                                                label: connection
-                                                    .bind("id")
-                                                    .as((id) => `VPN (${id})`),
+                                                label: currentConnection
+                                                    .bind("value")
+                                                    .as(
+                                                        (value) =>
+                                                            `VPN (${value.id})`,
+                                                    ),
                                             }),
                                         ],
                                     });
                                 }
-                            });
+                            }
                         });
                     },
                 }),
@@ -96,18 +100,22 @@ export default function Vpn() {
                 transition: "slide_down",
                 child: Widget.Box({
                     className: "vpn-choose",
-                    hpack: "center",
+                    hexpand: true,
                     child: Combobox({
+                        hexpand: true,
                         className: "vpn-combobox",
                         setup(self) {
                             network.vpn.connections.forEach((connection) => {
                                 self.append_text(connection.id);
                             });
                             self.set_active(0);
+                            self.set_focus_on_click(true)
                             self.connect("changed", () => {
-                                changeConnection(self.get_active_id());
+                                changeConnection(
+                                    network.vpn.connections[self.get_active()]
+                                        .id,
+                                );
                             });
-                            self.bind();
                         },
                     }),
                 }),

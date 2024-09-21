@@ -155,7 +155,25 @@
     }
 
     .vpn-combobox {
-        min-width: 120px;
+        background-color: $bg-1-color;
+        border-radius: 10px;
+
+        button {
+            box-shadow: none;
+            border: none;
+            background-color: $bg-1-color;
+        }
+        decoration {
+            border-radius: 10px;
+            box-shadow: none;
+            border: 1px solid $accent-0-color;
+        }
+        menu {
+            border-radius: 10px;
+            box-shadow: none;
+            border: none;
+            background-color: $bg-1-color;
+        }
     }
 
     .service {

@@ -98,7 +98,21 @@
 .power-menu-window .vpn-choose {
   padding: 4px; }
 .power-menu-window .vpn-combobox {
-  min-width: 120px; }
+  background-color: #202020;
+  border-radius: 10px; }
+  .power-menu-window .vpn-combobox button {
+    box-shadow: none;
+    border: none;
+    background-color: #202020; }
+  .power-menu-window .vpn-combobox decoration {
+    border-radius: 10px;
+    box-shadow: none;
+    border: 1px solid #a7c080; }
+  .power-menu-window .vpn-combobox menu {
+    border-radius: 10px;
+    box-shadow: none;
+    border: none;
+    background-color: #202020; }
 .power-menu-window .service {
   background-color: #202020;
   padding: 8px 0px;
