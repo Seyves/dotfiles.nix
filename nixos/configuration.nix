@@ -140,7 +140,7 @@
       text = ''
         [connection]
         id=Dummy
-        uuid=074a03d0-69b7-4b65-8194-70ab9f3c9972
+        uuid=022c3fd8-4922-4113-a6f2-d7f51175c02f
         type=vpn
 
         [vpn]
