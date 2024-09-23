@@ -16,6 +16,9 @@
         "swaybg -i ~/Pictures/frieren-sousou-no-frieren-4k-wal.jpg"
         "ags"
         "swaync"
+        "[workspace 1 silent] zen"
+        "[workspace 2 silent] kitty"
+        "[workspace 4 silent] telegram-desktop"
       ];
 
       # Variables 
