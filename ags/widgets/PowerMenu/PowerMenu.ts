@@ -4,6 +4,7 @@ import { Icon } from "types/widget";
 import weather from "services/weather";
 import Vpn from "./services/Vpn";
 import Gio from 'gi://Gio';
+import NightLight from "./services/NightLight";
 
 const interfaceXml = `
 <node>
@@ -175,7 +176,8 @@ export default function PowerMenu(monitor: number) {
             Widget.Box({
                 spacing: 12,
                 className: "services",
-                children: [Vpn()],
+                vertical: true,
+                children: [Vpn(), NightLight()],
             }),
         ],
     });

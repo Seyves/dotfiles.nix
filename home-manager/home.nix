@@ -29,7 +29,6 @@
     # Can't find good location provider for geoclue2 :(
     latitude = 54.2;
     longitude = 37.61;
-    enableVerboseLogging = true;
   };
 
   programs.ags = {
@@ -192,6 +191,7 @@
     hyprpicker
     hyprshot
     swaynotificationcenter
+    gammastep
 
     # Lsps
     nodePackages.bash-language-server
