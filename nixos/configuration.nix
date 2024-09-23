@@ -70,6 +70,22 @@
   services = {
     geoclue2 = {
       enableDemoAgent = true;
+      appConfig = {
+        gammastep = {
+          isAllowed = true;
+          isSystem = true;
+        };
+        ags = {
+          isAllowed = true;
+          isSystem = true;
+        };
+        qdbus = {
+          isAllowed = true;
+          isSystem = true;
+        };
+      };
+      # appConfig.ags.isAllowed = true;
+      # appConfig.qdbus.isAllowed = true;
       enable = true;
     };
     xserver = {
