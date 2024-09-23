@@ -12,7 +12,7 @@ export default function NightLight() {
                     Utils.execAsync("pkill gammastep");
                 } else {
                     Utils.execAsync(
-                        "gammastep -l 54.2:37.61 -t 5500:5000",
+                        "gammastep -l 54.2:37.61 -t 5500:5200",
                     ).then(() => {
                         isEnabled.value = false
                     });

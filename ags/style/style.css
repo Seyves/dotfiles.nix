@@ -143,6 +143,8 @@
     .power-menu-window trough slider:hover {
       background-color: #a7c080;
       border: 3px solid #a7c080; }
+.power-menu-window .volume {
+  margin-top: 16px; }
 .power-menu-window .volume-slider {
   min-width: 240px; }
 

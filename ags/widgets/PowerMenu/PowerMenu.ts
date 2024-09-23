@@ -3,26 +3,7 @@ import Avatar from "../components/Avatar";
 import { Icon } from "types/widget";
 import weather from "services/weather";
 import Vpn from "./services/Vpn";
-import Gio from 'gi://Gio';
 import NightLight from "./services/NightLight";
-
-const interfaceXml = `
-<node>
-  <interface name="org.freedesktop.GeoClue2.Manager">
-    <property name="InUse" type="b" access="read"/>
-    <property name="AvailableAccuracyLevel" type="u" access="read"/>
-    <method name="AddAgent">
-      <arg name="id" type="s" direction="in"/>
-    </method>
-  </interface>
-</node>`
-
-// Pass the XML string to create a proxy class for that interface
-const TestProxy = Gio.DBusProxy.makeProxyWrapper(interfaceXml);
-
-const proxy = TestProxy(Gio.DBus.session, 'org.freedesktop.GeoClue2.Manager', '/org/freedesktop/GeoClue2/Manager');
-
-console.log(proxy.InUse)
 
 const audio = await Service.import("audio");
 
@@ -184,6 +165,8 @@ export default function PowerMenu(monitor: number) {
 
     const bottom = Widget.Box({
         spacing: 12,
+        hpack: "center",
+        className: "volume",
         children: [
             Widget.Icon({
                 icon: Utils.watch(getIcon(), audio.speaker, getIcon),
