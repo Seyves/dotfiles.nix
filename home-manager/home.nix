@@ -24,6 +24,14 @@
     })
   ];
 
+  services.gammastep = {
+    enable = true;
+    temperature.night = 5000;
+    # Can't find good location provider for geoclue2 :(
+    latitude = 54.2;
+    longitude = 37.61;
+  };
+
   programs.ags = {
     enable = true;
     configDir = ../ags;
@@ -184,7 +192,6 @@
     hyprpicker
     hyprshot
     swaynotificationcenter
-    gammastep
 
     # Lsps
     nodePackages.bash-language-server
