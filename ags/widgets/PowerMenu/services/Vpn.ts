@@ -30,7 +30,6 @@ export default function Vpn() {
     const Combobox = Widget.subclass(Gtk.ComboBoxText);
 
     return Widget.Box({
-        css: "padding: 1px; background-color: transparent;",
         vertical: true,
         children: [
             Widget.Button({

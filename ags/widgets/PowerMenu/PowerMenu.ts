@@ -111,7 +111,6 @@ export default function PowerMenu(monitor: number) {
         ],
     });
 
-
     const center = Widget.Box({
         spacing: 12,
         children: [
@@ -157,7 +156,7 @@ export default function PowerMenu(monitor: number) {
             Widget.Box({
                 spacing: 12,
                 className: "services",
-                child: Vpn()
+                children: [Vpn()],
             }),
         ],
     });

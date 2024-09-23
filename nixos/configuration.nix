@@ -68,6 +68,7 @@
   # Enable the GNOME Desktop Environment.
   # Configure keymap in X1
   services = {
+    geoclue2 = { enable = true; };
     xserver = {
       displayManager.gdm = {
         enable = true;
