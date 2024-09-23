@@ -1,5 +1,5 @@
 export default function NightLight() {
-    const isEnabled = Variable(false)
+    const isEnabled = Variable(false);
 
     return Widget.Box({
         vertical: true,
@@ -9,14 +9,18 @@ export default function NightLight() {
             vpack: "start",
             onPrimaryClick: () => {
                 if (isEnabled.value) {
-                    Utils.exec("pkill gammastep")
+                    Utils.execAsync("pkill gammastep");
                 } else {
-                    Utils.execAsync("gammastep -l 54.2:37.61 -t 5500:5000")
+                    Utils.execAsync(
+                        "gammastep -l 54.2:37.61 -t 5500:5000",
+                    ).then(() => {
+                        isEnabled.value = false
+                    });
+                    isEnabled.value = true
                 }
-                isEnabled.value = !isEnabled.value
             },
             className: isEnabled.bind("value").as((value) => {
-                return `service ${value ? "active" : ""}`
+                return `service ${value ? "active" : ""}`;
             }),
             child: Widget.Box({
                 hpack: "center",
