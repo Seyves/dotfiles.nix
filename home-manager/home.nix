@@ -211,5 +211,7 @@
     sass
     eslint_d
     nixfmt-classic
+
+    prismlauncher
   ]) ++ (with pkgs-unstable; [ showtime ]);
 }
