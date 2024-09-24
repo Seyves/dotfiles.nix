@@ -215,5 +215,6 @@
 
     (prismlauncher.override { withWaylandGLFW = true; })
     glfw-wayland-minecraft
+    xwayland
   ]) ++ (with pkgs-unstable; [ showtime ]);
 }

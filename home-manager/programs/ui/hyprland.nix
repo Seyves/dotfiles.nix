@@ -35,6 +35,7 @@
       # Remove this when nvidia will do better with electron apps
       debug = { damage_tracking = 0; };
 
+      xwayland = { force_zero_scaling = true; };
       general = {
         gaps_in = 5;
         gaps_out = 30;
@@ -186,6 +187,7 @@
         "float, class:(org.gnome.Loupe)"
         "float, class:(org.gnome.FileRoller)"
         "float, class:(org.gnome.Showtime)"
+        "rounding 0, class:(Better than Adventure! 7.2_01)"
         "maximize, title:(Media viewer)"
         "noanim, title:(Media viewer)"
         "noanim, class:^(.*sway.*)$"
