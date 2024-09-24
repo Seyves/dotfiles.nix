@@ -35,7 +35,6 @@
       # Remove this when nvidia will do better with electron apps
       debug = { damage_tracking = 0; };
 
-      xwayland = { force_zero_scaling = true; };
       general = {
         gaps_in = 5;
         gaps_out = 30;
