@@ -214,7 +214,6 @@
     nixfmt-classic
 
     (prismlauncher.override { withWaylandGLFW = true; })
-    minecraft
     glfw-wayland-minecraft
   ]) ++ (with pkgs-unstable; [ showtime ]);
 }
