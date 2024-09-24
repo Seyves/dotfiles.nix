@@ -29,7 +29,7 @@
       "$colorPicker" = "hyprpicker -a";
       "$mainMod" = "ALT";
 
-      env = [ "XCURSOR_THEME,Vanilla-DMZ" "XCURSOR_SIZE,30" ];
+      env = [ "XCURSOR_THEME,Vanilla-DMZ" "XCURSOR_SIZE,30" "GDK_SCALE,2" ];
 
       # DANGEROUS
       # Remove this when nvidia will do better with electron apps
@@ -124,6 +124,8 @@
         touchpad = { natural_scroll = false; };
       };
 
+      xwayland = { force_zero_scaling = true; };
+
       bind = [
         "$mainMod, T, exec, $terminal"
         "$mainMod, Q, killactive,"
@@ -186,6 +188,7 @@
         "float, class:(org.gnome.Loupe)"
         "float, class:(org.gnome.FileRoller)"
         "float, class:(org.gnome.Showtime)"
+        "float, class:(org.prismlauncher.PrismLauncher)"
         "maximize, title:(Media viewer)"
         "noanim, title:(Media viewer)"
         "noanim, class:^(.*sway.*)$"

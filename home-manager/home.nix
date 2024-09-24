@@ -40,6 +40,7 @@
 
   # Allowing unfree
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowBroken = true;
 
   home = {
     username = "seyves";
@@ -212,6 +213,8 @@
     eslint_d
     nixfmt-classic
 
-    prismlauncher
+    (prismlauncher.override { withWaylandGLFW = true; })
+    minecraft
+    glfw-wayland-minecraft
   ]) ++ (with pkgs-unstable; [ showtime ]);
 }

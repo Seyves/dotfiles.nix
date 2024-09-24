@@ -197,6 +197,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  nixpkgs.config.allowBroken = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -224,7 +225,6 @@
     QT_QPA_PLATFORM = "wayland";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     WLR_DRM_NO_ATOMIC = "1";
-    NIXOS_OZONE_WL = "1";
     MOZ_ENABLE_WAYLAND = "1";
     SDL_VIDEODRIVER = "wayland";
     _JAVA_AWT_WM_NONREPARENTING = "1";
