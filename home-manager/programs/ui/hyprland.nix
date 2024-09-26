@@ -125,6 +125,7 @@
       };
 
       bind = [
+        "$mainMod, F, fullscreen"
         "$mainMod, T, exec, $terminal"
         "$mainMod, Q, killactive,"
         "$mainMod, M, exit,"

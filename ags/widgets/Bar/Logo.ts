@@ -1,3 +1,5 @@
+import { isLauncherShown } from "widgets/Launcher/Launcher";
+
 const isHovered = Variable(false);
 
 export default function Logo() {
@@ -5,6 +7,7 @@ export default function Logo() {
         className: "logo",
         child: Widget.EventBox({
             cursor: "pointer",
+            onPrimaryClick: () => isLauncherShown.value = !isLauncherShown.value,
             onHover: () => isHovered.setValue(true),
             onHoverLost: () => isHovered.setValue(false),
             child: Widget.Icon({

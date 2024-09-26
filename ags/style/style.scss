@@ -228,3 +228,14 @@
         min-width: 240px;
     }
 }
+
+.launcher-window {
+    .padding {
+        min-height: 300px; 
+    }
+
+    .launcher {
+        padding: 10px;
+        background-color: $bg-0-color;
+    }
+}

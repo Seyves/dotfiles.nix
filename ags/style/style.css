@@ -148,4 +148,10 @@
 .power-menu-window .volume-slider {
   min-width: 240px; }
 
+.launcher-window .padding {
+  min-height: 300px; }
+.launcher-window .launcher {
+  padding: 10px;
+  background-color: #1b1b1b; }
+
 /*# sourceMappingURL=style.css.map */
