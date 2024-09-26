@@ -200,6 +200,7 @@
         "noanim, swaync-notification-window"
         "noanim, rofi"
         "noanim, powermenu0"
+        "noanim, launcher0"
       ];
     };
   };
