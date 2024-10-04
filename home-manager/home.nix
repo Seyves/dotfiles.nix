@@ -180,6 +180,7 @@
     loupe
     telegram-desktop
     postman
+    insomnia
     neovide
 
     # Rising

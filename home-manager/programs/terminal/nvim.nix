@@ -37,6 +37,7 @@ in {
 
       # navigation
       telescope-nvim
+      telescope-live-grep-args-nvim
       oil-nvim
       harpoon
       leap-nvim

@@ -10,6 +10,10 @@ export const configDir = `/home/${whoami}/.config/ags`;
 
 export const isPowerMenuShown = Variable(false);
 
+isPowerMenuShown.connect("changed", () => {
+    App.toggleWindow("powermenu0") 
+})
+
 Utils.monitorFile(`${configDir}/style/style.css`, () => {
     App.applyCss(`${configDir}/style/style.css`, true);
 });
