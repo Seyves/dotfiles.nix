@@ -46,6 +46,11 @@
     username = "seyves";
     homeDirectory = "/home/seyves";
     stateVersion = "23.11";
+
+    file."Pictures/frieren-sousou-no-frieren-4k-wal.jpg" = {
+      enable = true;
+      source = ./wallpapers/frieren-sousou-no-frieren-4k-wal.jpg;
+    };
   };
 
   # Default mimetypes

@@ -6,7 +6,7 @@
     plugins = [{
       name = "zsh-powerlevel10k";
       src = pkgs.zsh-powerlevel10k;
-      file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+      file = "./.p10k.zsh";
     }];
     syntaxHighlighting.enable = true;
     historySubstringSearch = {
