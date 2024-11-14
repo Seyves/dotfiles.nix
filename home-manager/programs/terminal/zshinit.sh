@@ -1,6 +1,3 @@
-# sourcing p10k
-source ~/.p10k.zsh
-
 # starting ssh-agent
 eval $(ssh-agent) > /dev/null
 

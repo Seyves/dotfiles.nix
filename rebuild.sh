@@ -13,7 +13,7 @@
 set -e
 
 # cd to your config dir
-pushd ~/mysystem
+pushd ~/dotfiles.nix
 
 # Early return if no changes were detected (thanks @singiamtel!)
 # if git diff --quiet '*.nix'; then
@@ -32,7 +32,7 @@ git diff -U0 '*.nix'
 echo "NixOS Rebuilding..."
 
 # Rebuild, output simplified errors, log trackebacks
-sudo nixos-rebuild switch --flake ~/mysystem/#myNixos &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
+sudo nixos-rebuild switch --flake ~/dotfiles.nix/#myNixos &>nixos-switch.log || (cat nixos-switch.log | grep --color error && exit 1)
 
 # Get current generation metadata
 current=$(nixos-rebuild list-generations | grep current)
