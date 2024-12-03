@@ -31,10 +31,6 @@
 
       env = [ "XCURSOR_THEME,Vanilla-DMZ" "XCURSOR_SIZE,30" ];
 
-      # DANGEROUS
-      # Remove this when nvidia will do better with electron apps
-      debug = { damage_tracking = 0; };
-
       general = {
         gaps_in = 5;
         gaps_out = 30;

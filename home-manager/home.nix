@@ -9,21 +9,6 @@
     inputs.ags.homeManagerModules.default
   ];
 
-  nixpkgs.overlays = [
-    (final: super: {
-      rofi-wayland-unwrapped = super.rofi-wayland-unwrapped.overrideAttrs
-        ({ patches ? [ ], ... }: {
-          patches = patches ++ [
-            (final.fetchpatch {
-              url =
-                "https://github.com/samueldr/rofi/commit/55425f72ff913eb72f5ba5f5d422b905d87577d0.patch";
-              hash = "sha256-vTUxtJs4SuyPk0PgnGlDIe/GVm/w1qZirEhKdBp4bHI=";
-            })
-          ];
-        });
-    })
-  ];
-
   services.gammastep = {
     temperature.night = 5000;
     # Can't find good location provider for geoclue2 :(
@@ -171,7 +156,7 @@
     rsync
     sshpass
     fzf
-    nodePackages.pnpm
+    pnpm
     ripgrep
     wine-wayland
     unzip
@@ -201,11 +186,11 @@
     gammastep
 
     # Lsps
-    nodePackages.bash-language-server
-    nodePackages.typescript
-    nodePackages.typescript-language-server
-    nodePackages.vscode-langservers-extracted
-    nodePackages.vue-language-server
+    bash-language-server
+    typescript
+    typescript-language-server
+    vscode-langservers-extracted
+    vue-language-server
     tailwindcss-language-server
     jsonnet-language-server
     lua-language-server
@@ -213,14 +198,10 @@
     nil
 
     # Formatters
-    nodePackages.sql-formatter
+    sql-formatter
     prettierd
     sass
     eslint_d
     nixfmt-classic
-
-    (prismlauncher.override { withWaylandGLFW = true; })
-    glfw-wayland-minecraft
-    xwayland
   ]) ++ (with pkgs-unstable; [ showtime ]);
 }
