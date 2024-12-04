@@ -64,7 +64,7 @@ local language_servers = {
         },
     },
     gopls = {},
-    tsserver = {},
+    ts_ls = {},
     html = {},
     cssls = {},
     tailwindcss = {},

@@ -56,10 +56,11 @@
         active_opacity = 1;
         inactive_opacity = 1;
 
-        drop_shadow = false;
-        shadow_range = 1;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+        shadow = {
+          enabled = true;
+          range = 1;
+          render_power = 3;
+        };
 
         # https://wiki.hyprland.org/Configuring/Variables/#blur
         blur = {
