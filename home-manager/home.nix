@@ -48,6 +48,7 @@
       "image/svg" = [ "org.gnome.Loupe.desktop" ];
       "image/webp" = [ "org.gnome.Loupe.desktop" ];
       "image/heic" = [ "org.gnome.Loupe.desktop" ];
+      "image/gif" = [ "org.gnome.Loupe.desktop" ];
       # audio 
       "audio/vnd.wave" = [ "org.gnome.Showtime.desktop" ];
       "audio/mpeg" = [ "org.gnome.Showtime.desktop" ];
@@ -85,6 +86,7 @@
       "application/x-zip-compressed" = [ "org.gnome.FileRoller.desktop" ];
       "application/x-rar" = [ "org.gnome.FileRoller.desktop" ];
       "application/x-rar-compressed" = [ "org.gnome.FileRoller.desktop" ];
+      "application/x-msdownload" = [ "wine.desktop" ];
     };
   in {
     enable = true;
@@ -165,8 +167,8 @@
     firefox
     google-chrome
     slack
-    gnome.nautilus
-    gnome.file-roller
+    nautilus
+    file-roller
     loupe
     telegram-desktop
     postman

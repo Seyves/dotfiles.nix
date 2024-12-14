@@ -70,7 +70,7 @@ local language_servers = {
     tailwindcss = {},
     jsonls = {},
     jsonnet_ls = {},
-    volar = {},
+    vuels = {},
 }
 
 for server, server_config in pairs(language_servers) do
