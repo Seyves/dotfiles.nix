@@ -174,6 +174,7 @@
     postman
     insomnia
     neovide
+    obsidian
 
     # Rising
     rofi-wayland

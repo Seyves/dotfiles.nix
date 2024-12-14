@@ -97,6 +97,10 @@
         preserve_split = true; # You probably want this
       };
 
+      # DANGEROUS
+      # Remove this when nvidia will do better with electron apps
+      debug = { damage_tracking = 0; };
+
       # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
       master = { new_status = "master"; };
 
