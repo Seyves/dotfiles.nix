@@ -190,7 +190,7 @@
     typescript
     typescript-language-server
     vscode-langservers-extracted
-    vue-language-server
+    nodePackages.vls
     tailwindcss-language-server
     jsonnet-language-server
     lua-language-server
