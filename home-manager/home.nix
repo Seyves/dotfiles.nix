@@ -38,6 +38,18 @@
     };
   };
 
+  # Desktop flags
+  xdg.desktopEntries = {
+    obsidian = {
+      categories = [ "Office" ];
+      comment = "Knowledge base";
+      exec = "obsidian --disable-gpu %u";
+      icon = "obsidian";
+      mimeType = [ "x-scheme-handler/obsidian" ];
+      name = "Obsidian";
+      type = "Application";
+    };
+  };
   # Default mimetypes
   xdg.mimeApps = let
     mimetypes = {
