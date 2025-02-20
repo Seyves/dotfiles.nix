@@ -50,6 +50,7 @@ in {
       which-key-nvim
       comment-nvim
       luasnip
+      typescript-tools-nvim
       seyves-nvim
     ];
     extraLuaConfig = ''

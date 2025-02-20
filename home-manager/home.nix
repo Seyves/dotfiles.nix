@@ -189,6 +189,7 @@
     obsidian
 
     # Rising
+    swww
     rofi-wayland
     swaybg
     libnotify
@@ -218,5 +219,5 @@
     sass
     eslint_d
     nixfmt-classic
-  ]) ++ (with pkgs-unstable; [ showtime ]);
+  ]) ++ (with pkgs-unstable; [ showtime amnezia-vpn ]);
 }

@@ -31,7 +31,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
             spread(opts) { desc = "Next diagnostic" })
         vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end,
             spread(opts) { desc = "Previous diagnostic" })
-        vim.keymap.set("n", "<leader>a", function() vim.lsp.buf.code_action() end,
+        vim.keymap.set({ "n", "v" }, "<leader>a", function() vim.lsp.buf.code_action() end,
             spread(opts) { desc = "Code actions" })
         vim.keymap.set("n", "gr", function() vim.lsp.buf.references() end,
             spread(opts) { desc = "Quicklist references" })
@@ -64,7 +64,6 @@ local language_servers = {
         },
     },
     gopls = {},
-    ts_ls = {},
     html = {},
     cssls = {},
     tailwindcss = {},
@@ -72,6 +71,8 @@ local language_servers = {
     jsonnet_ls = {},
     vuels = {},
 }
+
+require("typescript-tools").setup {}
 
 for server, server_config in pairs(language_servers) do
     local config = { capabilities = capabilities }
