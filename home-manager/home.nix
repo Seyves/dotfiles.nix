@@ -158,7 +158,7 @@
 
   home.packages = (with pkgs; [
     # Fonts
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    nerd-fonts.jetbrains-mono
     roboto
     inter
 
@@ -187,6 +187,8 @@
     insomnia
     neovide
     obsidian
+    showtime
+    amnezia-vpn
 
     # Rising
     swww
@@ -206,7 +208,6 @@
     typescript
     typescript-language-server
     vscode-langservers-extracted
-    nodePackages.vls
     tailwindcss-language-server
     jsonnet-language-server
     lua-language-server
@@ -219,5 +220,5 @@
     sass
     eslint_d
     nixfmt-classic
-  ]) ++ (with pkgs-unstable; [ showtime amnezia-vpn ]);
+  ]);
 }

@@ -54,16 +54,12 @@
     LC_TELEPHONE = "ru_RU.UTF-8";
     LC_TIME = "ru_RU.UTF-8";
   };
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    # gtk portal needed to make gtk apps happy
-    extraPortals = [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ];
-  };
+  # xdg.portal = {
+  #   enable = true;
+  #   wlr.enable = true;
+  #   # gtk portal needed to make gtk apps happy
+  #   extraPortals = [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ];
+  # };
 
   # Enable the GNOME Desktop Environment.
   # Configure keymap in X1
@@ -80,6 +76,7 @@
         variant = "";
         options = "grp:alt_shift_toggle";
       };
+      desktopManager.gnome.enable = true;
     };
     # Enable CUPS to print documents.
     printing.enable = true;
@@ -185,20 +182,20 @@
     XDG_CACHE_HOME = "$HOME/.cache";
     XDG_CONFIG_HOME = "$HOME/.config";
     # nvidia related
-    LIBVA_DRIVER_NAME = "nvidia";
-    XDG_SESSION_TYPE = "wayland";
-    GBM_BACKEND = "nvidia";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    WLR_NO_HARDWARE_CURSORS = "1";
-    QT_QPA_PLATFORM = "wayland";
-    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    WLR_DRM_NO_ATOMIC = "1";
-    NIXOS_OZONE_WL = "1";
-    ELECTRON_OZONE_PLATFORM_HINT = "auto";
-    MOZ_ENABLE_WAYLAND = "1";
-    SDL_VIDEODRIVER = "wayland";
-    _JAVA_AWT_WM_NONREPARENTING = "1";
-    CLUTTER_BACKEND = "wayland";
+    # LIBVA_DRIVER_NAME = "nvidia";
+    # XDG_SESSION_TYPE = "wayland";
+    # GBM_BACKEND = "nvidia";
+    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    # WLR_NO_HARDWARE_CURSORS = "1";
+    # QT_QPA_PLATFORM = "wayland";
+    # QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    # WLR_DRM_NO_ATOMIC = "1";
+    # NIXOS_OZONE_WL = "1";
+    # ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    # MOZ_ENABLE_WAYLAND = "1";
+    # SDL_VIDEODRIVER = "wayland";
+    # _JAVA_AWT_WM_NONREPARENTING = "1";
+    # CLUTTER_BACKEND = "wayland";
   };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

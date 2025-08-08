@@ -13,11 +13,7 @@ let
   seyves-nvim = pkgs.vimUtils.buildVimPlugin {
     name = "seyves-nvim";
     src = ./nvim;
-  };
-in {
-  programs.neovim = {
-    enable = true;
-    plugins = with pkgs.vimPlugins; [
+    dependencies = with pkgs.vimPlugins; [
       # language features
       nvim-lspconfig
       cmp-nvim-lsp
@@ -26,12 +22,17 @@ in {
       nvim-lint
       nvim-treesitter.withAllGrammars
       nvim-treesitter-context
+      emmet-vim
+
+      # ai
+      codecompanion-nvim
 
       # eyecandy
       alpha-nvim
       gitsigns-nvim
       nvim-web-devicons
       lualine-nvim
+      oxocarbon-nvim
       (fromGitHub "5493fc380cf871d6ee9395f2613e57006b2a1626" "main"
         "neanias/everforest-nvim")
 
@@ -41,8 +42,9 @@ in {
       oil-nvim
       harpoon
       leap-nvim
-      vim-tmux-navigator
+      vim-jsonpath
 
+      # misc deps
       plenary-nvim
       vim-fugitive
       treesj
@@ -51,8 +53,13 @@ in {
       comment-nvim
       luasnip
       typescript-tools-nvim
-      seyves-nvim
+      tailwind-tools-nvim
     ];
+  };
+in {
+  programs.neovim = {
+    enable = true;
+    plugins = [ seyves-nvim ];
     extraLuaConfig = ''
       require("seyves")
     '';

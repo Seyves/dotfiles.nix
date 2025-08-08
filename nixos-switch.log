@@ -2,11 +2,22 @@ warning: Git tree '/home/seyves/dotfiles.nix' is dirty
 building the system configuration...
 warning: Git tree '/home/seyves/dotfiles.nix' is dirty
 evaluation warning: Explicitly set the ABI version of 'webkitgtk'
-evaluation warning: The option `hardware.opengl.extraPackages32' defined in `/nix/store/hgrl6b2jdhjfv66f3mqla53cy6qlg1z8-source/nixos/hardware-configuration.nix' has been renamed to `hardware.graphics.extraPackages32'.
-evaluation warning: The option `hardware.opengl.extraPackages' defined in `/nix/store/hgrl6b2jdhjfv66f3mqla53cy6qlg1z8-source/nixos/hardware-configuration.nix' has been renamed to `hardware.graphics.extraPackages'.
-evaluation warning: The option `hardware.opengl.driSupport32Bit' defined in `/nix/store/hgrl6b2jdhjfv66f3mqla53cy6qlg1z8-source/nixos/hardware-configuration.nix' has been renamed to `hardware.graphics.enable32Bit'.
-evaluation warning: The option `hardware.opengl.enable' defined in `/nix/store/hgrl6b2jdhjfv66f3mqla53cy6qlg1z8-source/nixos/hardware-configuration.nix' has been renamed to `hardware.graphics.enable'.
+evaluation warning: Explicitly set the ABI version of 'webkitgtk'
+evaluation warning: Explicitly set the ABI version of 'webkitgtk'
+evaluation warning: `programs.zsh.initExtraFirst` is deprecated, use `programs.zsh.initContent` with `lib.mkBefore` instead.
+
+                    Example: programs.zsh.initContent = lib.mkBefore "your content here";
+evaluation warning: `programs.zsh.initExtra` is deprecated, use `programs.zsh.initContent` instead.
+
+                    Example: programs.zsh.initContent = "your content here";
+evaluation warning: The option `hardware.pulseaudio' defined in `/nix/store/8ypy0wfvcdzfrxq7nrixp9i3022v8flv-source/nixos/hardware-configuration.nix' has been renamed to `services.pulseaudio'.
+evaluation warning: The option `hardware.opengl.extraPackages32' defined in `/nix/store/8ypy0wfvcdzfrxq7nrixp9i3022v8flv-source/nixos/hardware-configuration.nix' has been renamed to `hardware.graphics.extraPackages32'.
+evaluation warning: The option `hardware.opengl.extraPackages' defined in `/nix/store/8ypy0wfvcdzfrxq7nrixp9i3022v8flv-source/nixos/hardware-configuration.nix' has been renamed to `hardware.graphics.extraPackages'.
+evaluation warning: The option `hardware.opengl.driSupport32Bit' defined in `/nix/store/8ypy0wfvcdzfrxq7nrixp9i3022v8flv-source/nixos/hardware-configuration.nix' has been renamed to `hardware.graphics.enable32Bit'.
+evaluation warning: The option `hardware.opengl.enable' defined in `/nix/store/8ypy0wfvcdzfrxq7nrixp9i3022v8flv-source/nixos/hardware-configuration.nix' has been renamed to `hardware.graphics.enable'.
 activating the configuration...
 setting up /etc...
 reloading user units for seyves...
 restarting sysinit-reactivation.target
+the following new units were started: NetworkManager-dispatcher.service, sysinit-reactivation.target, systemd-tmpfiles-resetup.service
+Done. The new configuration is /nix/store/x2j2ns7fznbb35vrfikrzxkp0xcsrsqx-nixos-system-nixos-25.05.20250807.e728d7a
