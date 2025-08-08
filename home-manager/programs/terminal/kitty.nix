@@ -8,7 +8,7 @@
       font_size = 12;
 
       cursor_shape = "block";
-      window_padding_width = 28;
+      window_padding_width = 14;
 
       background = "#282828";
       foreground = "#d8caac";
