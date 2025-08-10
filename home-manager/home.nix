@@ -6,7 +6,6 @@
     ./programs/terminal/alacritty.nix
     ./programs/terminal/kitty.nix
     ./programs/ui/hyprland.nix
-    inputs.ags.homeManagerModules.default
     inputs.zen-browser.homeModules.beta
   ];
 
@@ -15,13 +14,6 @@
     # Can't find good location provider for geoclue2 :(
     latitude = 54.2;
     longitude = 37.61;
-  };
-
-  programs.ags = {
-    enable = true;
-    configDir = ../ags;
-    # additional packages to add to gjs's runtime
-    extraPackages = with pkgs; [ gtksourceview webkitgtk accountsservice ];
   };
 
   # Zen browser
