@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ pkgs, ... }: {
   programs.zsh = {
     enable = true;
     shellAliases = { v = "nvim"; };
@@ -14,7 +14,9 @@
       searchUpKey = [ "^[[A" ];
       searchDownKey = [ "^[[B" ];
     };
-    initExtraFirst = builtins.readFile ./.p10k.zsh;
-    initExtra = builtins.readFile ./zshinit.sh;
+    initContent = ''
+      ${builtins.readFile ./.p10k.zsh}
+      ${builtins.readFile ./zshinit.sh}
+    '';
   };
 }

@@ -6,10 +6,9 @@
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules =
-    [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "nvidia" ];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
@@ -33,26 +32,6 @@
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-
-  hardware = {
-    cpu.amd.updateMicrocode =
-      lib.mkDefault config.hardware.enableRedistributableFirmware;
-    pulseaudio.enable = false;
-    opengl = {
-      enable = true;
-      driSupport32Bit = true;
-      extraPackages = with pkgs; [ vaapiVdpau libvdpau-va-gl ];
-      extraPackages32 = with pkgs.pkgsi686Linux; [ libva ];
-    };
-    nvidia = {
-      modesetting.enable = true;
-      powerManagement.enable = true;
-      powerManagement.finegrained = false;
-      open = false;
-      nvidiaSettings = true;
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
-    };
-  };
-
-  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.cpu.amd.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

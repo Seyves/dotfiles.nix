@@ -1,23 +1,28 @@
 warning: Git tree '/home/seyves/dotfiles.nix' is dirty
 building the system configuration...
 warning: Git tree '/home/seyves/dotfiles.nix' is dirty
-evaluation warning: Explicitly set the ABI version of 'webkitgtk'
-evaluation warning: Explicitly set the ABI version of 'webkitgtk'
-evaluation warning: Explicitly set the ABI version of 'webkitgtk'
-evaluation warning: `programs.zsh.initExtraFirst` is deprecated, use `programs.zsh.initContent` with `lib.mkBefore` instead.
-
-                    Example: programs.zsh.initContent = lib.mkBefore "your content here";
-evaluation warning: `programs.zsh.initExtra` is deprecated, use `programs.zsh.initContent` instead.
-
-                    Example: programs.zsh.initContent = "your content here";
-evaluation warning: The option `hardware.pulseaudio' defined in `/nix/store/8ypy0wfvcdzfrxq7nrixp9i3022v8flv-source/nixos/hardware-configuration.nix' has been renamed to `services.pulseaudio'.
-evaluation warning: The option `hardware.opengl.extraPackages32' defined in `/nix/store/8ypy0wfvcdzfrxq7nrixp9i3022v8flv-source/nixos/hardware-configuration.nix' has been renamed to `hardware.graphics.extraPackages32'.
-evaluation warning: The option `hardware.opengl.extraPackages' defined in `/nix/store/8ypy0wfvcdzfrxq7nrixp9i3022v8flv-source/nixos/hardware-configuration.nix' has been renamed to `hardware.graphics.extraPackages'.
-evaluation warning: The option `hardware.opengl.driSupport32Bit' defined in `/nix/store/8ypy0wfvcdzfrxq7nrixp9i3022v8flv-source/nixos/hardware-configuration.nix' has been renamed to `hardware.graphics.enable32Bit'.
-evaluation warning: The option `hardware.opengl.enable' defined in `/nix/store/8ypy0wfvcdzfrxq7nrixp9i3022v8flv-source/nixos/hardware-configuration.nix' has been renamed to `hardware.graphics.enable'.
+these 9 derivations will be built:
+  /nix/store/vp6j99wrjl0588rrv0p4g63rbzhkswzd-home-manager-path.drv
+  /nix/store/244l2xlwjs41jqd3f0aa7910fm10y6ir-activation-script.drv
+  /nix/store/a3dj3v6b2xfmp481wxcyvqvbfh1q8d61-hm_fontconfigconf.d10hmfonts.conf.drv
+  /nix/store/s4ah2r1aa6wc9gzcwbbrglsg91kixiqm-home-manager-files.drv
+  /nix/store/8n1ykrrnbpwvf4j5zqbqryp0sb4gfdaz-home-manager-generation.drv
+  /nix/store/nifajh5gfpc8j7kkwllkisl6b8lh9gnz-unit-home-manager-seyves.service.drv
+  /nix/store/b365a39rpgq737bglqwqz98zldkvqxva-system-units.drv
+  /nix/store/bx6qyyv1arq0465dcwb0xry9whp7390l-etc.drv
+  /nix/store/08nrgb2sdv75lkkkx4dc3gpaz0wb6qxf-nixos-system-nixos-25.05.20250807.e728d7a.drv
+building '/nix/store/vp6j99wrjl0588rrv0p4g63rbzhkswzd-home-manager-path.drv'...
+building '/nix/store/244l2xlwjs41jqd3f0aa7910fm10y6ir-activation-script.drv'...
+building '/nix/store/a3dj3v6b2xfmp481wxcyvqvbfh1q8d61-hm_fontconfigconf.d10hmfonts.conf.drv'...
+building '/nix/store/s4ah2r1aa6wc9gzcwbbrglsg91kixiqm-home-manager-files.drv'...
+building '/nix/store/8n1ykrrnbpwvf4j5zqbqryp0sb4gfdaz-home-manager-generation.drv'...
+building '/nix/store/nifajh5gfpc8j7kkwllkisl6b8lh9gnz-unit-home-manager-seyves.service.drv'...
+building '/nix/store/b365a39rpgq737bglqwqz98zldkvqxva-system-units.drv'...
+building '/nix/store/bx6qyyv1arq0465dcwb0xry9whp7390l-etc.drv'...
+building '/nix/store/08nrgb2sdv75lkkkx4dc3gpaz0wb6qxf-nixos-system-nixos-25.05.20250807.e728d7a.drv'...
 activating the configuration...
 setting up /etc...
 reloading user units for seyves...
 restarting sysinit-reactivation.target
-the following new units were started: NetworkManager-dispatcher.service, sysinit-reactivation.target, systemd-tmpfiles-resetup.service
-Done. The new configuration is /nix/store/x2j2ns7fznbb35vrfikrzxkp0xcsrsqx-nixos-system-nixos-25.05.20250807.e728d7a
+the following new units were started: NetworkManager-dispatcher.service
+Done. The new configuration is /nix/store/8jsrfymdzdnq9alyd1924rlgap71v3d2-nixos-system-nixos-25.05.20250807.e728d7a
