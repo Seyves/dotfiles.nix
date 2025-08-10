@@ -1,4 +1,4 @@
-{ inputs, pkgs, pkgs-unstable, ... }: {
+{ inputs, pkgs, ... }: {
   imports = [
     ./programs/terminal/tmux.nix
     ./programs/terminal/zsh.nix
@@ -7,6 +7,7 @@
     ./programs/terminal/kitty.nix
     ./programs/ui/hyprland.nix
     inputs.ags.homeManagerModules.default
+    inputs.zen-browser.homeModules.beta
   ];
 
   services.gammastep = {
@@ -23,6 +24,9 @@
     extraPackages = with pkgs; [ gtksourceview webkitgtk accountsservice ];
   };
 
+  # Zen browser
+  programs.zen-browser.enable = true;
+
   # Allowing unfree
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowBroken = true;
@@ -30,7 +34,7 @@
   home = {
     username = "seyves";
     homeDirectory = "/home/seyves";
-    stateVersion = "23.11";
+    stateVersion = "25.05";
 
     file."Pictures/frieren-sousou-no-frieren-4k-wal.jpg" = {
       enable = true;

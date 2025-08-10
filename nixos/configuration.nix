@@ -4,7 +4,10 @@
 
 { inputs, pkgs, pkgs-unstable, ... }:
 
-{
+let
+  monitorsXml = builtins.readFile ./monitors.xml;
+  monitorsConfig = pkgs.writeText "gdm_monitors.xml" monitorsXml;
+in {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
@@ -173,7 +176,6 @@
     kitty
     git
     kdePackages.wayland-protocols
-    inputs.zen-browser.packages."x86_64-linux".specific
     #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     #  wget
   ];
@@ -223,6 +225,9 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
+
+  systemd.tmpfiles.rules =
+    [ "L+ /run/gdm/.config/monitors.xml - - - - ${monitorsConfig}" ];
 
   home-manager = {
     backupFileExtension = "backup";

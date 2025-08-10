@@ -33,11 +33,14 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Visual mode drag bottom" 
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Visual mode drag top" })
 vim.keymap.set("n", "[l", ':cp<CR>', { desc = "Quicklist Previous" })
 vim.keymap.set("n", "]l", ':cn<CR>', { desc = "Quicklist Next" })
-vim.keymap.set("c", "<C-H>", "<C-W>", { desc = "Delete word" })
 vim.keymap.set("n", "<C-d>", lazy("<C-d>zz"), { desc = "Centered C-d" })
 vim.keymap.set("n", "<C-u>", lazy("<C-u>zz"), { desc = "Centered C-u" })
 vim.keymap.set("n", "<C-w>s", ":split<CR><C-w>j", { desc = "Switch to splitted window on create" })
 vim.keymap.set("n", "<C-w>v", ":vsplit<CR><C-w>l", { desc = "Switch to splitted window on create" })
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to left pane" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Go to bottom pane" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Go to upper pane" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right pane" })
 
 vim.api.nvim_create_autocmd('TextYankPost', {
     desc = 'Highlight when yanking (copying) text',

@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end,
             spread(opts) { desc = "Go to definition" })
-        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end,
+        vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end,
             spread(opts) { desc = "Hover documentation" })
         vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end,
             spread(opts) { desc = "Next diagnostic" })
@@ -86,15 +86,9 @@ for server, server_config in pairs(language_servers) do
     lspconfig[server].setup(config)
 end
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
-    silent = true,
-})
-
 vim.diagnostic.config({
     virtual_text = true,
     float = {
-        header = "",
         border = "rounded",
         focusable = true,
     },
