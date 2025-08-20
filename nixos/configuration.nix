@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, pkgs, pkgs-unstable, ... }:
+{ inputs, pkgs, pkgs-unstable, config, ... }:
 
 let
   monitorsXml = builtins.readFile ./monitors.xml;
@@ -30,9 +30,15 @@ in {
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  # nvidia settings
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = true;
+    powerManagement.finegrained = false;
+    open = false;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.beta;
+  };
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -68,6 +74,7 @@ in {
   # Configure keymap in X1
   services = {
     xserver = {
+      videoDrivers = [ "nvidia" ];
       displayManager.gdm = {
         enable = true;
         wayland = true;
@@ -228,6 +235,10 @@ in {
 
   systemd.tmpfiles.rules =
     [ "L+ /run/gdm/.config/monitors.xml - - - - ${monitorsConfig}" ];
+
+  systemd.services.amnezia-daemon = {
+
+  };
 
   home-manager = {
     backupFileExtension = "backup";

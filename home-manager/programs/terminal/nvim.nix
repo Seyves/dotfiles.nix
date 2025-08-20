@@ -41,8 +41,6 @@ let
       telescope-live-grep-args-nvim
       oil-nvim
       harpoon
-      leap-nvim
-      vim-jsonpath
 
       # misc deps
       plenary-nvim

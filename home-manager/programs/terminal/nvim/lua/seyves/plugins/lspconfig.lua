@@ -69,7 +69,14 @@ local language_servers = {
     tailwindcss = {},
     jsonls = {},
     jsonnet_ls = {},
-    vuels = {},
+    volar = {
+        filetypes = { 'vue' },
+        init_options = {
+            vue = {
+                hybridMode = false, -- don't use takeover mode for Vue 2
+            },
+        }
+    }
 }
 
 require("typescript-tools").setup {}

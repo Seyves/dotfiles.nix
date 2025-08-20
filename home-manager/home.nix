@@ -167,11 +167,13 @@
     fzf
     pnpm
     ripgrep
-    wine-wayland
+    wine
+    winetricks
     unzip
+    jq
+    docker
 
     # Desktop Apps
-    firefox
     google-chrome
     slack
     nautilus
@@ -184,19 +186,20 @@
     obsidian
     showtime
     amnezia-vpn
+    eyedropper
 
     # Rising
-    swww
-    rofi-wayland
-    swaybg
-    libnotify
-    waybar
     zsh-powerlevel10k
-    wl-clipboard
-    hyprpicker
-    hyprshot
-    swaynotificationcenter
-    gammastep
+    # swww
+    # rofi-wayland
+    # swaybg
+    # libnotify
+    # waybar
+    # wl-clipboard
+    # hyprpicker
+    # hyprshot
+    # swaynotificationcenter
+    # gammastep
 
     # Lsps
     bash-language-server
@@ -208,6 +211,7 @@
     lua-language-server
     gopls
     nil
+    vue-language-server
 
     # Formatters
     sql-formatter
