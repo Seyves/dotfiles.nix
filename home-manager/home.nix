@@ -156,6 +156,7 @@
     nerd-fonts.jetbrains-mono
     roboto
     inter
+    fish
 
     # Tools for development
     bun
@@ -168,7 +169,7 @@
     pnpm
     ripgrep
     wine
-    winetricks
+    twinkle
     unzip
     jq
     docker

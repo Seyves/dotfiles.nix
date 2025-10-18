@@ -14,8 +14,18 @@ in {
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.timeout = 5;
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    useOSProber = true; # allows detecting Windows
+    devices = [ "nodev" ]; # for EFI systems
+    configurationLimit = 10;
+    default = "saved";
+    timeoutStyle = "menu";
+  };
 
   networking.hostName = "nixos"; # Define your hostname.
 
@@ -150,8 +160,7 @@ in {
   security.rtkit.enable = true;
 
   # Limit the number of generations to keep
-  boot.loader.systemd-boot.configurationLimit = 10;
-  # boot.loader.grub.configurationLimit = 10;
+  # boot.loader.systemd-boot.configurationLimit = 10;
 
   # Perform garbage collection weekly to maintain low disk usage
   nix.gc = {
