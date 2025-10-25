@@ -1,12 +1,17 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, pkgs-unstable, system, colors, ... }: {
   imports = [
     ./programs/terminal/tmux.nix
-    ./programs/terminal/zsh.nix
     ./programs/terminal/nvim.nix
     ./programs/terminal/kitty.nix
+    ./programs/terminal/fish.nix
     ./programs/ui/hyprland.nix
     inputs.zen-browser.homeModules.beta
   ];
+
+  programs.nix-index = {
+    enable = true;
+    enableFishIntegration = true;
+  };
 
   services.gammastep = {
     temperature.night = 5000;
@@ -27,26 +32,44 @@
     homeDirectory = "/home/seyves";
     stateVersion = "25.05";
 
-    file."Pictures/frieren-sousou-no-frieren-4k-wal.jpg" = {
+    pointerCursor = {
+      x11.enable = true;
+      name = "Vanilla-DMZ";
+      package = pkgs.vanilla-dmz;
+      size = 32;
+      gtk.enable = true;
+      hyprcursor.size = 32;
+    };
+
+    file."Pictures/wallpapers" = {
       enable = true;
-      source = ./wallpapers/frieren-sousou-no-frieren-4k-wal.jpg;
+      source = ./wallpapers;
     };
   };
 
-  # Desktop flags
-  xdg.desktopEntries = {
-    obsidian = {
-      categories = [ "Office" ];
-      comment = "Knowledge base";
-      exec = "obsidian --disable-gpu %u";
-      icon = "obsidian";
-      mimeType = [ "x-scheme-handler/obsidian" ];
-      name = "Obsidian";
-      type = "Application";
-    };
-  };
   # Default mimetypes
   xdg.mimeApps = let
+    value = let zen-browser = inputs.zen-browser.packages.${system}.beta;
+    in zen-browser.meta.desktopFileName;
+
+    zenMimetypes = builtins.listToAttrs (map (name: { inherit name value; }) [
+      "application/x-extension-shtml"
+      "application/x-extension-xhtml"
+      "application/x-extension-html"
+      "application/x-extension-xht"
+      "application/x-extension-htm"
+      "x-scheme-handler/unknown"
+      "x-scheme-handler/mailto"
+      "x-scheme-handler/chrome"
+      "x-scheme-handler/about"
+      "x-scheme-handler/https"
+      "x-scheme-handler/http"
+      "application/xhtml+xml"
+      "application/json"
+      "application/pdf"
+      "text/html"
+    ]);
+
     mimetypes = {
       # images
       "image/jpeg" = [ "org.gnome.Loupe.desktop" ];
@@ -73,18 +96,18 @@
       "application/json" = [ "neovide.desktop" ];
       "application/xhtml+xml" = [ "neovide.desktop" ];
       # browser
-      "text/html" = [ "zen.desktop" ];
-      "x-scheme-handler/http=" = [ "zen.desktop" ];
-      "x-scheme-handler/https=" = [ "zen.desktop" ];
-      "x-scheme-handler/http" = [ "zen.desktop" ];
-      "x-scheme-handler/https" = [ "zen.desktop" ];
-      "x-scheme-handler/chrome" = [ "zen.desktop" ];
-      "application/x-extension-htm" = [ "zen.desktop" ];
-      "application/x-extension-html" = [ "zen.desktop" ];
-      "application/x-extension-xml" = [ "zen.desktop" ];
-      "application/x-extension-shtml" = [ "zen.desktop" ];
-      "application/x-extension-xhtml" = [ "zen.desktop" ];
-      "application/x-extension-xht" = [ "zen.desktop" ];
+      # "text/html" = [ "zen.desktop" ];
+      # "x-scheme-handler/http=" = [ "zen.desktop" ];
+      # "x-scheme-handler/https=" = [ "zen.desktop" ];
+      # "x-scheme-handler/http" = [ "zen.desktop" ];
+      # "x-scheme-handler/https" = [ "zen.desktop" ];
+      # "x-scheme-handler/chrome" = [ "zen.desktop" ];
+      # "application/x-extension-htm" = [ "zen.desktop" ];
+      # "application/x-extension-html" = [ "zen.desktop" ];
+      # "application/x-extension-xml" = [ "zen.desktop" ];
+      # "application/x-extension-shtml" = [ "zen.desktop" ];
+      # "application/x-extension-xhtml" = [ "zen.desktop" ];
+      # "application/x-extension-xht" = [ "zen.desktop" ];
       # archiver
       "application/x-tar" = [ "org.gnome.FileRoller.desktop" ];
       "application/x-gtar" = [ "org.gnome.FileRoller.desktop" ];
@@ -97,23 +120,19 @@
     };
   in {
     enable = true;
-    associations.added = mimetypes;
-    defaultApplications = mimetypes;
+    associations.added = mimetypes // zenMimetypes;
+    defaultApplications = mimetypes // zenMimetypes;
   };
 
   # Cursor theme
-  home.pointerCursor = {
-    x11.enable = true;
-    name = "Vanilla-DMZ";
-    package = pkgs.vanilla-dmz;
-    size = 30;
-    gtk.enable = true;
-  };
-
   # QT theme
   qt = {
     enable = true;
-    platformTheme.name = "kde";
+    platformTheme = "gtk";
+    style = {
+      package = pkgs.colloid-kde;
+      name = "gtk2";
+    };
   };
   # GTK theme
   gtk = {
@@ -131,6 +150,7 @@
     };
     cursorTheme = {
       name = "Vanilla-DMZ";
+      size = 32;
       package = pkgs.vanilla-dmz;
     };
 
@@ -173,8 +193,13 @@
     unzip
     jq
     docker
+    htop-vim
+    keychain
 
     # Desktop Apps
+    pavucontrol
+    libreoffice
+    networkmanagerapplet
     google-chrome
     slack
     nautilus
@@ -186,21 +211,20 @@
     neovide
     obsidian
     showtime
-    amnezia-vpn
     eyedropper
 
     # Rising
-    zsh-powerlevel10k
+    # zsh-powerlevel10k
     # swww
-    # rofi-wayland
-    # swaybg
-    # libnotify
-    # waybar
-    # wl-clipboard
-    # hyprpicker
-    # hyprshot
-    # swaynotificationcenter
-    # gammastep
+    rofi-wayland
+    swaybg
+    libnotify
+    waybar
+    wl-clipboard
+    hyprpicker
+    hyprshot
+    swaynotificationcenter
+    gammastep
 
     # Lsps
     bash-language-server

@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, pkgs, pkgs-unstable, config, ... }:
+{ inputs, pkgs, pkgs-unstable, config, system, colors, ... }:
 
 let
   monitorsXml = builtins.readFile ./monitors.xml;
@@ -14,18 +14,11 @@ in {
   ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = false;
+  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.timeout = 5;
-  boot.loader.grub = {
-    enable = true;
-    efiSupport = true;
-    useOSProber = true; # allows detecting Windows
-    devices = [ "nodev" ]; # for EFI systems
-    configurationLimit = 10;
-    default = "saved";
-    timeoutStyle = "menu";
-  };
+
+  programs.hyprland.enable = true;
+  hardware.opengl.enable = true;
 
   networking.hostName = "nixos"; # Define your hostname.
 
@@ -34,7 +27,7 @@ in {
     isNormalUser = true;
     description = "seyves";
     extraGroups = [ "networkmanager" "wheel" "systemctl" ];
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     ignoreShellProgramCheck = true;
   };
 
@@ -43,7 +36,7 @@ in {
   # nvidia settings
   hardware.nvidia = {
     modesetting.enable = true;
-    powerManagement.enable = true;
+    powerManagement.enable = false;
     powerManagement.finegrained = false;
     open = false;
     nvidiaSettings = true;
@@ -73,12 +66,16 @@ in {
     LC_TELEPHONE = "ru_RU.UTF-8";
     LC_TIME = "ru_RU.UTF-8";
   };
-  # xdg.portal = {
-  #   enable = true;
-  #   wlr.enable = true;
-  #   # gtk portal needed to make gtk apps happy
-  #   extraPortals = [ pkgs.xdg-desktop-portal-wlr pkgs.xdg-desktop-portal-gtk ];
-  # };
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    # gtk portal needed to make gtk apps happy
+    extraPortals = [
+      pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-gnome
+    ];
+  };
 
   # Enable the GNOME Desktop Environment.
   # Configure keymap in X1
@@ -90,13 +87,6 @@ in {
         wayland = true;
       };
       # Enable the X11 windowing system.
-      enable = true;
-      xkb = {
-        layout = "us,ru";
-        variant = "";
-        options = "grp:alt_shift_toggle";
-      };
-      desktopManager.gnome.enable = true;
     };
     # Enable CUPS to print documents.
     printing.enable = true;
@@ -112,48 +102,43 @@ in {
         config = "config /home/seyves/.config/openvpn/itoolabs/office.ovpn";
         updateResolvConf = true;
       };
-      dummy = {
-        autoStart = false;
-        config = "config /home/seyves/.config/openvpn/dummy/office.ovpn";
-        updateResolvConf = true;
-      };
     };
   };
 
-  environment.etc = {
-    "NetworkManager/system-connections/office.nmconnection" = {
-      text = ''
-        [connection]
-        id=ITooLabs
-        uuid=074a03d0-69b7-4b65-8194-70ab9f3c9972
-        type=vpn
-
-        [vpn]
-        ca=/home/seyves/.config/openvpn/itoolabs/ca.crt
-        cert=/home/seyves/.config/openvpn/itoolabs/user.crt
-        cert-pass-flags=0
-        challenge-response-flags=2
-        comp-lzo=no-by-default
-        compress=lz4
-        connection-type=tls
-        dev=tun
-        key=/home/seyves/.config/openvpn/itoolabs/user.key
-        remote=109.69.180.3:1194
-        remote-cert-tls=server
-        tls-crypt=/home/seyves/.config/openvpn/itoolabs/ta.key
-        service-type=org.freedesktop.NetworkManager.openvpn
-
-        [ipv4]
-        method=auto
-
-        [ipv6]
-        addr-gen-mode=stable-privacy
-        method=auto
-
-        [proxy]'';
-      mode = "0600";
-    };
-  };
+  # environment.etc = {
+  #   "NetworkManager/system-connections/office.nmconnection" = {
+  #     text = ''
+  #       [connection]
+  #       id=ITooLabs
+  #       uuid=074a03d0-69b7-4b65-8194-70ab9f3c9972
+  #       type=vpn
+  #
+  #       [vpn]
+  #       ca=/home/seyves/.config/openvpn/itoolabs/ca.crt
+  #       cert=/home/seyves/.config/openvpn/itoolabs/user.crt
+  #       cert-pass-flags=0
+  #       challenge-response-flags=2
+  #       comp-lzo=no-by-default
+  #       compress=lz4
+  #       connection-type=tls
+  #       dev=tun
+  #       key=/home/seyves/.config/openvpn/itoolabs/user.key
+  #       remote=109.69.180.3:1194
+  #       remote-cert-tls=server
+  #       tls-crypt=/home/seyves/.config/openvpn/itoolabs/ta.key
+  #       service-type=org.freedesktop.NetworkManager.openvpn
+  #
+  #       [ipv4]
+  #       method=auto
+  #
+  #       [ipv6]
+  #       addr-gen-mode=stable-privacy
+  #       method=auto
+  #
+  #       [proxy]'';
+  #     mode = "0600";
+  #   };
+  # };
 
   fonts.fontconfig.antialias = true;
 
@@ -191,25 +176,37 @@ in {
     home-manager
     kitty
     git
-    kdePackages.wayland-protocols
-    #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    #  wget
+    amnezia-vpn
   ];
+
+  systemd.services.amnezia-vpn = {
+    description = "Amnezia VPN Daemon";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.amnezia-vpn}/bin/AmneziaVPN-service";
+      Restart = "on-failure";
+      User = "root"; # or root, if needed
+    };
+  };
+
   environment.sessionVariables = {
     TERM = "xterm-256color";
     XDG_CACHE_HOME = "$HOME/.cache";
     XDG_CONFIG_HOME = "$HOME/.config";
     # nvidia related
-    # LIBVA_DRIVER_NAME = "nvidia";
+    LIBVA_DRIVER_NAME = "nvidia";
     # XDG_SESSION_TYPE = "wayland";
     # GBM_BACKEND = "nvidia";
-    # __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     # WLR_NO_HARDWARE_CURSORS = "1";
     # QT_QPA_PLATFORM = "wayland";
     # QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     # WLR_DRM_NO_ATOMIC = "1";
-    # NIXOS_OZONE_WL = "1";
-    # ELECTRON_OZONE_PLATFORM_HINT = "auto";
+    NVD_BACKEND = "direct";
+    NIXOS_OZONE_WL = "1";
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
     # MOZ_ENABLE_WAYLAND = "1";
     # SDL_VIDEODRIVER = "wayland";
     # _JAVA_AWT_WM_NONREPARENTING = "1";
@@ -245,13 +242,13 @@ in {
   systemd.tmpfiles.rules =
     [ "L+ /run/gdm/.config/monitors.xml - - - - ${monitorsConfig}" ];
 
-  systemd.services.amnezia-daemon = {
-
-  };
-
   home-manager = {
     backupFileExtension = "backup";
-    extraSpecialArgs = { inherit inputs pkgs pkgs-unstable; };
+    extraSpecialArgs = {
+      system = system;
+      colors = colors;
+      inherit inputs pkgs pkgs-unstable;
+    };
     users = { "seyves" = import ../home-manager/home.nix; };
   };
 }

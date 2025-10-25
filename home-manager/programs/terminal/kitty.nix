@@ -1,4 +1,4 @@
-{ ... }: {
+{ colors, ... }: {
   programs.kitty = {
     enable = true;
     shellIntegration.mode = "no-cursor";
@@ -8,9 +8,9 @@
       font_size = 12;
 
       cursor_shape = "block";
-      window_padding_width = 14;
+      window_padding_width = 20;
 
-      background = "#282828";
+      background = colors.background;
       foreground = "#d8caac";
 
       cursor = "#d8caac";
@@ -58,4 +58,26 @@
     };
   };
 }
+
+#282828
+#d8caac
+#d8caac
+#d8caac
+#505a60
+#3c474d
+#868d80
+#e68183
+#e68183
+#a7c080
+#a7c080
+#d9bb80
+#d9bb80
+#83b6af
+#83b6af
+#d39bb6
+#d39bb6
+#87c095
+#87c095
+#868d80
+#868d80
 

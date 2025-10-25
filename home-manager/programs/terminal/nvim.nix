@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, config, ... }:
 let
   fromGitHub = rev: ref: repo:
     pkgs.vimUtils.buildVimPlugin {
@@ -10,10 +10,15 @@ let
         rev = rev;
       };
     };
-  seyves-nvim = pkgs.vimUtils.buildVimPlugin {
-    name = "seyves-nvim";
-    src = ./nvim;
-    dependencies = with pkgs.vimPlugins; [
+in {
+  # Just symlink it, so no build needed until no new dependencies
+  home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink
+    "/home/seyves/dotfiles.nix/home-manager/programs/terminal/nvim";
+
+  programs.neovim = {
+    defaultEditor = true;
+    enable = true;
+    plugins = with pkgs.vimPlugins; [
       # language features
       nvim-lspconfig
       cmp-nvim-lsp
@@ -53,13 +58,5 @@ let
       typescript-tools-nvim
       tailwind-tools-nvim
     ];
-  };
-in {
-  programs.neovim = {
-    enable = true;
-    plugins = [ seyves-nvim ];
-    extraLuaConfig = ''
-      require("seyves")
-    '';
   };
 }
