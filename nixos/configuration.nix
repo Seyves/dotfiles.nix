@@ -246,7 +246,6 @@ in {
     backupFileExtension = "backup";
     extraSpecialArgs = {
       system = system;
-      colors = colors;
       inherit inputs pkgs pkgs-unstable;
     };
     users = { "seyves" = import ../home-manager/home.nix; };

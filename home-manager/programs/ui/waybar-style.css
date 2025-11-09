@@ -1,0 +1,112 @@
+* {
+  font-family: Inter;
+  font-size: 16px;
+}
+
+#waybar {
+  all: unset;
+}
+
+#waybar > box {
+  border-bottom-left-radius: 44px;
+  border-bottom-right-radius: 44px;
+  background: @background_dark;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  margin: 0 6px 20px;
+}
+
+.modules-left {
+  padding: 8px 0px 8px 50px;
+}
+
+.modules-center {
+  padding: 8px;
+}
+
+.modules-right {
+  padding: 8px 50px 8px 0px;
+}
+
+#workspaces {
+  padding: 0px 5px;
+}
+#workspaces button {
+  all: unset;
+  padding: 0px 5px;
+  color: @color4;
+  transition: all 0.2s ease;
+}
+#workspaces button:hover {
+  color: alpha(@foreground, 0.8);
+  border: none;
+  text-shadow: 0px 0px 1.5px rgba(0, 0, 0, 0.5);
+  transition: all 1s ease;
+}
+#workspaces button.active {
+  color: @color2;
+  border: none;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+}
+#workspaces button.empty {
+  color: @background;
+  border: none;
+  text-shadow: 0px 0px 1.5px rgba(0, 0, 0, 0.2);
+}
+#workspaces button.empty:hover {
+  color: rgba(0, 0, 0, 0);
+  border: none;
+  text-shadow: 0px 0px 1.5px rgba(0, 0, 0, 0.5);
+  transition: all 1s ease;
+}
+#workspaces button.empty.active {
+  color: @foreground;
+  border: none;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.5);
+}
+
+tooltip {
+  background: @background_dark;
+  color: @foreground;
+  font-size: 10px;
+}
+
+#clock {
+  padding: 0px 0px;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 400;
+  color: @foreground;
+}
+
+.time {
+  margin-left: 0px;
+}
+
+.modules-left:first-child > label {
+  font-weight: 800;
+}
+
+#clock-time {
+  font-weight: 300;
+}
+
+#cpu:hover,
+#pulseaudio:hover,
+#network:hover,
+#custom-notification:hover {
+  background-color: @background;
+}
+
+#cpu,
+#pulseaudio,
+#network,
+#custom-notification {
+  border-radius: 4px;
+  padding-right: 12px;
+  padding-left: 8px;
+}
+
+#pulseaudio {
+  padding-right: 10px;
+  padding-left: 6px;
+}

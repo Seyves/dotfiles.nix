@@ -1,9 +1,11 @@
 warning: Git tree '/home/seyves/dotfiles.nix' is dirty
 building the system configuration...
 warning: Git tree '/home/seyves/dotfiles.nix' is dirty
+evaluation warning: seyves profile: The option `qt.platformTheme` has been renamed to `qt.platformTheme.name`.
+evaluation warning: The option `hardware.opengl.enable' defined in `/nix/store/idpwf7bqiszqdy9zvvw4h4nz7i31v6rz-source/nixos/configuration.nix' has been renamed to `hardware.graphics.enable'.
 activating the configuration...
 setting up /etc...
 reloading user units for seyves...
 restarting sysinit-reactivation.target
-the following new units were started: NetworkManager-dispatcher.service
-Done. The new configuration is /nix/store/5b8hzq8c1s0pmynf5d0z2bv16md32dzk-nixos-system-nixos-25.05.20251019.33c6dca
+the following new units were started: NetworkManager-dispatcher.service, sysinit-reactivation.target, systemd-tmpfiles-resetup.service
+Done. The new configuration is /nix/store/sbnibrgs07pf5vgcdxcz5w5gdjn7yigf-nixos-system-nixos-25.05.20251019.33c6dca

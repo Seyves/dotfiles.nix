@@ -1,4 +1,4 @@
-{ inputs, pkgs, pkgs-unstable, system, colors, ... }: {
+{ inputs, pkgs, system, ... }: {
   imports = [
     ./programs/terminal/tmux.nix
     ./programs/terminal/nvim.nix
@@ -212,6 +212,7 @@
     obsidian
     showtime
     eyedropper
+    gimp
 
     # Rising
     # zsh-powerlevel10k

@@ -1,4 +1,4 @@
-{ colors, ... }: {
+{ ... }: {
   programs.kitty = {
     enable = true;
     shellIntegration.mode = "no-cursor";
@@ -10,7 +10,7 @@
       cursor_shape = "block";
       window_padding_width = 20;
 
-      background = colors.background;
+      background = "#282828";
       foreground = "#d8caac";
 
       cursor = "#d8caac";

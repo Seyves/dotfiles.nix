@@ -1,4 +1,4 @@
-{ config, pkgs-unstable, ... }: {
+{ config, pkgs, ... }: {
   wayland.windowManager.hyprland = {
     enable = true;
 
@@ -18,7 +18,7 @@
 
       # Autostart
       exec-once = [
-        "swaybg -i ~/Pictures/wallpapers/wallpaper_1.png"
+        "swaybg -i ~/Pictures/wallpapers/wallpaper_3.png"
         "ags"
         "swaync"
         "waybar"

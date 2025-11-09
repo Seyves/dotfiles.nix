@@ -23,13 +23,11 @@
       system = "x86_64-linux";
       pkgs-unstable = nixpkgs-unstable.legacyPackages.${system};
       inherit (self) outputs;
-      colors = import ./colors.nix;
     in {
       nixosConfigurations = {
         myNixos = nixpkgs.lib.nixosSystem {
           specialArgs = {
             system = system;
-            colors = colors;
             inherit inputs outputs pkgs-unstable;
           };
           modules =
