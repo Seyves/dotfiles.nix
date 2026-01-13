@@ -11,7 +11,7 @@ lint.linters_by_ft = {
 
 local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 
-local enabled = false
+local enabled = true
 
 local toggle_lint = function()
     if enabled == true then

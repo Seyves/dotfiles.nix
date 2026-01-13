@@ -1,5 +1,3 @@
-local lspconfig = require("lspconfig")
-
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 local function spread(template)
@@ -43,14 +41,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- used to enable autocompletion (assign to every lsp server config)
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
--- Change the Diagnostic symbols in the sign column (gutter)
--- (not in youtube nvim video)
-local signs = { Error = "E", Warn = "W", Hint = "H", Info = "I" }
-for type, icon in pairs(signs) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
-
 local language_servers = {
     nil_ls = {},
     bashls = {},
@@ -90,7 +80,7 @@ for server, server_config in pairs(language_servers) do
         end
     end
 
-    lspconfig[server].setup(config)
+    vim.lsp.config(server, config)
 end
 
 vim.diagnostic.config({

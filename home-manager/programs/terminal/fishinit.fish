@@ -4,6 +4,10 @@ function itl-app-sync -a sandbox
     sshpass -p "root" ssh root@centrex-1.$sandbox.kube.itoolabs 'exec /usr/local/bin/centrex-configure -log -install-app '\' 'file "/root/webapp"'\' ' '
 end
 
+function itl-sf-sync -a sandbox
+    sshpass -p "root" rsync -avz -e 'ssh' /home/seyves/work/spam-feeder root@core-dev.$sandbox.kube.itoolabs:/root
+end
+
 function sf
     ~/.config/tmux/tmux-session-dispensary.sh
 end

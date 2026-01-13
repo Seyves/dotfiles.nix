@@ -30,7 +30,7 @@
   home = {
     username = "seyves";
     homeDirectory = "/home/seyves";
-    stateVersion = "25.05";
+    stateVersion = "25.11";
 
     pointerCursor = {
       x11.enable = true;
@@ -129,10 +129,6 @@
   qt = {
     enable = true;
     platformTheme = "gtk";
-    style = {
-      package = pkgs.colloid-kde;
-      name = "gtk2";
-    };
   };
   # GTK theme
   gtk = {
@@ -195,6 +191,7 @@
     docker
     htop-vim
     keychain
+    hurl
 
     # Desktop Apps
     pavucontrol
@@ -213,11 +210,12 @@
     showtime
     eyedropper
     gimp
+    whatsapp-electron
 
     # Rising
     # zsh-powerlevel10k
     # swww
-    rofi-wayland
+    rofi
     swaybg
     libnotify
     waybar
