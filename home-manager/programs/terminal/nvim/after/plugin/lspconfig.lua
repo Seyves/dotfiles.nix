@@ -59,17 +59,31 @@ local language_servers = {
     tailwindcss = {},
     jsonls = {},
     jsonnet_ls = {},
-    volar = {
+    vue_ls = {
         filetypes = { 'vue' },
         init_options = {
+            filetypes = {
+                "vue",
+                "typescript",
+                "typescriptreact",
+                "javascript",
+                "javascriptreact",
+            },
             vue = {
-                hybridMode = false, -- don't use takeover mode for Vue 2
+                hybridMode = true,
             },
         }
     }
 }
 
-require("typescript-tools").setup {}
+require("typescript-tools").setup {
+    filetypes = {
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact",
+    },
+}
 
 for server, server_config in pairs(language_servers) do
     local config = { capabilities = capabilities }
@@ -81,6 +95,7 @@ for server, server_config in pairs(language_servers) do
     end
 
     vim.lsp.config(server, config)
+    vim.lsp.enable(server)
 end
 
 vim.diagnostic.config({

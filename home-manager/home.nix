@@ -5,6 +5,9 @@
     ./programs/terminal/kitty.nix
     ./programs/terminal/fish.nix
     ./programs/ui/hyprland.nix
+    ./programs/ui/rofi.nix
+    ./programs/ui/waybar.nix
+    ./programs/ui/swaync.nix
     inputs.zen-browser.homeModules.beta
   ];
 
@@ -177,7 +180,7 @@
     # Tools for development
     bun
     go
-    nodejs_20
+    nodejs_24
     gcc
     rsync
     sshpass
@@ -211,6 +214,7 @@
     eyedropper
     gimp
     whatsapp-electron
+    todoist-electron
 
     # Rising
     # zsh-powerlevel10k
