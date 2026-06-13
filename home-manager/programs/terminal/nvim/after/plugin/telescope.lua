@@ -48,7 +48,7 @@ telescope.setup {
         },
     },
     defaults = {
-        file_ignore_patterns = { "node_modules", ".git/" },
+        file_ignore_patterns = { "node_modules", ".git/", ".pnpm%-store" },
         preview = {
             -- Disable tree-sitter in telescope for performance
             treesitter = false

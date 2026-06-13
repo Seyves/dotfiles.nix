@@ -41,6 +41,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- used to enable autocompletion (assign to every lsp server config)
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
+-- strip the /bin/vue-language-server part and go to lib/language-tools/packages/typescript-plugin
+-- can break at any time, but ok for now 
+local vue_ls_bin = vim.fn.exepath("vue-language-server")
+local vue_ts_plugin = vue_ls_bin:gsub("/bin/vue%-language%-server$", "")
+    .. "/lib/language-tools/packages/typescript-plugin"
+
 local language_servers = {
     nil_ls = {},
     bashls = {},
@@ -59,29 +65,29 @@ local language_servers = {
     tailwindcss = {},
     jsonls = {},
     jsonnet_ls = {},
-    vue_ls = {
-        filetypes = { 'vue' },
+    ts_ls = {
+        cmd = { "typescript-language-server", "--stdio" },
+        filetypes = {
+            "javascript",
+            "javascriptreact",
+            "typescript",
+            "typescriptreact",
+            "vue",
+        },
         init_options = {
-            filetypes = {
-                "vue",
-                "typescript",
-                "typescriptreact",
-                "javascript",
-                "javascriptreact",
+            plugins = {
+                {
+                    name = "@vue/typescript-plugin",
+                    location = vue_ts_plugin,
+                    languages = { "vue" },
+                    configNamespace = 'typescript'
+                },
             },
-            vue = {
-                hybridMode = true,
-            },
-        }
-    }
-}
-
-require("typescript-tools").setup {
-    filetypes = {
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
+        },
+    },
+    vue_ls = {
+        cmd = { "vue-language-server", "--stdio" },
+        filetypes = { "vue" },
     },
 }
 

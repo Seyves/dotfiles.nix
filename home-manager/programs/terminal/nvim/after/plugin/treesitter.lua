@@ -1,4 +1,4 @@
-require("nvim-treesitter.configs").setup {
+require("nvim-treesitter").setup {
     -- A list of parser names, or "all" (the five listed parsers should always be installed)
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,
@@ -22,3 +22,10 @@ require("nvim-treesitter.configs").setup {
         additional_vim_regex_highlighting = false,
     },
 }
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "typescriptreact", "typescript", "tsx" },
+    callback = function(args)
+        vim.treesitter.start(args.buf)
+    end,
+})

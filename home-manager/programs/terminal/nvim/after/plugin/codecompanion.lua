@@ -1,8 +1,15 @@
 require("codecompanion").setup({
+    prompt_library = {
+        markdown = {
+            dirs = {
+                "~/dotfiles.nix/prompts"
+            },
+        },
+    },
     strategies = {
         chat = {
             adapter = "anthropic",
-            model = "claude-haiku-4-5-20251001"
+            model = "claude-haiku-4-5-20251001",
         },
         inline = {
             adapter = "anthropic",
@@ -12,6 +19,12 @@ require("codecompanion").setup({
             adapter = "anthropic",
             model = "claude-haiku-4-5-20251001"
         }
+    },
+    display = {
+        chat = {
+            fold_reasoning = false,
+            show_reasoning = false,
+        },
     },
     opts = {
         log_level = "DEBUG"

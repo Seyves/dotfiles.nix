@@ -1,14 +1,24 @@
-# Edit this configuration file to define what should be installed on
+# Edit this configuration file to define what should be installed onconfi
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, pkgs, pkgs-unstable, config, system, colors, ... }:
+{
+  inputs,
+  pkgs,
+  pkgs-unstable,
+  config,
+  system,
+  colors,
+  ...
+}:
 
 let
   monitorsXml = builtins.readFile ./monitors.xml;
   monitorsConfig = pkgs.writeText "gdm_monitors.xml" monitorsXml;
-in {
-  imports = [ # Include the results of the hardware scan.
+in
+{
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     inputs.home-manager.nixosModules.default
   ];
@@ -18,7 +28,7 @@ in {
   boot.loader.efi.canTouchEfiVariables = true;
 
   programs.hyprland.enable = true;
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   networking.hostName = "nixos"; # Define your hostname.
 
@@ -26,7 +36,12 @@ in {
   users.users.seyves = {
     isNormalUser = true;
     description = "seyves";
-    extraGroups = [ "networkmanager" "wheel" "systemctl" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "systemctl"
+      "docker"
+    ];
     shell = pkgs.fish;
     ignoreShellProgramCheck = true;
   };
@@ -50,7 +65,10 @@ in {
   time.timeZone = "Europe/Moscow";
 
   # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -71,9 +89,8 @@ in {
     wlr.enable = true;
     # gtk portal needed to make gtk apps happy
     extraPortals = [
-      pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-gnome
     ];
   };
 
@@ -82,11 +99,11 @@ in {
   services = {
     xserver = {
       videoDrivers = [ "nvidia" ];
-      displayManager.gdm = {
-        enable = true;
-        wayland = true;
-      };
       # Enable the X11 windowing system.
+    };
+    displayManager.gdm = {
+      enable = true;
+      wayland = true;
     };
     # Enable CUPS to print documents.
     printing.enable = true;
@@ -103,42 +120,24 @@ in {
         updateResolvConf = true;
       };
     };
+    postgresql = {
+      enable = true;
+      package = pkgs.postgresql_17; # Optional: specify version
+    };
   };
 
-  # environment.etc = {
-  #   "NetworkManager/system-connections/office.nmconnection" = {
-  #     text = ''
-  #       [connection]
-  #       id=ITooLabs
-  #       uuid=074a03d0-69b7-4b65-8194-70ab9f3c9972
-  #       type=vpn
-  #
-  #       [vpn]
-  #       ca=/home/seyves/.config/openvpn/itoolabs/ca.crt
-  #       cert=/home/seyves/.config/openvpn/itoolabs/user.crt
-  #       cert-pass-flags=0
-  #       challenge-response-flags=2
-  #       comp-lzo=no-by-default
-  #       compress=lz4
-  #       connection-type=tls
-  #       dev=tun
-  #       key=/home/seyves/.config/openvpn/itoolabs/user.key
-  #       remote=109.69.180.3:1194
-  #       remote-cert-tls=server
-  #       tls-crypt=/home/seyves/.config/openvpn/itoolabs/ta.key
-  #       service-type=org.freedesktop.NetworkManager.openvpn
-  #
-  #       [ipv4]
-  #       method=auto
-  #
-  #       [ipv6]
-  #       addr-gen-mode=stable-privacy
-  #       method=auto
-  #
-  #       [proxy]'';
-  #     mode = "0600";
-  #   };
-  # };
+  virtualisation.docker = {
+    enable = true;
+    enableNvidia = true;
+  };
+  hardware.graphics.enable32Bit = true;
+  hardware.nvidia-container-toolkit = {
+    enable = true;
+    mount-nvidia-executables = true;
+  };
+
+  # Nautilius needs it
+  services.gvfs.enable = true;
 
   fonts.fontconfig.antialias = true;
 
@@ -171,6 +170,7 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    cudaPackages.cudatoolkit
     libva-utils
     nvidia-vaapi-driver
     home-manager
@@ -211,6 +211,8 @@ in {
     # SDL_VIDEODRIVER = "wayland";
     # _JAVA_AWT_WM_NONREPARENTING = "1";
     # CLUTTER_BACKEND = "wayland";
+    ANTHROPIC_BASE_URL = "https://api-proxy.itoolabs.com/anthropic";
+    ANTHROPIC_API_KEY = "yHOiDvFAvNvjYPlgWvdotP13KLCgsit6uJk_Ml5rMnzzmVdzQzJaUopBdBTvaqZWkDxRjl_qWw6GF4i6Y4SKEg";
   };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -239,8 +241,7 @@ in {
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
 
-  systemd.tmpfiles.rules =
-    [ "L+ /run/gdm/.config/monitors.xml - - - - ${monitorsConfig}" ];
+  systemd.tmpfiles.rules = [ "L+ /run/gdm/.config/monitors.xml - - - - ${monitorsConfig}" ];
 
   home-manager = {
     backupFileExtension = "backup";
@@ -248,6 +249,8 @@ in {
       system = system;
       inherit inputs pkgs pkgs-unstable;
     };
-    users = { "seyves" = import ../home-manager/home.nix; };
+    users = {
+      "seyves" = import ../home-manager/home.nix;
+    };
   };
 }

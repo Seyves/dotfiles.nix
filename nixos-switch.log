@@ -1,11 +1,19 @@
 warning: Git tree '/home/seyves/dotfiles.nix' is dirty
 building the system configuration...
 warning: Git tree '/home/seyves/dotfiles.nix' is dirty
-evaluation warning: seyves profile: The option `qt.platformTheme` has been renamed to `qt.platformTheme.name`.
-evaluation warning: The option `hardware.opengl.enable' defined in `/nix/store/idpwf7bqiszqdy9zvvw4h4nz7i31v6rz-source/nixos/configuration.nix' has been renamed to `hardware.graphics.enable'.
+evaluation warning: seyves profile: [Zen Browser] Starting from release 18.18.6b, the configuration directory
+                    has changed from ~/.zen to ~/.config/zen.
+
+                    If you haven't migrated yet, please follow the migration guide:
+                    https://github.com/0xc000022070/zen-browser-flake#missing-configuration-after-update
+
+                    To suppress this warning after completing the migration, set:
+                      programs.zen-browser.suppressXdgMigrationWarning = true;
+evaluation warning: You have set virtualisation.docker.enableNvidia. This option is deprecated, please set hardware.nvidia-container-toolkit.enable instead.
+Checking switch inhibitors... done
 activating the configuration...
 setting up /etc...
 reloading user units for seyves...
 restarting sysinit-reactivation.target
 the following new units were started: NetworkManager-dispatcher.service, sysinit-reactivation.target, systemd-tmpfiles-resetup.service
-Done. The new configuration is /nix/store/sbnibrgs07pf5vgcdxcz5w5gdjn7yigf-nixos-system-nixos-25.05.20251019.33c6dca
+Done. The new configuration is /nix/store/ririrdazyyqxk1sda4wh3x4kfamylmd5-nixos-system-nixos-26.05.20260304.80bdc1e

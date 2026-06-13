@@ -1,6 +1,12 @@
-{ lib, pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 let
-  fromGitHub = rev: ref: repo:
+  fromGitHub =
+    rev: ref: repo:
     pkgs.vimUtils.buildVimPlugin {
       pname = "${lib.strings.sanitizeDerivationName repo}";
       version = ref;
@@ -10,10 +16,11 @@ let
         rev = rev;
       };
     };
-in {
+in
+{
   # Just symlink it, so no build needed until no new dependencies
-  home.file.".config/nvim".source = config.lib.file.mkOutOfStoreSymlink
-    "/home/seyves/dotfiles.nix/home-manager/programs/terminal/nvim";
+  home.file.".config/nvim".source =
+    config.lib.file.mkOutOfStoreSymlink "/home/seyves/dotfiles.nix/home-manager/programs/terminal/nvim";
 
   programs.neovim = {
     defaultEditor = true;
@@ -31,6 +38,8 @@ in {
 
       # ai
       codecompanion-nvim
+      avante-nvim
+      copilot-lua
 
       # eyecandy
       alpha-nvim
@@ -38,8 +47,10 @@ in {
       nvim-web-devicons
       lualine-nvim
       oxocarbon-nvim
-      (fromGitHub "5493fc380cf871d6ee9395f2613e57006b2a1626" "main"
-        "neanias/everforest-nvim")
+      (fromGitHub "5493fc380cf871d6ee9395f2613e57006b2a1626" "main" "neanias/everforest-nvim")
+      render-markdown-nvim
+      img-clip-nvim
+      dressing-nvim
 
       # navigation
       telescope-nvim

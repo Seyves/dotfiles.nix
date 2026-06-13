@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   home.file.".config/tmux/tmux-session-dispensary.sh" = {
     enable = true;
     source = ./tmux-session-dispensary.sh;

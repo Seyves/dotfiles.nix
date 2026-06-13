@@ -1,18 +1,17 @@
-{ config, pkgs, ... }: {
+{ config, pkgs, ... }:
+{
   wayland.windowManager.hyprland = {
     enable = true;
 
     submaps = {
       resize.settings = {
-        bindl = [
+        binde = [
           ", l, resizeactive, 20 0"
           ", h, resizeactive, -20 0"
           ", k, resizeactive, 0 -20"
           ", j, resizeactive, 0 20"
         ];
-        bind = [
-          ", escape, submap, reset"
-        ];
+        bind = [ ", escape, submap, reset" ];
       };
     };
 
@@ -24,15 +23,20 @@
         enable_hyprcursor = false;
       };
 
-      binds = { movefocus_cycles_fullscreen = true; };
+      binds = {
+        movefocus_cycles_fullscreen = true;
+      };
 
-      # TODO 
+      # TODO
       # Make it work for all displays
-      monitor = [ "DP-2,highres,auto,2" "Unknown-1,disabled" ];
+      monitor = [
+        "DP-2,highres,auto,2"
+        "Unknown-1,disabled"
+      ];
 
       # Autostart
       exec-once = [
-        "swaybg -i ~/Pictures/wallpapers/wallpaper_4.png"
+        "swaybg -i ~/Pictures/wallpapers/wallpaper_5.jpg"
         "ags"
         "swaync"
         "waybar"
@@ -41,7 +45,7 @@
         "[workspace 4 silent] telegram-desktop"
       ];
 
-      # Variables 
+      # Variables
       "$terminal" = "kitty";
       "$fileManager" = "dolphin";
       "$menu" = "rofi -show-icons -show drun";
@@ -64,7 +68,7 @@
         # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on;
         allow_tearing = false;
 
-        layout = "dwindle";
+        layout = "scrolling";
       };
 
       decoration = {
@@ -116,14 +120,14 @@
       };
 
       # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
-      master = { new_status = "master"; };
+      master = {
+        new_status = "master";
+      };
 
       # https://wiki.hyprland.org/Configuring/Variables/#misc
       misc = {
-        force_default_wallpaper =
-          -1; # Set to 0 or 1 to disable the anime mascot wallpapers
-        disable_hyprland_logo =
-          false; # If true disables the random hyprland logo / anime girl background. :(
+        force_default_wallpaper = -1; # Set to 0 or 1 to disable the anime mascot wallpapers
+        disable_hyprland_logo = false; # If true disables the random hyprland logo / anime girl background. :(
       };
 
       input = {
@@ -137,7 +141,9 @@
         sensitivity = -0.2; # -1.0 - 1.0, 0 means no modification.
         accel_profile = "flat";
 
-        touchpad = { natural_scroll = false; };
+        touchpad = {
+          natural_scroll = false;
+        };
       };
 
       bind = [
@@ -206,41 +212,37 @@
         "$mainMod, mouse:273, resizewindow"
       ];
 
-      windowrulev2 = [
-        "float, class:^(org.telegram.desktop|telegramdesktop)$, title:^(Media viewer)$"
-        "float, class:(org.gnome.Loupe)"
-        "float, class:(org.gnome.FileRoller)"
-        "float, class:(org.gnome.Showtime)"
-        "rounding 0, class:(Better than Adventure! 7.2_01)"
-        "maximize, title:(Media viewer)"
-        "noanim, title:(Media viewer)"
-        "noanim, class:^(.*sway.*)$"
-        "float, class:(neovide)"
-        "float, class:(twinkle)"
-        "suppressevent maximize, class:.* # You'll probably like this."
-        "size 1000 800, class:(neovide)"
-        "float, class:(org.pulseaudio.pavucontrol)"
-        "size 1000 800, class:(org.pulseaudio.pavucontrol)"
-        "float, class:(nm-connection-editor)"
-        "size 1000 800, class:(nm-connection-editor)"
+      windowrule = [
+        "float on, match:class ^(org.telegram.desktop|telegramdesktop)$, match:title ^(Media viewer)$"
+        "float on, match:class (org.gnome.Loupe)"
+        "float on, match:class (org.gnome.FileRoller)"
+        "float on, match:class (org.gnome.Showtime)"
+        "rounding 0, match:class (Better than Adventure! 7.2_01)"
+        "maximize on, no_anim on, match:title (Media viewer)"
+        "no_anim on, match:class ^(.*sway.*)$"
+        "float on, size 1000 800, match:class (neovide)"
+        "float on, match:class (twinkle)"
+        "suppress_event maximize, match:class .* # You'll probably like this."
+        "float on, size 1000 800, match:class (org.pulseaudio.pavucontrol)"
+        "float on, size 1000 800, match:class (nm-connection-editor)"
       ];
 
       layerrule = [
-        "blur, swaync-control-center"
-        "blur, swaync-notification-window"
-        "blur, rofi"
+        "blur on, match:namespace swaync-control-center"
+        "blur on, match:namespace swaync-notification-window"
+        "blur on, match:namespace rofi"
 
-        "ignorezero, swaync-control-center"
-        "ignorezero, swaync-notification-window"
-        "ignorezero, rofi"
+        "ignore_alpha 0, match:namespace swaync-control-center"
+        "ignore_alpha 0, match:namespace swaync-notification-window"
+        "ignore_alpha 0, match:namespace rofi"
 
-        "ignorealpha 0.5, swaync-control-center"
-        "ignorealpha 0.5, swaync-notification-window"
-        "ignorealpha 0.5, rofi"
+        # "ignore_alpha 0.5, swaync-control-center"
+        # "ignore_alpha 0.5, swaync-notification-window"
+        # "ignore_alpha 0.5, rofi"
 
-        "noanim, swaync-notification-window"
-        "noanim, hyprpicker"
-        "noanim, selection"
+        "no_anim on, match:namespace swaync-notification-window"
+        "no_anim on, match:namespace hyprpicker"
+        "no_anim on, match:namespace selection"
       ];
     };
   };

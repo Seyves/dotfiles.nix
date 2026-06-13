@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   programs.waybar = {
     enable = true;
     settings = {
@@ -15,7 +16,15 @@
             default = "";
             empty = "";
           };
-          persistent-workspaces = { "*" = [ 1 2 3 4 5 ]; };
+          persistent-workspaces = {
+            "*" = [
+              1
+              2
+              3
+              4
+              5
+            ];
+          };
         };
 
         "clock#date" = {
@@ -90,15 +99,29 @@
         pulseaudio = {
           format = "{icon}";
           format-muted = "";
-          format-icons = { "default" = [ "" "" "" ]; };
+          format-icons = {
+            "default" = [
+              ""
+              ""
+              ""
+            ];
+          };
           on-click = "pavucontrol";
         };
 
-        modules-left = [ "clock#date" "clock#time" ];
+        modules-left = [
+          "clock#date"
+          "clock#time"
+        ];
 
         modules-center = [ "hyprland/workspaces" ];
 
-        modules-right = [ "cpu" "pulseaudio" "network" "custom/notification" ];
+        modules-right = [
+          "cpu"
+          "pulseaudio"
+          "network"
+          "custom/notification"
+        ];
       };
     };
     style = ''

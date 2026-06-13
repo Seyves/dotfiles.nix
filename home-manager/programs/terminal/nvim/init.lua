@@ -33,4 +33,16 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     end,
 })
 
+vim.api.nvim_create_autocmd('FileType', {
+    pattern = { 'go', "javascript", "typescript", "lua", "vue" },
+    callback = function() vim.treesitter.start() end,
+})
+
 require("remap")
+
+-- Macros --
+local leftKey = vim.api.nvim_replace_termcodes("<Left>", true, false, true)
+local escKey = vim.api.nvim_replace_termcodes("<Esc>", true, true, true)
+
+-- go json tag --
+vim.fn.setreg("j", "_yEA ``" .. leftKey .. "json:\"\"" .. escKey .. "hpF\"l~j_")

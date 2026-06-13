@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   services.swaync = {
     enable = true;
     settings = {
@@ -43,14 +44,21 @@
           "app-name" = "Spotify";
         };
       };
-      "widgets" = [ "label" "mpris" "title" "dnd" ];
+      "widgets" = [
+        "label"
+        "mpris"
+        "title"
+        "dnd"
+      ];
       "widget-config" = {
         "title" = {
           "text" = "Notifications";
           "clear-all-button" = true;
           "button-text" = " 󰎟 ";
         };
-        "dnd" = { "text" = "Do not disturb"; };
+        "dnd" = {
+          "text" = "Do not disturb";
+        };
         "label" = {
           "max-lines" = 1;
           "text" = " ";

@@ -1,4 +1,5 @@
-{ ... }: {
+{ ... }:
+{
   programs.kitty = {
     enable = true;
     shellIntegration.mode = "no-cursor";
@@ -80,4 +81,3 @@
 #87c095
 #868d80
 #868d80
-

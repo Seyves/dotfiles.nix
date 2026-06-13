@@ -25,20 +25,20 @@ vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Go to right pane" })
 vim.keymap.set("v", "<leader>y", '"+y', { desc = "Yank to clipboard" })
 vim.keymap.set("v", "<leader>p", '"+p', { desc = "Paste from clipboard" })
 
-local insert_to_cursor = function(str)
-    local pos = vim.api.nvim_win_get_cursor(0)[2]
-    local line = vim.api.nvim_get_current_line()
-    local nline = line:sub(0, pos) .. str .. line:sub(pos + 1)
-    vim.api.nvim_set_current_line(nline)
-end
+-- local insert_to_cursor = function(str)
+--     local pos = vim.api.nvim_win_get_cursor(0)[2]
+--     local line = vim.api.nvim_get_current_line()
+--     local nline = line:sub(0, pos) .. str .. line:sub(pos + 1)
+--     vim.api.nvim_set_current_line(nline)
+-- end
 
-vim.keymap.set("n", "<leader>pb", function()
+vim.keymap.set("n", "<leader>cb", function()
     local current_buf_name = vim.api.nvim_buf_get_name(0)
     local cwd = vim.loop.cwd()
     local buf_path = "." .. string.sub(current_buf_name, string.len(cwd) + 1)
-    insert_to_cursor(buf_path)
-end, { desc = "Print path from cwd to buffer" })
+    vim.fn.setreg('+', buf_path)
+end, { desc = "Copy path from cwd to clipboard" })
 
-vim.keymap.set("n", "<leader>pp", function()
-    insert_to_cursor(vim.api.nvim_buf_get_name(0))
-end, { desc = "Print full path" })
+vim.keymap.set("n", "<leader>cp", function()
+    vim.fn.setreg('+', vim.api.nvim_buf_get_name(0))
+end, { desc = "Copy full path to clipboard" })
