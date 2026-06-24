@@ -1,7 +1,7 @@
 {
   inputs,
   pkgs,
-  system,
+  config,
   ...
 }:
 {
@@ -29,8 +29,23 @@
     longitude = 37.61;
   };
 
+  age = {
+    identityPaths = [
+      "${config.home.homeDirectory}/.ssh/id_ed25519"
+    ];
+
+    secrets = {
+      itl-ai-proxy-key = {
+        file = ../secrets/itl-ai-proxy-key.age;
+      };
+    };
+  };
+
   # Zen browser
-  programs.zen-browser.enable = true;
+  programs.zen-browser = {
+    enable = true;
+    setAsDefaultBrowser = true;
+  };
 
   # Allowing unfree
   nixpkgs.config.allowUnfree = true;
@@ -59,32 +74,6 @@
   # Default mimetypes
   xdg.mimeApps =
     let
-      value =
-        let
-          zen-browser = inputs.zen-browser.packages.${system}.beta;
-        in
-        zen-browser.meta.desktopFileName;
-
-      zenMimetypes = builtins.listToAttrs (
-        map (name: { inherit name value; }) [
-          "application/x-extension-shtml"
-          "application/x-extension-xhtml"
-          "application/x-extension-html"
-          "application/x-extension-xht"
-          "application/x-extension-htm"
-          "x-scheme-handler/unknown"
-          "x-scheme-handler/mailto"
-          "x-scheme-handler/chrome"
-          "x-scheme-handler/about"
-          "x-scheme-handler/https"
-          "x-scheme-handler/http"
-          "application/xhtml+xml"
-          "application/json"
-          "application/pdf"
-          "text/html"
-        ]
-      );
-
       mimetypes = {
         # images
         "image/jpeg" = [ "org.gnome.Loupe.desktop" ];
@@ -136,8 +125,8 @@
     in
     {
       enable = true;
-      associations.added = mimetypes // zenMimetypes;
-      defaultApplications = mimetypes // zenMimetypes;
+      associations.added = mimetypes;
+      defaultApplications = mimetypes;
     };
 
   # Cursor theme
@@ -182,6 +171,13 @@
   home.sessionVariables.GTK_THEME = "Colloid-Dark";
 
   fonts.fontconfig.enable = true;
+
+  programs.opencode = {
+    enable = true;
+    settings = {
+      theme = "system";
+    };
+  };
 
   home.packages = (
     with pkgs;
@@ -233,8 +229,8 @@
       todoist-electron
 
       # ai
-      code-cursor
       claude-code
+      opencode
 
       # Rising
       # zsh-powerlevel10k

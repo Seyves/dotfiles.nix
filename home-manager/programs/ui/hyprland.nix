@@ -2,6 +2,7 @@
 {
   wayland.windowManager.hyprland = {
     enable = true;
+    configType = "hyprlang";
 
     submaps = {
       resize.settings = {
@@ -40,15 +41,15 @@
         "ags"
         "swaync"
         "waybar"
-        "[workspace 1 silent] zen"
+        "[workspace 1 silent] zen-beta"
         "[workspace 2 silent] kitty"
-        "[workspace 4 silent] telegram-desktop"
+        "[workspace 4 silent] Telegram"
       ];
 
       # Variables
       "$terminal" = "kitty";
       "$fileManager" = "dolphin";
-      "$menu" = "rofi -show-icons -show drun";
+      "$menu" = "rofi -show drun -drun-match-fields name";
       "$screenShot" = "hyprshot -m region --clipboard-only";
       "$colorPicker" = "hyprpicker -a";
       "$mainMod" = "SUPER";
@@ -155,7 +156,7 @@
         "$mainMod, V, togglefloating,"
         "$mainMod, D, exec, $menu"
         "$mainMod, P, pseudo, # dwindle"
-        "$mainMod, W, togglesplit, # dwindle"
+        "$mainMod, W, layoutmsg, togglesplit, # dwindle"
         # Colorpicker
         "$mainMod, C, exec, $colorPicker "
         ", Print, exec, $screenShot"
@@ -217,6 +218,7 @@
         "float on, match:class (org.gnome.Loupe)"
         "float on, match:class (org.gnome.FileRoller)"
         "float on, match:class (org.gnome.Showtime)"
+        "float on, match:title (AmneziaVPN)"
         "rounding 0, match:class (Better than Adventure! 7.2_01)"
         "maximize on, no_anim on, match:title (Media viewer)"
         "no_anim on, match:class ^(.*sway.*)$"
@@ -225,6 +227,7 @@
         "suppress_event maximize, match:class .* # You'll probably like this."
         "float on, size 1000 800, match:class (org.pulseaudio.pavucontrol)"
         "float on, size 1000 800, match:class (nm-connection-editor)"
+        # "opacity 0.95 0.95, match:class ^(kitty)$"
       ];
 
       layerrule = [

@@ -38,6 +38,13 @@ vim.api.nvim_create_autocmd('FileType', {
     callback = function() vim.treesitter.start() end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "go",
+    callback = function()
+        vim.opt_local.makeprg = "go build ./..."
+    end,
+})
+
 require("remap")
 
 -- Macros --

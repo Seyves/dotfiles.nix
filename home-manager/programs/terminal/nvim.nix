@@ -19,12 +19,13 @@ let
 in
 {
   # Just symlink it, so no build needed until no new dependencies
-  home.file.".config/nvim".source =
+  xdg.configFile."nvim".source =
     config.lib.file.mkOutOfStoreSymlink "/home/seyves/dotfiles.nix/home-manager/programs/terminal/nvim";
 
   programs.neovim = {
     defaultEditor = true;
     enable = true;
+    sideloadInitLua = true;
     plugins = with pkgs.vimPlugins; [
       # language features
       nvim-lspconfig
@@ -54,6 +55,7 @@ in
 
       # navigation
       telescope-nvim
+      telescope-fzf-native-nvim
       telescope-live-grep-args-nvim
       oil-nvim
       harpoon

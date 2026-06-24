@@ -8,14 +8,9 @@
   pkgs-unstable,
   config,
   system,
-  colors,
   ...
 }:
 
-let
-  monitorsXml = builtins.readFile ./monitors.xml;
-  monitorsConfig = pkgs.writeText "gdm_monitors.xml" monitorsXml;
-in
 {
   imports = [
     # Include the results of the hardware scan.
@@ -70,6 +65,13 @@ in
     "flakes"
   ];
 
+  age.secrets = {
+    itl-openvpn-ta.file = ../secrets/itl-openvpn-ta.age;
+    itl-openvpn-ca.file = ../secrets/itl-openvpn-ca.age;
+    itl-openvpn-cert.file = ../secrets/itl-openvpn-cert.age;
+    itl-openvpn-key.file = ../secrets/itl-openvpn-key.age;
+  };
+
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -101,9 +103,14 @@ in
       videoDrivers = [ "nvidia" ];
       # Enable the X11 windowing system.
     };
-    displayManager.gdm = {
+    greetd = {
       enable = true;
-      wayland = true;
+      settings = {
+        default_session = {
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd start-hyprland";
+          user = "greeter";
+        };
+      };
     };
     # Enable CUPS to print documents.
     printing.enable = true;
@@ -113,17 +120,64 @@ in
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+    openssh = {
+      enable = true;
+      listenAddresses = [
+        {
+          addr = "127.0.0.1";
+          port = 22;
+        }
+      ];
+    };
     openvpn.servers = {
       itoolabsVPN = {
         autoStart = false;
-        config = "config /home/seyves/.config/openvpn/itoolabs/office.ovpn";
-        updateResolvConf = true;
+        config = ''
+          client
+          dev tun
+          proto udp
+          remote 213.248.35.133 1194
+          remote 213.135.90.227 1194
+          remote 109.69.180.3 1194
+
+          nobind
+
+          tls-crypt ${config.age.secrets.itl-openvpn-ta.path}
+          ca ${config.age.secrets.itl-openvpn-ca.path}
+          cert ${config.age.secrets.itl-openvpn-cert.path}
+          key ${config.age.secrets.itl-openvpn-key.path}
+
+          remote-cert-tls server
+          pull-filter ignore redirect-gateway
+
+          comp-lzo no
+          compress lz4
+          verb 3
+
+          ## to let know about .itoolabs zone to local system
+          dhcp-option DOMAIN itoolabs
+
+          #### to work together with systemd-resolve
+          ## for Ubuntu do: sudo apt install openvpn-systemd-resolved
+          ## or https://github.com/jonathanio/update-systemd-resolved
+          ## and uncomment the following:
+          script-security 2
+          up ${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved
+          up-restart
+          down ${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved
+          down-pre
+        '';
       };
     };
     postgresql = {
       enable = true;
       package = pkgs.postgresql_17; # Optional: specify version
     };
+    # Nautilius needs it
+    gnome = {
+      tinysparql.enable = true;
+    };
+    resolved.enable = true;
   };
 
   virtualisation.docker = {
@@ -167,6 +221,7 @@ in
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.allowBroken = true;
 
+  programs.amnezia-vpn.enable = true;
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -177,6 +232,7 @@ in
     kitty
     git
     amnezia-vpn
+    update-systemd-resolved
   ];
 
   systemd.services.amnezia-vpn = {
@@ -212,7 +268,6 @@ in
     # _JAVA_AWT_WM_NONREPARENTING = "1";
     # CLUTTER_BACKEND = "wayland";
     ANTHROPIC_BASE_URL = "https://api-proxy.itoolabs.com/anthropic";
-    ANTHROPIC_API_KEY = "yHOiDvFAvNvjYPlgWvdotP13KLCgsit6uJk_Ml5rMnzzmVdzQzJaUopBdBTvaqZWkDxRjl_qWw6GF4i6Y4SKEg";
   };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -241,14 +296,15 @@ in
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.11"; # Did you read the comment?
 
-  systemd.tmpfiles.rules = [ "L+ /run/gdm/.config/monitors.xml - - - - ${monitorsConfig}" ];
-
   home-manager = {
     backupFileExtension = "backup";
     extraSpecialArgs = {
       system = system;
       inherit inputs pkgs pkgs-unstable;
     };
+    sharedModules = [
+      inputs.agenix.homeManagerModules.default
+    ];
     users = {
       "seyves" = import ../home-manager/home.nix;
     };
