@@ -12,6 +12,7 @@
     ./programs/terminal/fish.nix
     ./programs/ui/hyprland.nix
     ./programs/ui/rofi.nix
+    ./programs/ui/vicinae.nix
     ./programs/ui/waybar.nix
     ./programs/ui/swaync.nix
     inputs.zen-browser.homeModules.beta
@@ -94,11 +95,31 @@
         "video/ogg" = [ "org.gnome.Showtime.desktop" ];
         "video/webm" = [ "org.gnome.Showtime.desktop" ];
         # text
-        "text/markdown" = [ "neovide" ];
-        "text/plain" = [ "neovide" ];
-        "text/x-cmake" = [ "neovide" ];
+        "text/type" = [ "neovide.desktop" ];
+        "text/plain" = [ "neovide.desktop" ];
+        "text/markdown" = [ "neovide.desktop" ];
+        # "text/html" = [ "neovide.desktop" ];
+        "text/css" = [ "neovide.desktop" ];
+        "text/xml" = [ "neovide.desktop" ];
+        "text/csv" = [ "neovide.desktop" ];
+        "text/x-go" = [ "neovide.desktop" ];
+        "text/javascript" = [ "neovide.desktop" ];
+        "text/vnd.trolltech.linguist" = [ "neovide.desktop" ];
+        "text/yaml" = [ "neovide.desktop" ];
+        "text/x-shellscript" = [ "neovide.desktop" ];
+        "text/x-makefile" = [ "neovide.desktop" ];
+        "text/x-ini" = [ "neovide.desktop" ];
+        "text/x-cmake" = [ "neovide.desktop" ];
+        # application
         "application/json" = [ "neovide.desktop" ];
+        "application/ld+json" = [ "neovide.desktop" ];
         "application/xhtml+xml" = [ "neovide.desktop" ];
+        "application/javascript" = [ "neovide.desktop" ];
+        "application/typescript" = [ "neovide.desktop" ];
+        "application/x-makefile" = [ "neovide.desktop" ];
+        "application/x-shellscript" = [ "neovide.desktop" ];
+        "application/x-yaml" = [ "neovide.desktop" ];
+        "application/toml" = [ "neovide.desktop" ];
         # browser
         # "text/html" = [ "zen.desktop" ];
         # "x-scheme-handler/http=" = [ "zen.desktop" ];
@@ -176,6 +197,7 @@
     enable = true;
     settings = {
       theme = "system";
+      plugin = [ "@dietrichgebert/ponytail" ];
     };
   };
 
@@ -184,6 +206,7 @@
     [
       # Fonts
       nerd-fonts.jetbrains-mono
+      nerd-fonts.iosevka
       roboto
       inter
       fish
@@ -199,7 +222,8 @@
       pnpm
       ripgrep
       wine
-      twinkle
+      linphonePackages.linphone-desktop
+      baresip
       unzip
       jq
       htop-vim
@@ -226,7 +250,6 @@
       eyedropper
       gimp
       whatsapp-electron
-      todoist-electron
 
       # ai
       claude-code
@@ -236,6 +259,7 @@
       # zsh-powerlevel10k
       # swww
       rofi
+      vicinae
       swaybg
       libnotify
       waybar

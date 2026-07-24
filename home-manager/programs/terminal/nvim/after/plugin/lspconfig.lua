@@ -23,8 +23,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end,
             spread(opts) { desc = "Go to definition" })
-        vim.keymap.set("n", "K", function() vim.lsp.buf.hover({ border = "rounded" }) end,
-            spread(opts) { desc = "Hover documentation" })
+        vim.keymap.set("n", "K", function()
+            local pos = vim.api.nvim_win_get_cursor(0)
+            local lnum = pos[1] - 1
+            local col = pos[2]
+            local diags = vim.diagnostic.get(0, { lnum = lnum })
+            for _, d in ipairs(diags) do
+                local end_col = d.end_col or (d.col + 1)
+                if col >= d.col and col < end_col then
+                    vim.diagnostic.open_float(nil, {
+                        scope = "cursor",
+                        border = "rounded",
+                        focus = true,
+                    })
+                    return
+                end
+            end
+            vim.lsp.buf.hover({ border = "rounded" })
+        end, spread(opts) { desc = "Hover / Diagnostic" })
         vim.keymap.set("n", "]d", function() vim.diagnostic.goto_next() end,
             spread(opts) { desc = "Next diagnostic" })
         vim.keymap.set("n", "[d", function() vim.diagnostic.goto_prev() end,
@@ -42,7 +58,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 local capabilities = cmp_nvim_lsp.default_capabilities()
 
 -- strip the /bin/vue-language-server part and go to lib/language-tools/packages/typescript-plugin
--- can break at any time, but ok for now 
+-- can break at any time, but ok for now
 local vue_ls_bin = vim.fn.exepath("vue-language-server")
 local vue_ts_plugin = vue_ls_bin:gsub("/bin/vue%-language%-server$", "")
     .. "/lib/language-tools/packages/typescript-plugin"

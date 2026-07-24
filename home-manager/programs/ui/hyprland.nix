@@ -37,10 +37,11 @@
 
       # Autostart
       exec-once = [
-        "swaybg -i ~/Pictures/wallpapers/wallpaper_5.jpg"
+        "swaybg -i ~/Pictures/wallpapers/wallpaper_6.jpg -m fill"
         "ags"
         "swaync"
         "waybar"
+        "vicinae server"
         "[workspace 1 silent] zen-beta"
         "[workspace 2 silent] kitty"
         "[workspace 4 silent] Telegram"
@@ -49,7 +50,8 @@
       # Variables
       "$terminal" = "kitty";
       "$fileManager" = "dolphin";
-      "$menu" = "rofi -show drun -drun-match-fields name";
+      # "$menu" = "rofi -show drun -drun-match-fields name";
+      "$menu" = "vicinae open";
       "$screenShot" = "hyprshot -m region --clipboard-only";
       "$colorPicker" = "hyprpicker -a";
       "$mainMod" = "SUPER";
@@ -219,6 +221,7 @@
         "float on, match:class (org.gnome.FileRoller)"
         "float on, match:class (org.gnome.Showtime)"
         "float on, match:title (AmneziaVPN)"
+        "float on, match:title (linphone)"
         "rounding 0, match:class (Better than Adventure! 7.2_01)"
         "maximize on, no_anim on, match:title (Media viewer)"
         "no_anim on, match:class ^(.*sway.*)$"
@@ -233,15 +236,15 @@
       layerrule = [
         "blur on, match:namespace swaync-control-center"
         "blur on, match:namespace swaync-notification-window"
-        "blur on, match:namespace rofi"
+        # "blur on, match:namespace rofi"
+        "blur on, match:namespace vicinae"
 
         "ignore_alpha 0, match:namespace swaync-control-center"
         "ignore_alpha 0, match:namespace swaync-notification-window"
-        "ignore_alpha 0, match:namespace rofi"
+        # "ignore_alpha 0, match:namespace rofi"
 
         # "ignore_alpha 0.5, swaync-control-center"
         # "ignore_alpha 0.5, swaync-notification-window"
-        # "ignore_alpha 0.5, rofi"
 
         "no_anim on, match:namespace swaync-notification-window"
         "no_anim on, match:namespace hyprpicker"

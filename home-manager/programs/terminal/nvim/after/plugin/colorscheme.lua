@@ -5,13 +5,13 @@ vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 require('everforest').setup({
     -- transparent_background_level = 2,
     colours_override = function(palette)
-        palette.bg_dim = "#1b1b1b"
-        palette.bg0 = "#282828"
-        palette.bg1 = "#32302f"
+        palette.bg_dim = "#121212"
+        palette.bg0 = "#181818"
+        palette.bg1 = "#282828"
         palette.bg2 = "#32302f"
-        palette.bg3 = "#45403d"
+        palette.bg3 = "#32302f"
         palette.bg4 = "#45403d"
-        palette.bg5 = "#5a524c"
+        palette.bg5 = "#45403d"
     end,
     on_highlights = function(hl, palette)
         -- I like telescope that way :)
@@ -55,16 +55,16 @@ vim.cmd.colorscheme("everforest")
 
 local custom_lualine_theme = require 'lualine.themes.everforest'
 
-custom_lualine_theme.normal.b.bg = "#282828"
-custom_lualine_theme.normal.c.bg = "#282828"
-custom_lualine_theme.insert.b.bg = "#282828"
-custom_lualine_theme.insert.c.bg = "#282828"
-custom_lualine_theme.visual.b.bg = "#282828"
-custom_lualine_theme.visual.c.bg = "#282828"
-custom_lualine_theme.command.b.bg = "#282828"
-custom_lualine_theme.command.c.bg = "#282828"
-custom_lualine_theme.inactive.b.bg = "#282828"
-custom_lualine_theme.inactive.c.bg = "#282828"
+custom_lualine_theme.normal.b.bg = "#181818"
+custom_lualine_theme.normal.c.bg = "#181818"
+custom_lualine_theme.insert.b.bg = "#181818"
+custom_lualine_theme.insert.c.bg = "#181818"
+custom_lualine_theme.visual.b.bg = "#181818"
+custom_lualine_theme.visual.c.bg = "#181818"
+custom_lualine_theme.command.b.bg = "#181818"
+custom_lualine_theme.command.c.bg = "#181818"
+custom_lualine_theme.inactive.b.bg = "#181818"
+custom_lualine_theme.inactive.c.bg = "#181818"
 
 lualine_settings.options.theme = custom_lualine_theme
 

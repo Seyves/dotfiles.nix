@@ -19,10 +19,8 @@ vim.opt.linespace = 6
 
 vim.g.mapleader = " "
 
-vim.o.guifont = "JetBrainsMono Nerd Font:h12"
-vim.g.neovide_background_color = "#ffffff"
-vim.g.neovide_scroll_animation_length = 0.2
-vim.g.neovide_cursor_trail_size = 0.3
+vim.o.guifont = "Iosevka Nerd Font:h13"
+vim.opt.linespace = 9
 vim.opt.guicursor = ""
 
 vim.api.nvim_create_autocmd('TextYankPost', {

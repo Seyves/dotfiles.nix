@@ -4,14 +4,15 @@
     enable = true;
     shellIntegration.mode = "no-cursor";
     settings = {
+      keyboard_protocol = "kitty";
       adjust_line_height = "120%";
-      font_family = "JetBrainsMono Nerd Font";
-      font_size = 12;
+      font_family = "Iosevka Nerd Font";
+      font_size = 13;
 
       cursor_shape = "block";
       window_padding_width = 20;
 
-      background = "#282828";
+      background = "#181818";
       foreground = "#d8caac";
 
       cursor = "#d8caac";

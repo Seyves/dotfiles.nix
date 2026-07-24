@@ -37,21 +37,12 @@ in
       nvim-treesitter-context
       emmet-vim
 
-      # ai
-      codecompanion-nvim
-      avante-nvim
-      copilot-lua
-
       # eyecandy
       alpha-nvim
       gitsigns-nvim
       nvim-web-devicons
       lualine-nvim
-      oxocarbon-nvim
       (fromGitHub "5493fc380cf871d6ee9395f2613e57006b2a1626" "main" "neanias/everforest-nvim")
-      render-markdown-nvim
-      img-clip-nvim
-      dressing-nvim
 
       # navigation
       telescope-nvim
