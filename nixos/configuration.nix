@@ -124,7 +124,7 @@
       enable = true;
       listenAddresses = [
         {
-          addr = "127.0.0.1";
+          addr = "0.0.0.0";
           port = 22;
         }
       ];
@@ -233,7 +233,20 @@
     git
     amnezia-vpn
     update-systemd-resolved
+
+    kubectl
+    # optional but useful
+    kubernetes-helm
+    k9s
   ];
+
+  services.k3s = {
+    enable = true;
+    role = "server"; # single-node = server (also runs workloads)
+    # extraFlags = [ "--disable=traefik" ];  # optional: disable default ingress if you want
+  };
+
+  networking.firewall.allowedTCPPorts = [ 6443 ];
 
   systemd.services.amnezia-vpn = {
     description = "Amnezia VPN Daemon";

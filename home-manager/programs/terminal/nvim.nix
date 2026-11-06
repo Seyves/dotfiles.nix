@@ -59,7 +59,6 @@ in
       which-key-nvim
       comment-nvim
       luasnip
-      typescript-tools-nvim
       tailwind-tools-nvim
     ];
   };

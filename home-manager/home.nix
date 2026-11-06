@@ -4,6 +4,34 @@
   config,
   ...
 }:
+let
+  bun_1_4_0 = pkgs.bun.overrideAttrs (
+    finalAttrs: old: {
+      version = "1.4.0";
+      src =
+        finalAttrs.passthru.sources.${pkgs.stdenvNoCC.hostPlatform.system}
+          or (throw "Unsupported system: ${pkgs.stdenvNoCC.hostPlatform.system}");
+      passthru = old.passthru // {
+        sources = {
+          "x86_64-linux" = pkgs.fetchurl {
+            url = "https://github.com/oven-sh/bun/releases/download/bun-v1.4.0/bun-linux-x64-baseline.zip";
+            hash = "sha256-GE+0WV8NQBohfPfHjBvEMLqDMU2reouUgFurv3+nCX8=";
+          };
+        };
+      };
+    }
+  );
+
+  # Prefer this if your nixpkgs opencode accepts `bun` as an argument
+  opencode_pinned = pkgs.opencode.override { bun = bun_1_4_0; };
+
+  # Fallback if .override { bun = ... } fails — same style as your old pin:
+  # opencode_pinned = (pkgs.opencode.override { bun = bun_1_4_0; }).overrideAttrs (old: {
+  #   # only if you also need an older opencode version:
+  #   # version = "1.17.15";
+  #   # src = pkgs.fetchFromGitHub { ... };
+  # });
+in
 {
   imports = [
     ./programs/terminal/tmux.nix
@@ -199,6 +227,7 @@
       theme = "system";
       plugin = [ "@dietrichgebert/ponytail" ];
     };
+    package = opencode_pinned;
   };
 
   home.packages = (
@@ -212,7 +241,6 @@
       fish
 
       # Tools for development
-      bun
       go
       nodejs_24
       gcc
@@ -221,8 +249,8 @@
       fzf
       pnpm
       ripgrep
-      wine
-      linphonePackages.linphone-desktop
+      wineWow64Packages.stable # or .staging / .unstable
+      winetricks
       baresip
       unzip
       jq
@@ -230,6 +258,8 @@
       keychain
       hurl
       wget
+      sqlc
+      k6
 
       # Desktop Apps
       qbittorrent
@@ -245,7 +275,7 @@
       postman
       bruno
       neovide
-      obsidian
+      # obsidian
       showtime
       eyedropper
       gimp
@@ -253,7 +283,8 @@
 
       # ai
       claude-code
-      opencode
+      bun_1_4_0
+      # opencode_pinned
 
       # Rising
       # zsh-powerlevel10k
@@ -280,7 +311,6 @@
       gopls
       nil
       vue-language-server
-      vtsls
 
       # Formatters
       sql-formatter

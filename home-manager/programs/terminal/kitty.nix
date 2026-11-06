@@ -6,8 +6,8 @@
     settings = {
       keyboard_protocol = "kitty";
       adjust_line_height = "120%";
-      font_family = "Iosevka Nerd Font";
-      font_size = 13;
+      font_family = "JetBrainsMono Nerd Font";
+      font_size = 11.5;
 
       cursor_shape = "block";
       window_padding_width = 20;
