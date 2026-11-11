@@ -249,9 +249,6 @@ in
       fzf
       pnpm
       ripgrep
-      wineWow64Packages.stable # or .staging / .unstable
-      winetricks
-      baresip
       unzip
       jq
       htop-vim
@@ -272,10 +269,9 @@ in
       file-roller
       loupe
       telegram-desktop
-      postman
       bruno
       neovide
-      # obsidian
+      obsidian
       showtime
       eyedropper
       gimp

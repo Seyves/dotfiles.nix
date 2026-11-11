@@ -129,46 +129,6 @@
         }
       ];
     };
-    openvpn.servers = {
-      itoolabsVPN = {
-        autoStart = false;
-        config = ''
-          client
-          dev tun
-          proto udp
-          remote 213.248.35.133 1194
-          remote 213.135.90.227 1194
-          remote 109.69.180.3 1194
-
-          nobind
-
-          tls-crypt ${config.age.secrets.itl-openvpn-ta.path}
-          ca ${config.age.secrets.itl-openvpn-ca.path}
-          cert ${config.age.secrets.itl-openvpn-cert.path}
-          key ${config.age.secrets.itl-openvpn-key.path}
-
-          remote-cert-tls server
-          pull-filter ignore redirect-gateway
-
-          comp-lzo no
-          compress lz4
-          verb 3
-
-          ## to let know about .itoolabs zone to local system
-          dhcp-option DOMAIN itoolabs
-
-          #### to work together with systemd-resolve
-          ## for Ubuntu do: sudo apt install openvpn-systemd-resolved
-          ## or https://github.com/jonathanio/update-systemd-resolved
-          ## and uncomment the following:
-          script-security 2
-          up ${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved
-          up-restart
-          down ${pkgs.update-systemd-resolved}/libexec/openvpn/update-systemd-resolved
-          down-pre
-        '';
-      };
-    };
     postgresql = {
       enable = true;
       package = pkgs.postgresql_17; # Optional: specify version
