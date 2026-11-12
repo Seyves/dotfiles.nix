@@ -62,12 +62,6 @@ in
     identityPaths = [
       "${config.home.homeDirectory}/.ssh/id_ed25519"
     ];
-
-    secrets = {
-      itl-ai-proxy-key = {
-        file = ../secrets/itl-ai-proxy-key.age;
-      };
-    };
   };
 
   # Zen browser

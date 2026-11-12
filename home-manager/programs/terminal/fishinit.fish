@@ -1,13 +1,4 @@
 # utilities
-function itl-app-sync -a sandbox
-    sshpass -p "root" rsync -avz -e 'ssh' --exclude='node_modules' --exclude='media/vue/node_modules' --exclude='media/vue/.dev' --exclude='.git' --exclude='media/vue/dist' --exclude='media/vue/.temp_cache' /home/seyves/work/webapp root@core-dev.$sandbox.kube.itoolabs:/root
-    sshpass -p "root" ssh root@centrex-1.$sandbox.kube.itoolabs 'exec /usr/local/bin/centrex-configure -log -install-app '\' 'file "/root/webapp"'\' ' '
-end
-
-function itl-sf-sync -a sandbox
-    sshpass -p "root" rsync -avz -e 'ssh' /home/seyves/work/spam-feeder root@core-dev.$sandbox.kube.itoolabs:/root
-end
-
 function sf
     ~/.config/tmux/tmux-session-dispensary.sh
 end

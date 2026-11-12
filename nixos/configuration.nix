@@ -65,13 +65,6 @@
     "flakes"
   ];
 
-  age.secrets = {
-    itl-openvpn-ta.file = ../secrets/itl-openvpn-ta.age;
-    itl-openvpn-ca.file = ../secrets/itl-openvpn-ca.age;
-    itl-openvpn-cert.file = ../secrets/itl-openvpn-cert.age;
-    itl-openvpn-key.file = ../secrets/itl-openvpn-key.age;
-  };
-
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
